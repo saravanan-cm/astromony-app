@@ -64,3 +64,24 @@ export const logoutUser = () => (dispatch) => {
   // Set current user to empty object {} which will set isAuthenticated to false
   dispatch(setCurrentUser({}));
 };
+
+
+// Login - get user token
+export const forgetPassword = (userData) => (dispatch) => {
+  let config = {
+    headers: {
+      'Access-Control-Allow-Origin': '*'
+    }
+  }
+  axios
+    .post("http://localhost:5000/api/users/forget-password", userData, config)
+    .then((res) => {
+      dispatch(setCurrentUser(res));
+    })
+    .catch((err) =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data,
+      })
+    );
+};
