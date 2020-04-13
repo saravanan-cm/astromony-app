@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
+import { logoutUser } from "../../actions/authActions";
 
 const useStyles = (theme) => ({
   root: {
@@ -42,8 +43,14 @@ const useStyles = (theme) => ({
 });
 
 class Navbar extends Component {
+  onLogoutClick = (e) => {
+    e.preventDefault();
+    this.props.logoutUser();
+    window.location.href = "./login"
+  };
   render() {
     const { classes } = this.props;
+    const preventDefault = (event) => event.preventDefault();
     console.log(this.props.auth.isAuthenticated);
     return (
       <div className={classes.root}>
@@ -62,9 +69,9 @@ class Navbar extends Component {
                 AstroMony
               </Link>
             </Typography>
-            <Button variant="contained" className={classes.loginBtn} style={{display: this.props.auth.isAuthenticated ? 'none' : ''}}>
-              <Link className={classes.loginText} to="/login">
-                Login
+            <Button variant="contained" className={classes.loginBtn}>
+              <Link onClick={this.props.auth.isAuthenticated ? this.onLogoutClick : preventDefault} className={classes.loginText} to={this.props.auth.isAuthenticated ? "#" : "/login"}>
+                {this.props.auth.isAuthenticated ? "Logout" : "Login"}
               </Link>
             </Button>
           </Toolbar>
@@ -77,9 +84,10 @@ class Navbar extends Component {
 Navbar.propTypes = {
   auth: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired
 };
 const mapStateToProps = (state) => ({
   auth: state.auth,
   errors: state.errors,
 });
-export default connect(mapStateToProps)(withStyles(useStyles)(Navbar));
+export default connect(mapStateToProps, { logoutUser })(withStyles(useStyles)(Navbar));
