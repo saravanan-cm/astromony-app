@@ -5,7 +5,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
   axios
-    .post("http://localhost:5000/api/users/register", userData)
+    .post("http://192.168.1.6:5000/api/users/register", userData)
     .then((res) => history.push("/login")) // re-direct to login on successful register
     .catch((err) =>
       dispatch({
@@ -22,7 +22,7 @@ export const loginUser = (userData) => (dispatch) => {
     }
   }
   axios
-    .post("http://localhost:5000/api/users/login", userData, config)
+    .post("http://192.168.1.6:5000/api/users/login", userData, config)
     .then((res) => {
       // Save to localStorage
       // Set token to localStorage
@@ -38,7 +38,7 @@ export const loginUser = (userData) => (dispatch) => {
     .catch((err) =>
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data,
+        payload: err && err.response ? err.response.data : {},
       })
     );
 };
@@ -74,7 +74,7 @@ export const forgetPassword = (userData) => (dispatch) => {
     }
   }
   axios
-    .post("http://localhost:5000/api/users/forget-password", userData, config)
+    .post("http://192.168.1.6:5000/api/users/forget-password", userData, config)
     .then((res) => {
       dispatch(setCurrentUser(res));
     })

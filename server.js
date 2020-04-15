@@ -21,7 +21,7 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 // Routes
-app.use(cors({origin: 'http://localhost:3000'}));
+app.use(cors());
 app.use("/api/users", users);
 
 // Connect to MongoDB
