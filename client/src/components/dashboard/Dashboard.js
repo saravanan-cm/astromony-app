@@ -3,8 +3,9 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core";
 import { logoutUser } from "../../actions/authActions";
-import MiniDrawer from "./Navbar";
-import Content from "./profiles/Content";
+import SideDrawer from "./SideDrawer";
+import ProfileContent from "./profiles/Content";
+import ShortlistedContent from "./shortlisted/Content";
 import classNames from "classnames";
 
 const styles = (theme) => ({
@@ -50,21 +51,35 @@ const styles = (theme) => ({
 });
 
 class Dashboard extends Component {
-	onLogoutClick = (e) => {
-		e.preventDefault();
-		this.props.logoutUser();
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			active_tab: this.props.auth.user.name,
+		};
+	}
+
+	renderContent = (param) => {
+		switch(param) {
+		  case 'fav':
+			return <ShortlistedContent />;
+		  default:
+			return <ProfileContent />;
+		}
+	}
+
 	render() {
-		const { user } = this.props.auth;
 		const { classes } = this.props;
+		const eventhandler = (data) => {
+			this.setState({active_tab: data.active});
+		};
 		return (
 			<div>
 				<div style={{ flexGrow: 1 }}>
-					<MiniDrawer></MiniDrawer>
+					<SideDrawer onChange={eventhandler}></SideDrawer>
 				</div>
 				<main className={classNames(classes.main)}>
 					<div className={classes.wrapper}>
-						<Content />
+						{this.renderContent(this.state.active_tab)}
 					</div>
 				</main>
 			</div>

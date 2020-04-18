@@ -24,20 +24,8 @@ const styles = {
 const posts = [
 	{
 		src:
-			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
-		name: "Kamal",
-		timestamp: new Date().getTime() / 1000,
-	},
-	{
-		src:
 			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
 		name: "Vijay",
-		timestamp: new Date().getTime() / 1000,
-	},
-	{
-		src:
-			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
-		name: "Dhanush",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
@@ -45,22 +33,10 @@ const posts = [
 			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
 		name: "Rajini",
 		timestamp: new Date().getTime() / 1000,
-	},
-	{
-		src:
-			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
-		name: "Surya",
-		timestamp: new Date().getTime() / 1000,
-	},
-	{
-		src:
-			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
-		name: "Ajith",
-		timestamp: new Date().getTime() / 1000,
-	},
+	}
 ];
 
-class ProfileContent extends PureComponent {
+class ShortlistedContent extends PureComponent {
 	state = {
 		page: 0,
 	};
@@ -118,7 +94,7 @@ class ProfileContent extends PureComponent {
 		return (
 			<Paper>
 				<Toolbar className={classes.toolbar}>
-					<Typography variant='h6'>Profiles</Typography>
+					<Typography variant='h6'>Shortlisted</Typography>
 				</Toolbar>
 				<Divider />
 				{this.printImageGrid()}
@@ -149,8 +125,8 @@ class ProfileContent extends PureComponent {
 	}
 }
 
-ProfileContent.propTypes = {
+ShortlistedContent.propTypes = {
 	classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ProfileContent);
+export default withStyles(styles)(ShortlistedContent);
