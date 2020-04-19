@@ -10,6 +10,16 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import { logoutUser } from "../../actions/authActions";
+import LinearProgress from "@material-ui/core/LinearProgress";
+
+const ColorLinearProgress = withStyles({
+	colorPrimary: {
+		backgroundColor: "#b2dfdb",
+	},
+	barColorPrimary: {
+		backgroundColor: "#00695c",
+	},
+})(LinearProgress);
 
 const useStyles = (theme) => ({
 	menuButton: {
@@ -35,6 +45,11 @@ const useStyles = (theme) => ({
 		color: "#161515",
 	},
 	loginBtn: {
+		marginTop: "1rem",
+		fontFamily: "Sailec-Bold,Helvetica,sans-serif",
+		fontWeight: "bold",
+		letterSpacing: "1px",
+		color: "#fff",
 		backgroundColor: "#22ba6a",
 	},
 });
@@ -46,11 +61,14 @@ class Navbar extends Component {
 		window.location.href = "./login";
 	};
 	render() {
-		const { classes } = this.props;
-		const preventDefault = (event) => event.preventDefault();
+		const { classes, customProps } = this.props;
 		console.log(this.props.auth.isAuthenticated);
+		console.log("loader--  ", customProps.showLoader);
 		return (
 			<div className={classes.root}>
+				<ColorLinearProgress
+					style={{ display: customProps.showLoader }}
+				/>
 				<AppBar position='static' className={classes.barStyle}>
 					<Toolbar>
 						<IconButton
@@ -67,8 +85,11 @@ class Navbar extends Component {
 						</Typography>
 						<Button
 							variant='contained'
-							className={classes.loginBtn}>
-							<Link
+							className={classes.loginBtn}
+							href='/login'
+							style={{ display: customProps.showLogin }}>
+							Login
+							{/* <Link
 								onClick={
 									this.props.auth.isAuthenticated
 										? this.onLogoutClick
@@ -82,8 +103,8 @@ class Navbar extends Component {
 								}>
 								{this.props.auth.isAuthenticated
 									? "Logout"
-									: "Login"}
-							</Link>
+									: "Login"} 
+							</Link> */}
 						</Button>
 					</Toolbar>
 				</AppBar>

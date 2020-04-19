@@ -7,6 +7,7 @@ import SideDrawer from "./SideDrawer";
 import ProfileContent from "./profiles/Content";
 import ShortlistedContent from "./shortlisted/Content";
 import classNames from "classnames";
+import Navbar from "../../components/layout/Navbar";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -55,6 +56,8 @@ class Dashboard extends Component {
 		super(props);
 		this.state = {
 			active_tab: this.props.auth.user.name,
+			showLoader: "none",
+			showLogin: "none"
 		};
 	}
 
@@ -74,6 +77,7 @@ class Dashboard extends Component {
 		};
 		return (
 			<div>
+				<Navbar customProps={this.state} />
 				<div style={{ flexGrow: 1 }}>
 					<SideDrawer onChange={eventhandler}></SideDrawer>
 				</div>

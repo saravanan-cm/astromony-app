@@ -1,9 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Navbar from '../../components/layout/Navbar';
 class Landing extends Component {
+  constructor(){
+    super();
+    this.state = {
+      showLoader: "none",
+      showLogin: "",
+      showMenu: "none"
+    }
+  }
   render() {
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+      <div>
+        <Navbar customProps={this.state}/>
         <div className="row">
           <div className="col s12 center-align">
             <h4>

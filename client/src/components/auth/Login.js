@@ -10,6 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Navbar from '../../components/layout/Navbar';
 
 class Login extends Component {
   constructor() {
@@ -18,6 +19,8 @@ class Login extends Component {
       email: "",
       password: "",
       errors: {},
+      showLoader: "none",
+      showLogin: "none",
     };
   }
   componentDidMount() {
@@ -28,9 +31,11 @@ class Login extends Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.auth.isAuthenticated) {
+      this.setState({ showLoader: "none" });
       this.props.history.push("/dashboard"); // push user to dashboard when they login
     }
     if (nextProps.errors) {
+      this.setState({ showLoader: "none" });
       this.setState({
         errors: nextProps.errors,
       });
@@ -41,6 +46,9 @@ class Login extends Component {
   };
   onSubmit = (e) => {
     e.preventDefault();
+    if(this.state.email && this.state.password){
+      this.setState({ showLoader: "" });
+    }
     const userData = {
       email: this.state.email,
       password: this.state.password,
@@ -51,6 +59,7 @@ class Login extends Component {
     const { errors } = this.state;
     return (
       <div className="container">
+        <Navbar customProps={this.state} />
         <div style={{ marginTop: "3rem" }} className="row">
           <Container maxWidth="xs">
             <div

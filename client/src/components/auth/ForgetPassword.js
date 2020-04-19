@@ -9,6 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import TextField from "@material-ui/core/TextField";
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Navbar from "../layout/Navbar";
 
 class ForgetPassword extends Component {
   constructor() {
@@ -16,6 +17,8 @@ class ForgetPassword extends Component {
     this.state = {
       email: "",
       errors: {},
+      showLogin: "",
+      showLoader: "none",
     };
   }
   componentDidMount() {
@@ -48,6 +51,7 @@ class ForgetPassword extends Component {
     const { errors } = this.state;
     return (
       <div className="container">
+        <Navbar customProps={this.state}/>
         <div style={{ marginTop: "3rem" }} className="row">
           {/* <div className="col s8 offset-s2"> */}
           <Container maxWidth="sm">
