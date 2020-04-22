@@ -8,6 +8,7 @@ import ProfileContent from "./profiles/Content";
 import ShortlistedContent from "./shortlisted/Content";
 import classNames from "classnames";
 import Navbar from "../../components/layout/Navbar";
+import Account from "./account/Account";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -57,23 +58,27 @@ class Dashboard extends Component {
 		this.state = {
 			active_tab: this.props.auth.user.name,
 			showLoader: "none",
-			showLogin: "none"
+			showLogin: "none",
 		};
 	}
 
 	renderContent = (param) => {
-		switch(param) {
-		  case 'fav':
-			return <ShortlistedContent />;
-		  default:
-			return <ProfileContent />;
+		switch (param) {
+			case "fav":
+				return <ShortlistedContent />;
+			case "dashboard":
+				return <Account />;
+			case "profiles":
+				return <ProfileContent />;
+			default:
+				return <Account />;
 		}
-	}
+	};
 
 	render() {
 		const { classes } = this.props;
 		const eventhandler = (data) => {
-			this.setState({active_tab: data.active});
+			this.setState({ active_tab: data.active });
 		};
 		return (
 			<div>

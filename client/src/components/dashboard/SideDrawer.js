@@ -14,7 +14,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import PhotoLibraryRoundedIcon from "@material-ui/icons/PhotoLibraryRounded";
+import PeopleRoundedIcon from "@material-ui/icons/PeopleRounded";
 import ExitToAppRoundedIcon from "@material-ui/icons/ExitToAppRounded";
 import StarsRoundedIcon from "@material-ui/icons/StarsRounded";
 import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
@@ -103,7 +103,7 @@ const useStyles = (theme) => ({
 	},
 	contentBtn: {
 		color: "#59965c",
-	}
+	},
 });
 
 class SideDrawer extends Component {
@@ -126,7 +126,7 @@ class SideDrawer extends Component {
 				tag: "Brides",
 				link: "#",
 				class: "contentBtn",
-				icon: <PhotoLibraryRoundedIcon />,
+				icon: <PeopleRoundedIcon />,
 			},
 			{
 				name: "fav",
@@ -209,13 +209,12 @@ class SideDrawer extends Component {
 						</IconButton>
 					</div>
 					<Divider />
-					<List>
+					<List alignItems='center'>
 						{this.drawerList.map((obj, index) => (
 							<Link
 								className={classes.navbarLinks}
-								to={obj.link !== "logout" ? obj.link : ""}
 								onClick={
-									obj.link !== "logout"
+									obj.name !== "logout"
 										? () => this.handleTabChange(obj.name)
 										: this.onLogoutClick
 								}>
@@ -223,9 +222,18 @@ class SideDrawer extends Component {
 									selected={obj.name === this.state.active}
 									button
 									key={obj.name}>
-									<ListItemIcon className={classes[obj.class]}>{obj.icon}</ListItemIcon>
+									<ListItemIcon
+										className={classes[obj.class]}>
+										{obj.icon}
+									</ListItemIcon>
 									<ListItemText primary={obj.tag} />
 								</ListItem>
+								<Divider
+									style={{
+										marginLeft: "10%",
+										marginRight: "10%",
+									}}
+								/>
 							</Link>
 						))}
 					</List>
