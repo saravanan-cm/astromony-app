@@ -45,12 +45,14 @@ const useStyles = (theme) => ({
 		color: "#161515",
 	},
 	loginBtn: {
-		marginTop: "1rem",
 		fontFamily: "Sailec-Bold,Helvetica,sans-serif",
 		fontWeight: "bold",
 		letterSpacing: "1px",
 		color: "#fff",
 		backgroundColor: "#22ba6a",
+	},
+	features: {
+		marginRight: "5%",
 	},
 });
 
@@ -75,6 +77,7 @@ class Navbar extends Component {
 							edge='start'
 							className={classes.menuButton}
 							color='inherit'
+							style={{ display: customProps.showMenu }}
 							aria-label='menu'>
 							<MenuIcon />
 						</IconButton>
@@ -83,28 +86,21 @@ class Navbar extends Component {
 								AstroMony
 							</Link>
 						</Typography>
+						<div
+							className={classes.features}
+							style={{
+								display: customProps.showFeatures ? "" : "none",
+							}}>
+							<Button href='#' color='primary'>
+								Link
+							</Button>
+						</div>
 						<Button
 							variant='contained'
 							className={classes.loginBtn}
 							href='/login'
 							style={{ display: customProps.showLogin }}>
 							Login
-							{/* <Link
-								onClick={
-									this.props.auth.isAuthenticated
-										? this.onLogoutClick
-										: preventDefault
-								}
-								className={classes.loginText}
-								to={
-									this.props.auth.isAuthenticated
-										? "#"
-										: "/login"
-								}>
-								{this.props.auth.isAuthenticated
-									? "Logout"
-									: "Login"} 
-							</Link> */}
 						</Button>
 					</Toolbar>
 				</AppBar>

@@ -41,7 +41,6 @@ const styles = (theme) => ({
 	},
 	imageContainer: {
 		width: "80%",
-		// marginLeft: "10%",
 		paddingTop: "80%",
 		overflow: "hidden",
 		position: "relative",
@@ -98,12 +97,6 @@ const AccountProfile = (props) => {
 			image.src.lastIndexOf(".") + 1,
 			image.src.length
 		);
-		// var link = document.createElement('a');
-		// link.href = image.src;
-		// link.download = 'Download.'+file_type;
-		// document.body.appendChild(link);
-		// link.click();
-		// document.body.removeChild(link);
 	};
 
 	const showPreviousImage = () => {
@@ -137,8 +130,8 @@ const AccountProfile = (props) => {
 						onClick={() => showPreviousImage()}>
 						<NavigateBeforeIcon />
 					</IconButton>
+
 					<div className={classes.imageContainer}>
-						{/* <Link href={image.src} target='_blank'> */}
 						<ZoomImage
 							style={{
 								height: values.moreWidthThanHeight
@@ -169,7 +162,6 @@ const AccountProfile = (props) => {
 							src={image.src}
 							alt=''
 						/>
-						{/* </Link> */}
 					</div>
 					<IconButton
 						aria-label='delete'
