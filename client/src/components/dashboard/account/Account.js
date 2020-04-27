@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import AccountDetails from "./AccountDetails";
 import AccountProfile from "./AccountProfile";
 import Password from "./Password";
+import Preferences from "./Preferences";
 
 const styles = (theme) => ({
 	root: {
@@ -67,6 +68,9 @@ const Account = (props) => {
 						<AccountDetails />
 					</Grid>
 				</Grid>
+			</div>
+			<div style={{ display: activeTab === "about" ? "" : "none" }}>
+				<Preferences />
 			</div>
 			<div style={{ display: activeTab === "security" ? "" : "none" }}>
 				<Grid container spacing={2}>

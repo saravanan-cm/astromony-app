@@ -11,8 +11,8 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../../components/layout/Navbar";
-import loveLeft from "../../assets/love.gif";
-import loveRight from "../../assets/love-in-air.gif";
+import loveLeft from "../../assets/images/love.gif";
+import loveRight from "../../assets/images/love-in-air.gif";
 
 class Login extends Component {
 	constructor() {

@@ -10,7 +10,7 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../layout/Navbar";
-import thinking from "../../assets/thinking.gif";
+import thinking from "../../assets/images/thinking.gif";
 
 class ForgetPassword extends Component {
 	constructor() {

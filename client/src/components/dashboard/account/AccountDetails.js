@@ -149,6 +149,7 @@ const AccountDetails = (props) => {
 							<TextField
 								fullWidth
 								label='Select State'
+								helperText='Please specify the home town'
 								margin='dense'
 								name='state'
 								onChange={handleChange}
