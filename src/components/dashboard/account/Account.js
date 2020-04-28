@@ -6,7 +6,8 @@ import PropTypes from "prop-types";
 import AccountDetails from "./AccountDetails";
 import AccountProfile from "./AccountProfile";
 import Password from "./Password";
-import Preferences from "./Preferences";
+import Bio from "./Bio";
+import Background from "./Background";
 
 const styles = (theme) => ({
 	root: {
@@ -26,13 +27,13 @@ const Account = (props) => {
 		},
 		{
 			id: 8,
-			label: "Bio",
-			name: "bio",
+			label: "Birth Details",
+			name: "birthdetails",
 		},
 		{
-			id: 7,
-			label: "Plan",
-			name: "plan",
+			id: 10,
+			label: "Background",
+			name: "background",
 		},
 		{
 			id: 6,
@@ -53,10 +54,11 @@ const Account = (props) => {
 				onChange={handleChange}
 				indicatorColor='primary'
 				textColor='primary'
-				style={{ marginBottom: "1%", float: "left" }}
-				centered>
+				variant='scrollable'
+				scrollButtons='auto'
+				style={{ marginBottom: "1%", float: "left" }}>
 				{navBarList.map((obj, index) => (
-					<Tab label={obj.label} id={obj.id} />
+					<Tab label={obj.label} id={index} />
 				))}
 			</Tabs>
 			<div style={{ display: activeTab === "basics" ? "" : "none" }}>
@@ -69,8 +71,12 @@ const Account = (props) => {
 					</Grid>
 				</Grid>
 			</div>
-			<div style={{ display: activeTab === "bio" ? "" : "none" }}>
-				<Preferences />
+			<div
+				style={{ display: activeTab === "birthdetails" ? "" : "none" }}>
+				<Bio />
+			</div>
+			<div style={{ display: activeTab === "background" ? "" : "none" }}>
+				<Background />
 			</div>
 			<div style={{ display: activeTab === "security" ? "" : "none" }}>
 				<Grid container spacing={2}>

@@ -19,6 +19,7 @@ import {
 	withStyles,
 } from "@material-ui/core";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import GoogleAutocomplete from "../../misc/GoogleAutocomplete";
 
 const styles = (theme) => ({
 	root: {},
@@ -32,13 +33,15 @@ const AccountDetails = (props) => {
 		lastName: "Zhi",
 		email: "shen.zhi@devias.io",
 		phone: "",
-		state: "Alabama",
-		country: "USA",
+		location: "",
+		city: null,
+		country: null,
 		editProfile: false,
 		uid: "DGH76DF4",
 		dob: null,
 	});
 	const handleClick = (name, value) => {
+		console.log("inside handleclick:   ", name, value);
 		setValues({
 			...values,
 			[name]: value,
@@ -53,26 +56,12 @@ const AccountDetails = (props) => {
 	};
 
 	function handleDateChange(date) {
+		var dob = "dob";
 		setValues({
 			...values,
-			["dob"]: date,
+			[dob]: date,
 		});
 	}
-
-	const states = [
-		{
-			value: "alabama",
-			label: "Alabama",
-		},
-		{
-			value: "new-york",
-			label: "New York",
-		},
-		{
-			value: "san-francisco",
-			label: "San Francisco",
-		},
-	];
 
 	return (
 		<Card {...rest} className={clsx(classes.root, className)}>
@@ -195,6 +184,9 @@ const AccountDetails = (props) => {
 							/>
 						</Grid>
 						<Grid item md={6} xs={12}>
+							<GoogleAutocomplete onChange={handleClick} />
+						</Grid>
+						{/* <Grid item md={6} xs={12}>
 							<TextField
 								fullWidth
 								label='Select State'
@@ -235,6 +227,7 @@ const AccountDetails = (props) => {
 								variant='outlined'
 							/>
 						</Grid>
+					 */}
 					</Grid>
 				</CardContent>
 				<Divider />
