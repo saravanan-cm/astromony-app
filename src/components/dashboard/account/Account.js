@@ -26,8 +26,8 @@ const Account = (props) => {
 		},
 		{
 			id: 8,
-			label: "About",
-			name: "about",
+			label: "Bio",
+			name: "bio",
 		},
 		{
 			id: 7,
@@ -69,7 +69,7 @@ const Account = (props) => {
 					</Grid>
 				</Grid>
 			</div>
-			<div style={{ display: activeTab === "about" ? "" : "none" }}>
+			<div style={{ display: activeTab === "bio" ? "" : "none" }}>
 				<Preferences />
 			</div>
 			<div style={{ display: activeTab === "security" ? "" : "none" }}>

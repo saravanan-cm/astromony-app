@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+	MuiPickersUtilsProvider,
+	KeyboardDatePicker,
+} from "@material-ui/pickers";
 import {
 	Card,
 	CardHeader,
@@ -30,6 +35,8 @@ const AccountDetails = (props) => {
 		state: "Alabama",
 		country: "USA",
 		editProfile: false,
+		uid: "DGH76DF4",
+		dob: null,
 	});
 	const handleClick = (name, value) => {
 		setValues({
@@ -44,6 +51,13 @@ const AccountDetails = (props) => {
 			[event.target.name]: event.target.value,
 		});
 	};
+
+	function handleDateChange(date) {
+		setValues({
+			...values,
+			["dob"]: date,
+		});
+	}
 
 	const states = [
 		{
@@ -87,7 +101,20 @@ const AccountDetails = (props) => {
 						<Grid item md={6} xs={12}>
 							<TextField
 								fullWidth
-								helperText='Please specify the first name'
+								label='ID'
+								margin='dense'
+								name='uid'
+								required
+								InputProps={{
+									readOnly: true,
+								}}
+								value={values.uid}
+								variant='outlined'
+							/>
+						</Grid>
+						<Grid item md={6} xs={12}>
+							<TextField
+								fullWidth
 								label='First name'
 								margin='dense'
 								name='firstName'
@@ -114,6 +141,28 @@ const AccountDetails = (props) => {
 								value={values.lastName}
 								variant='outlined'
 							/>
+						</Grid>
+						<Grid item md={6} xs={12}>
+							<MuiPickersUtilsProvider utils={DateFnsUtils}>
+								<KeyboardDatePicker
+									margin='dense'
+									id='date-picker-dialog'
+									label='Date of Birth'
+									format='MM/dd/yyyy'
+									name='dob'
+									inputVariant='outlined'
+									maxDate={values.maxDate}
+									minDate={values.minDate}
+									value={values.dob}
+									onChange={handleDateChange}
+									InputProps={{
+										readOnly: !values.editDetails,
+									}}
+									KeyboardButtonProps={{
+										"aria-label": "change date",
+									}}
+								/>
+							</MuiPickersUtilsProvider>
 						</Grid>
 						<Grid item md={6} xs={12}>
 							<TextField
