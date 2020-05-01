@@ -27,10 +27,11 @@ const styles = (theme) => ({
 
 const AccountDetails = (props) => {
 	const { classes, className, ...rest } = props;
+	var today = new Date();
+	var maxDate = today.setFullYear(today.getFullYear() - 18);
 
 	const [values, setValues] = useState({
-		firstName: "Shen",
-		lastName: "Zhi",
+		fullName: "Shen",
 		email: "shen.zhi@devias.io",
 		phone: "",
 		location: "",
@@ -39,6 +40,8 @@ const AccountDetails = (props) => {
 		editProfile: false,
 		uid: "DGH76DF4",
 		dob: null,
+		minDate: new Date("1950-01-01T00:00:00"),
+		maxDate: maxDate,
 	});
 	const handleClick = (name, value) => {
 		console.log("inside handleclick:   ", name, value);
@@ -104,30 +107,15 @@ const AccountDetails = (props) => {
 						<Grid item md={6} xs={12}>
 							<TextField
 								fullWidth
-								label='First name'
+								label='Full name'
 								margin='dense'
-								name='firstName'
+								name='fullName'
 								onChange={handleChange}
 								required
 								InputProps={{
 									readOnly: !values.editProfile,
 								}}
-								value={values.firstName}
-								variant='outlined'
-							/>
-						</Grid>
-						<Grid item md={6} xs={12}>
-							<TextField
-								fullWidth
-								label='Last name'
-								margin='dense'
-								name='lastName'
-								onChange={handleChange}
-								required
-								InputProps={{
-									readOnly: !values.editProfile,
-								}}
-								value={values.lastName}
+								value={values.fullName}
 								variant='outlined'
 							/>
 						</Grid>

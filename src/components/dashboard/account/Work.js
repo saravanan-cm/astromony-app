@@ -1,4 +1,5 @@
 import React from "react";
+import GoogleAutocomplete from "../../misc/GoogleAutocomplete";
 
 import { Card, CardContent, Grid, TextField } from "@material-ui/core";
 
@@ -7,6 +8,10 @@ const Work = (props) => {
 
 	function handleChange(event) {
 		props.onChange(event.target.name, event.target.value);
+	}
+
+	function handleClick(name, value){
+		props.onChange('workLocation', value);
 	}
 
 	return (
@@ -20,7 +25,6 @@ const Work = (props) => {
 							margin='dense'
 							name='education'
 							onChange={handleChange}
-							required
 							placeholder='For eg: Electronics and Communications Engineering'
 							InputProps={{
 								readOnly: !values.editDetails,
@@ -36,7 +40,6 @@ const Work = (props) => {
 							margin='dense'
 							name='work'
 							onChange={handleChange}
-							required
 							placeholder='For eg: Senior Software Engineer'
 							InputProps={{
 								readOnly: !values.editDetails,
@@ -52,7 +55,6 @@ const Work = (props) => {
 							margin='dense'
 							name='company'
 							onChange={handleChange}
-							required
 							placeholder='For eg: ABCXYZ Technologies'
 							InputProps={{
 								readOnly: !values.editDetails,
@@ -62,19 +64,7 @@ const Work = (props) => {
 						/>
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
-							fullWidth
-							label='Work Location'
-							margin='dense'
-							name='location'
-							onChange={handleChange}
-							required
-							InputProps={{
-								readOnly: !values.editDetails,
-							}}
-							value={values.location}
-							variant='outlined'
-						/>
+						<GoogleAutocomplete onChange={handleClick} />
 					</Grid>
 				</Grid>
 			</CardContent>

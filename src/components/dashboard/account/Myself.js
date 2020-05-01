@@ -13,14 +13,30 @@ const Myself = (props) => {
 		<Card>
 			<CardContent>
 				<Grid container spacing={2}>
-					<Grid item xs={12}>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Address'
+							margin='dense'
+							name='address'
+							onChange={handleChange}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.about}
+							id='outlined-multiline-static'
+							multiline
+							rows={10}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
 						<TextField
 							fullWidth
 							label='About'
 							margin='dense'
 							name='about'
 							onChange={handleChange}
-							required
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
@@ -28,18 +44,14 @@ const Myself = (props) => {
 							id='outlined-multiline-static'
 							multiline
 							rows={4}
-							rowsMax={10}
 							variant='outlined'
 						/>
-					</Grid>
-					<Grid item xs={12}>
 						<TextField
 							fullWidth
 							label='Preference'
 							margin='dense'
 							name='expectations'
 							onChange={handleChange}
-							required
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
@@ -47,7 +59,6 @@ const Myself = (props) => {
 							id='outlined-multiline-static'
 							multiline
 							rows={4}
-							rowsMax={10}
 							variant='outlined'
 						/>
 					</Grid>

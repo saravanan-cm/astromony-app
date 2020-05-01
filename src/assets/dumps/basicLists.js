@@ -107,10 +107,28 @@ const lookingForList = [
 	},
 ];
 
-const statusList = [
-    "Single",
-    "Divorcee",
-    "Windowed",
-]
+const statusList = ["Single", "Divorcee", "Windowed"];
 
-export { heightList, tone, raasiList, nakshatras, lookingForList, genderList, statusList };
+const visaList = [
+	"US H1B",
+	"Indian Resident",
+	"US Citizen",
+	"US Green Card",
+	"US Student Visa",
+	"US Business Visa",
+	"NRI Singapore",
+	"NRI Middle East",
+	"NRI Europe",
+	"Other",
+];
+
+export {
+	heightList,
+	tone,
+	raasiList,
+	nakshatras,
+	lookingForList,
+	genderList,
+	statusList,
+	visaList,
+};

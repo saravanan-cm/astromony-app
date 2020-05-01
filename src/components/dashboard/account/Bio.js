@@ -11,6 +11,7 @@ import {
 	Button,
 } from "@material-ui/core";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import BirthDetails from "./BirthDetails";
 import Horoscope from "./Horoscope";
 
@@ -35,16 +36,18 @@ const Bio = (props) => {
 		expectations: null,
 		minDate: new Date("1950-01-01T00:00:00"),
 		maxDate: new Date(),
-		visaStatus: false,
+		visaStatus: null,
+		address: null,
+		familyName: null,
+		gothram: null,
+		sisters: 0,
+		marriedSisters: 0,
+		brothers: 0,
+		marriedBrothers: 0,
 		editDetails: true, // By default have to set it to false to disable edit
 	});
 
 	const handleChange = (name, value) => {
-		console.log(
-			"entered parent handle change with name, value:  ",
-			name,
-			value
-		);
 		setValues({
 			...values,
 			[name]: value,
@@ -68,13 +71,17 @@ const Bio = (props) => {
 											!values.editDetails
 										)
 									}>
-									<EditRoundedIcon />
+									{values.editDetails ? (
+										<ClearRoundedIcon />
+									) : (
+										<EditRoundedIcon />
+									)}
 								</IconButton>
 							</div>
 						}
 					/>
 					<Divider />
-					<CardContent style={{backgroundColor:"#f6f7f4"}}>
+					<CardContent style={{ backgroundColor: "#f6f7f4" }}>
 						<Grid container spacing={4}>
 							<Grid item lg={6} md={6} xl={6} xs={12}>
 								<BirthDetails

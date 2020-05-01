@@ -23,36 +23,42 @@ const styles = {
 
 const posts = [
 	{
+		uid: "FG467EDDA",
 		src:
 			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
 		name: "Kamal",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
+		uid: "FG87DFC3D",
 		src:
 			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
 		name: "Vijay",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
+		uid: "FG4DF4GHD",
 		src:
 			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
 		name: "Dhanush",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
+		uid: "FG4Q2EF3D",
 		src:
 			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
 		name: "Rajini",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
+		uid: "FG46ZG53D",
 		src:
 			"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
 		name: "Surya",
 		timestamp: new Date().getTime() / 1000,
 	},
 	{
+		uid: "FG46FG53D",
 		src:
 			"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
 		name: "Ajith",
@@ -72,7 +78,6 @@ class ProfileContent extends PureComponent {
 	};
 
 	printImageGrid = () => {
-		const options = [];
 		const { page } = this.state;
 		if (posts.length > 0) {
 			return (
@@ -93,8 +98,8 @@ class ProfileContent extends PureComponent {
 									<SelfAligningImage
 										src={element.src}
 										title={element.name}
+										id={element.uid}
 										timeStamp={element.timestamp}
-										options={options}
 									/>
 								</Grid>
 							))}

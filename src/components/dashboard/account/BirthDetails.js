@@ -85,12 +85,10 @@ const BirthDetails = (props) => {
 							name='tone'
 							margin='dense'
 							onChange={handleChange}
-							required
 							select={values.editDetails}
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
-							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
 							value={values.tone}
 							variant='outlined'>
