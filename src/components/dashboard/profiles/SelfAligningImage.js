@@ -25,9 +25,10 @@ const styles = {
 class SelfAligningImage extends PureComponent {
 	state = { moreWidthThanHeight: null, loaded: false };
 
-	openProfile = (id) => {
+	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
-		window.location.href = "/user?id=" + id;
+		var uid = new Buffer(id + "--" + page.toString()).toString('base64');
+		window.location.href = "/user?id=" + uid;
 	};
 
 	render() {
@@ -37,6 +38,7 @@ class SelfAligningImage extends PureComponent {
 			src,
 			title,
 			id,
+			page,
 			timeStamp,
 			roundedBorder,
 			theme,
@@ -56,7 +58,7 @@ class SelfAligningImage extends PureComponent {
 						this.img = node;
 					}}
 					className={classes.image}
-					onClick={() => this.openProfile(id)}
+					onClick={() => this.openProfile(id, page)}
 					onLoad={() => {
 						if (this.img.naturalHeight > this.img.naturalWidth) {
 							this.setState({

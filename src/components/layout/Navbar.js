@@ -6,6 +6,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
+import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
@@ -24,6 +25,9 @@ const ColorLinearProgress = withStyles({
 const useStyles = (theme) => ({
 	menuButton: {
 		marginRight: theme.spacing(2),
+	},
+	root: {
+		boxShadow: "6px 2px 3px #aaaaaa",
 	},
 	title: {
 		flexGrow: 1,
@@ -64,6 +68,9 @@ class Navbar extends Component {
 	};
 	render() {
 		const { classes, customProps } = this.props;
+		const iconType = !customProps.hasOwnProperty("iconType")
+			? "menu"
+			: customProps.iconType;
 		console.log(this.props.auth.isAuthenticated);
 		console.log("loader--  ", customProps.showLoader);
 		return (
@@ -73,14 +80,26 @@ class Navbar extends Component {
 				/>
 				<AppBar position='static' className={classes.barStyle}>
 					<Toolbar>
-						<IconButton
-							edge='start'
-							className={classes.menuButton}
-							color='inherit'
-							style={{ display: customProps.showMenu }}
-							aria-label='menu'>
-							<MenuIcon />
-						</IconButton>
+						{iconType === "menu" ? (
+							<IconButton
+								edge='start'
+								className={classes.menuButton}
+								color='inherit'
+								style={{ display: customProps.showMenu }}
+								aria-label='menu'>
+								<MenuIcon />
+							</IconButton>
+						) : (
+							<IconButton
+								edge='start'
+								className={classes.menuButton}
+								color='inherit'
+								style={{ display: customProps.showMenu }}
+								aria-label='menu'>
+								<ArrowBackRoundedIcon />
+							</IconButton>
+						)}
+
 						<Typography variant='h6' className={classes.title}>
 							<Link className={classes.titleText} to='/'>
 								AstroMony

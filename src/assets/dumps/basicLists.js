@@ -122,6 +122,13 @@ const visaList = [
 	"Other",
 ];
 
+const famStatusList = [
+	"Rich",
+	"Upper middle class",
+	"Middle class",
+	"Working class",
+];
+
 export {
 	heightList,
 	tone,
@@ -131,4 +138,5 @@ export {
 	genderList,
 	statusList,
 	visaList,
+	famStatusList,
 };

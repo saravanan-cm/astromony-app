@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import clsx from "clsx";
 import {
 	Card,
 	CardActions,
@@ -14,14 +13,17 @@ import {
 	withStyles,
 } from "@material-ui/core";
 
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
-import ZoomImage from "../../misc/ZoomImage";
+import DeleteIcon from "@material-ui/icons/Delete";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import ImageCarousal from "../../misc/ImageCarousal";
 
 const styles = (theme) => ({
 	root: {},
 	details: {
 		display: "flex",
+	},
+	input: {
+		display: "none",
 	},
 	avatar: {
 		marginLeft: "auto",
@@ -56,14 +58,18 @@ const styles = (theme) => ({
 		maxHeight: "100%",
 		transform: "scale(-50%, -50%)",
 	},
+	imgflex: {
+		flexDirection: "row",
+		padding: 0,
+	},
 });
 
 const AccountProfile = (props) => {
-	const { classes, className, ...rest } = props;
-	const [values, setValues] = useState({
-		moreWidthThanHeight: null,
-		loaded: false,
-	});
+	const { classes } = props;
+
+	const state = {
+		images: [],
+	};
 
 	const imageList = [
 		"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
@@ -71,124 +77,59 @@ const AccountProfile = (props) => {
 		"https://www.wallpaperflare.com/static/622/473/259/artwork-anime-landscape-painting-wallpaper.jpg",
 	];
 
-	const [image, setImage] = useState({
-		src: imageList[0],
-		index: 0,
-	});
-
-	const showNextImage = () => {
-		var currIndex = image.index;
-		var newSrc = image.src;
-		if (imageList.length - 1 != currIndex) {
-			newSrc = imageList[currIndex + 1];
-			currIndex = currIndex + 1;
-		} else {
-			newSrc = imageList[0];
-			currIndex = 0;
+	const handleCapture = ({ target }) => {
+		console.log("inside handleCapture---  ");
+		const fileReader = new FileReader();
+		const name = target.accept.includes("image") ? "images" : "videos";
+		if (name === "images") {
+			fileReader.readAsDataURL(target.files[0]);
+			fileReader.onload = (e) => {
+				state.images.push(e.target.result);
+			};
 		}
-		setImage({
-			src: newSrc,
-			index: currIndex,
-		});
 	};
-
-	const download = () => {
-		var file_type = image.src.substring(
-			image.src.lastIndexOf(".") + 1,
-			image.src.length
-		);
-	};
-
-	const showPreviousImage = () => {
-		var currIndex = image.index;
-		var newSrc = image.src;
-		if (currIndex != 0) {
-			newSrc = imageList[currIndex - 1];
-			currIndex = currIndex - 1;
-		} else {
-			newSrc = imageList[imageList.length - 1];
-			currIndex = imageList.length - 1;
-		}
-		setImage({
-			src: newSrc,
-			index: currIndex,
-		});
-	};
-
-	var img = {};
 
 	return (
-		<Card {...rest} className={clsx(classes.root, className)}>
+		<Card className={classes.root}>
 			<CardContent>
-				{/* <IconButton onClick={() => download()}>
-					<DeleteRoundedIcon />
-				</IconButton> */}
-				<div className={classes.details}>
-					<IconButton
-						aria-label='delete'
-						style={{ backgroundColor: "transparent" }}
-						onClick={() => showPreviousImage()}>
-						<NavigateBeforeIcon />
-					</IconButton>
-
-					<div className={classes.imageContainer}>
-						<ZoomImage
-							style={{
-								height: values.moreWidthThanHeight
-									? "100%"
-									: "auto",
-								width: values.moreWidthThanHeight
-									? "auto"
-									: "100%",
-								display: values.loaded ? "block" : "none",
-							}}
-							ref={(node) => {
-								img = node;
-							}}
-							className={classes.image}
-							onLoad={() => {
-								if (img.naturalHeight > img.naturalWidth) {
-									setValues({
-										moreWidthThanHeight: false,
-										loaded: true,
-									});
-								} else {
-									setValues({
-										moreWidthThanHeight: true,
-										loaded: true,
-									});
-								}
-							}}
-							src={image.src}
-							alt=''
-						/>
-					</div>
-					<IconButton
-						aria-label='delete'
-						style={{ backgroundColor: "transparent" }}
-						onClick={() => showNextImage()}>
-						<NavigateNextIcon />
-					</IconButton>
-				</div>
-				<div className={classes.progress}>
+				<ImageCarousal imageList={imageList} />
+				{/* <div className={classes.progress}>
 					<Typography variant='body1'>
 						Profile Completeness: 70%
 					</Typography>
 					<LinearProgress value={70} variant='determinate' />
-				</div>
+				</div> */}
 			</CardContent>
 			<Divider />
-			{/* <CardActions>
+			<CardActions style={{ float: "left" }}>
+				<input
+					accept='image/*'
+					className={classes.input}
+					id='outlined-button-file'
+					multiple
+					onChange={handleCapture}
+					type='file'
+				/>
+				<label htmlFor='outlined-button-file'>
+					<Button
+						variant='outlined'
+						color='primary'
+						component='span'
+						size='small'
+						startIcon={<CloudUploadIcon />}>
+						Upload
+					</Button>
+				</label>
+			</CardActions>
+			<CardActions style={{ float: "right" }}>
 				<Button
-					className={classes.uploadButton}
-					color='primary'
-					variant='text'>
-					Upload picture
-				</Button> 
-				<IconButton onClick={() => download()}>
-					<DeleteRoundedIcon />
-				</IconButton>
-			</CardActions> */}
+					variant='outlined'
+					size='small'
+					color='secondary'
+					startIcon={<DeleteIcon />}>
+					Delete
+				</Button>
+			</CardActions>
 		</Card>
 	);
 };

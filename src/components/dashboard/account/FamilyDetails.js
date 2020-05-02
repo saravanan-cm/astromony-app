@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Card, CardContent, Grid, TextField } from "@material-ui/core";
-import { visaList } from "../../../assets/dumps/basicLists";
 
 const FamilyDetails = (props) => {
 	const { values } = props;
@@ -41,6 +40,62 @@ const FamilyDetails = (props) => {
 								readOnly: !values.editDetails,
 							}}
 							value={values.gothram}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Father Name'
+							margin='dense'
+							name='fatherName'
+							onChange={handleChange}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.fatherName}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Occupation'
+							margin='dense'
+							name='fatherOcc'
+							onChange={handleChange}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.fatherOcc}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Mother Name'
+							margin='dense'
+							name='motherName'
+							onChange={handleChange}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.motherName}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xl={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Occupation'
+							margin='dense'
+							name='motherOcc'
+							onChange={handleChange}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.motherOcc}
 							variant='outlined'
 						/>
 					</Grid>
@@ -103,27 +158,6 @@ const FamilyDetails = (props) => {
 							value={values.marriedBrothers}
 							variant='outlined'
 						/>
-					</Grid>
-					<Grid item xs={12}>
-						<TextField
-							fullWidth
-							label='Visa Status'
-							name='visaStatus'
-							margin='dense'
-							onChange={handleChange}
-							select={values.editDetails}
-							InputProps={{
-								readOnly: !values.editDetails,
-							}}
-							SelectProps={{ native: true }}
-							value={values.visaStatus}
-							variant='outlined'>
-							{visaList.map((option, idx) => (
-								<option key={idx} value={option}>
-									{option}
-								</option>
-							))}
-						</TextField>
 					</Grid>
 				</Grid>
 			</CardContent>

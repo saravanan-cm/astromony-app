@@ -2,6 +2,7 @@ import React from "react";
 import GoogleAutocomplete from "../../misc/GoogleAutocomplete";
 
 import { Card, CardContent, Grid, TextField } from "@material-ui/core";
+import { visaList, famStatusList } from "../../../assets/dumps/basicLists";
 
 const Work = (props) => {
 	const { values } = props;
@@ -10,8 +11,8 @@ const Work = (props) => {
 		props.onChange(event.target.name, event.target.value);
 	}
 
-	function handleClick(name, value){
-		props.onChange('workLocation', value);
+	function handleClick(name, value) {
+		props.onChange("workLocation", value);
 	}
 
 	return (
@@ -65,6 +66,48 @@ const Work = (props) => {
 					</Grid>
 					<Grid item xs={12}>
 						<GoogleAutocomplete onChange={handleClick} />
+					</Grid>
+					<Grid item lg={6} md={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Family Status'
+							name='famStatus'
+							margin='dense'
+							onChange={handleChange}
+							select={values.editDetails}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							SelectProps={{ native: true }}
+							value={values.famStatus}
+							variant='outlined'>
+							{famStatusList.map((option, idx) => (
+								<option key={idx} value={option}>
+									{option}
+								</option>
+							))}
+						</TextField>
+					</Grid>
+					<Grid item lg={6} md={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Visa Status'
+							name='visaStatus'
+							margin='dense'
+							onChange={handleChange}
+							select={values.editDetails}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							SelectProps={{ native: true }}
+							value={values.visaStatus}
+							variant='outlined'>
+							{visaList.map((option, idx) => (
+								<option key={idx} value={option}>
+									{option}
+								</option>
+							))}
+						</TextField>
 					</Grid>
 				</Grid>
 			</CardContent>
