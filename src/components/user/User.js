@@ -18,6 +18,9 @@ import StarRoundedIcon from "@material-ui/icons/StarRounded";
 import UserTitle from "./UserTitle";
 import ImageCarousal from "../misc/ImageCarousal";
 import CollapsedBirthDetails from "./CollapsedBirthDetails";
+import CollapsedFamilyDetails from "./CollapsedFamilyDetails";
+import CollapsedWorkDetails from "./CollapsedWorkDetails";
+import CollapsedExpectations from "./CollapsedExpectations";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -88,7 +91,7 @@ class Dashboard extends Component {
 			ht: "Madurai, Tamilnadu",
 			wrk: "Senior Software Engineer",
 			wrkLoc: "Bangalore, Karnataka",
-			salary: "70,000 Per Month",
+			salary: "70,000 Rs, Per Month",
 			company: "Itilite Technologies",
 			height: "5ft 11in",
 			weight: "69 Kg",
@@ -106,9 +109,14 @@ class Dashboard extends Component {
 			visaStatus: "Indian Resident",
 			address: "No 2/1, Royar Thoppu, Sriramapuram, Srirangam.",
 			familyName: "Chinnakonda",
+			fatherName: "Mahesh babu C D",
+			fatherOcc: "Business",
+			famStatus: "Upper middle class",
+			motherName: "Santhi C M",
+			motherOcc: "Housewife",
 			gothram: "Jabali",
-			sisters: 1,
-			marriedSisters: 0,
+			sisters: 3,
+			marriedSisters: 1,
 			brothers: 1,
 			marriedBrothers: 1,
 		};
@@ -121,7 +129,7 @@ class Dashboard extends Component {
 
 		const { classes } = this.props;
 		return (
-			<div>
+			<div style={{ backgroundColor: "#f2f3f8" }}>
 				<Navbar customProps={this.state} />
 				<main className={classNames(classes.main)}>
 					<div className={classes.wrapper}>
@@ -156,6 +164,15 @@ class Dashboard extends Component {
 							</Grid>
 							<Grid item xs={12}>
 								<CollapsedBirthDetails values={userDetails} />
+							</Grid>
+							<Grid item xs={12}>
+								<CollapsedFamilyDetails values={userDetails} />
+							</Grid>
+							<Grid item xs={12}>
+								<CollapsedWorkDetails values={userDetails} />
+							</Grid>
+							<Grid item xs={12}>
+								<CollapsedExpectations values={userDetails} />
 							</Grid>
 						</Grid>
 					</div>

@@ -23,7 +23,8 @@ const Myself = (props) => {
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
-							value={values.about}
+							inputProps={{ maxLength: 600 }}
+							value={values.address}
 							id='outlined-multiline-static'
 							multiline
 							rows={10}
@@ -33,13 +34,15 @@ const Myself = (props) => {
 					<Grid item lg={6} md={6} xl={6} xs={12}>
 						<TextField
 							fullWidth
-							label='About'
+							label='About (in 2000 chars)'
 							margin='dense'
 							name='about'
 							onChange={handleChange}
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
+							placeholder='We are giving you 2000 characters to describe yourself'
+							inputProps={{ maxLength: 2000 }}
 							value={values.about}
 							id='outlined-multiline-static'
 							multiline
@@ -48,10 +51,12 @@ const Myself = (props) => {
 						/>
 						<TextField
 							fullWidth
-							label='Preference'
+							label='Preference (in 2000 chars)'
 							margin='dense'
 							name='expectations'
 							onChange={handleChange}
+							placeholder='Awesome, you have 2000 characters left to open up your heart'
+							inputProps={{ maxLength: 2000 }}
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}

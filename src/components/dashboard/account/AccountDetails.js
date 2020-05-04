@@ -172,7 +172,7 @@ const AccountDetails = (props) => {
 							/>
 						</Grid>
 						<Grid item md={6} xs={12}>
-							<GoogleAutocomplete onChange={handleClick} />
+							<GoogleAutocomplete label="Home town" onChange={handleClick} />
 						</Grid>
 						{/* <Grid item md={6} xs={12}>
 							<TextField

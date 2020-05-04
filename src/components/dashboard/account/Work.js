@@ -65,7 +65,7 @@ const Work = (props) => {
 						/>
 					</Grid>
 					<Grid item xs={12}>
-						<GoogleAutocomplete onChange={handleClick} />
+						<GoogleAutocomplete label="Work Location" onChange={handleClick} />
 					</Grid>
 					<Grid item lg={6} md={6} xs={12}>
 						<TextField
