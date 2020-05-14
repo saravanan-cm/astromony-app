@@ -15,6 +15,7 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Work from "./Work";
 import FamilyDetails from "./FamilyDetails";
 import Myself from "./Myself";
+import Address from "./Address";
 
 const Background = (props) => {
 	var today = new Date();
@@ -42,7 +43,9 @@ const Background = (props) => {
 		maxDate: minDate,
 		visaStatus: null,
 		famStatus: null,
-		address: null,
+		paddress: "",
+		taddress: "",
+		sameadd: false,
 		familyName: null,
 		gothram: null,
 		fatherName: null,
@@ -96,6 +99,12 @@ const Background = (props) => {
 								<Work values={values} onChange={handleChange} />
 							</Grid>
 							<Grid item lg={6} md={6} xl={6} xs={12}>
+								<Address
+									values={values}
+									onChange={handleChange}
+								/>
+							</Grid>
+							<Grid item xs={12}>
 								<FamilyDetails
 									values={values}
 									onChange={handleChange}

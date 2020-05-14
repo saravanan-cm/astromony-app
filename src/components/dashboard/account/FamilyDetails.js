@@ -108,6 +108,7 @@ const FamilyDetails = (props) => {
 							type='number'
 							onChange={handleChange}
 							InputProps={{
+								inputProps: { min: 0, max: 15 },
 								readOnly: !values.editDetails,
 							}}
 							value={values.sisters}
@@ -123,6 +124,7 @@ const FamilyDetails = (props) => {
 							type='number'
 							onChange={handleChange}
 							InputProps={{
+								inputProps: { min: 0, max: 15 },
 								readOnly: !values.editDetails,
 							}}
 							value={values.marriedSisters}
@@ -138,6 +140,7 @@ const FamilyDetails = (props) => {
 							type='number'
 							onChange={handleChange}
 							InputProps={{
+								inputProps: { min: 0, max: 15 },
 								readOnly: !values.editDetails,
 							}}
 							value={values.brothers}
@@ -153,6 +156,7 @@ const FamilyDetails = (props) => {
 							type='number'
 							onChange={handleChange}
 							InputProps={{
+								inputProps: { min: 0, max: 15 },
 								readOnly: !values.editDetails,
 							}}
 							value={values.marriedBrothers}

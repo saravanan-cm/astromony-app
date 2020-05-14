@@ -3,16 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withStyles } from "@material-ui/core";
 import { logoutUser } from "../../actions/authActions";
-import SideDrawer from "./SideDrawer";
+// import SideDrawer from "./SideDrawerOld";
 import ProfileContent from "./profiles/Content";
 import ShortlistedContent from "./shortlisted/Content";
 import classNames from "classnames";
-import Navbar from "../../components/layout/Navbar";
+import SideDrawer from "../dashboard/SideDrawer";
 import Account from "./account/Account";
 
 const styles = (theme) => ({
 	wrapper: {
-		margin: theme.spacing(1),
+		margin: theme.spacing(2),
 		width: "auto",
 		[theme.breakpoints.up("xs")]: {
 			width: "95%",
@@ -38,13 +38,14 @@ const styles = (theme) => ({
 		[theme.breakpoints.up("lg")]: {
 			marginTop: theme.spacing(6),
 			marginBottom: theme.spacing(6),
-			width: "70%",
+			width: "75%",
 			marginLeft: "auto",
 			marginRight: "auto",
 		},
 	},
 	main: {
-		marginLeft: theme.spacing(9),
+		margin: theme.spacing(4),
+		marginTop: theme.spacing(10),
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,
 			duration: theme.transitions.duration.leavingScreen,
@@ -82,9 +83,11 @@ class Dashboard extends Component {
 		};
 		return (
 			<div>
-				<Navbar customProps={this.state} />
+				{/* <Navbar customProps={this.state} /> */}
 				<div style={{ flexGrow: 1 }}>
-					<SideDrawer onChange={eventhandler}></SideDrawer>
+					{/* <SideDrawer onChange={eventhandler}></SideDrawer> */}
+					{/* <PersistentDrawerLeft /> */}
+					<SideDrawer onChange={eventhandler} />
 				</div>
 				<main className={classNames(classes.main)}>
 					<div className={classes.wrapper}>

@@ -91,7 +91,7 @@ class Dashboard extends Component {
 			ht: "Madurai, Tamilnadu",
 			wrk: "Senior Software Engineer",
 			wrkLoc: "Bangalore, Karnataka",
-			salary: "70,000 Rs, Per Month",
+			salary: "10,000 Rs, Per Month",
 			company: "Itilite Technologies",
 			height: "5ft 11in",
 			weight: "69 Kg",

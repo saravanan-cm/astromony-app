@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { IconButton, withStyles } from "@material-ui/core";
-
-import NavigateNextIcon from "@material-ui/icons/NavigateNext";
-import NavigateBeforeIcon from "@material-ui/icons/NavigateBefore";
+import { IconButton, withStyles, Avatar } from "@material-ui/core";
 
 import ZoomImage from "./ZoomImage";
+import back from "../../assets/images/back.png";
+import next from "../../assets/images/next.png";
 
 const styles = (theme) => ({
 	root: {},
@@ -64,6 +63,7 @@ const ImageCarousal = (props) => {
 	const [image, setImage] = useState({
 		src: imageList[0],
 		index: 0,
+		showNavigation: imageList.length > 1 ? "" : "none",
 	});
 
 	const showNextImage = () => {
@@ -104,9 +104,14 @@ const ImageCarousal = (props) => {
 		<div className={classes.details}>
 			<IconButton
 				aria-label='delete'
-				style={{ backgroundColor: "transparent" }}
+				style={{
+					padding: "2%",
+					borderRadius: "0",
+				}}
 				onClick={() => showPreviousImage()}>
-				<NavigateBeforeIcon />
+				<Avatar
+					style={{ width: "30px", height: "auto" }}
+					src={back}></Avatar>
 			</IconButton>
 
 			<div className={classes.imageContainer}>
@@ -139,9 +144,15 @@ const ImageCarousal = (props) => {
 			</div>
 			<IconButton
 				aria-label='delete'
-				style={{ backgroundColor: "transparent" }}
+				style={{
+					padding: "2%",
+					borderRadius: "0",
+				}}
 				onClick={() => showNextImage()}>
-				<NavigateNextIcon />
+				{/* <NavigateNextIcon color='primary' /> */}
+				<Avatar
+					style={{ width: "30px", height: "auto" }}
+					src={next}></Avatar>
 			</IconButton>
 		</div>
 	);

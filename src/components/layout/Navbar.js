@@ -114,13 +114,23 @@ class Navbar extends Component {
 								Link
 							</Button>
 						</div>
-						<Button
-							variant='contained'
-							className={classes.loginBtn}
-							href='/login'
-							style={{ display: customProps.showLogin }}>
-							Login
-						</Button>
+						{customProps.showLogin === "none" ? (
+							<Button
+								variant='contained'
+								className={classes.loginBtn}
+								onClick={this.onLogoutClick}
+								style={{ display: "" }}>
+								Logout
+							</Button>
+						) : (
+							<Button
+								variant='contained'
+								className={classes.loginBtn}
+								href='/login'
+								style={{ display: customProps.showLogin }}>
+								Login
+							</Button>
+						)}
 					</Toolbar>
 				</AppBar>
 			</div>
