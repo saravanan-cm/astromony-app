@@ -72,7 +72,7 @@ const UserTitle = (props) => {
 						</ListItem>
 						<ListItem className={classes.listItem}>
 							<TodayRoundedIcon className={classes.icon} />
-							<p className={classes.listText}>{values.dob}</p>
+							<p className={classes.listText}>{values.dob + " - Age: " + values.age}</p>
 						</ListItem>
 						<ListItem className={classes.listItem}>
 							<PhoneIphoneRoundedIcon className={classes.icon} />

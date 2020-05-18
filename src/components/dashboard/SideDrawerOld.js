@@ -198,7 +198,7 @@ class SideDrawer extends Component {
 							<MenuIcon />
 						</IconButton>
 						<Typography variant='h6' noWrap>
-							AstroMony
+							Vyvaha
 						</Typography>
 						<Button
 							variant='contained'

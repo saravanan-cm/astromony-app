@@ -28,7 +28,7 @@ const Myself = (props) => {
 							value={values.about}
 							id='outlined-multiline-static'
 							multiline
-							rows={5}
+							rows={6}
 							variant='outlined'
 						/>
 					</Grid>
@@ -47,7 +47,7 @@ const Myself = (props) => {
 							value={values.expectations}
 							id='outlined-multiline-static'
 							multiline
-							rows={5}
+							rows={6}
 							variant='outlined'
 						/>
 					</Grid>

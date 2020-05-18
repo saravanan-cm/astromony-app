@@ -102,8 +102,11 @@ class Dashboard extends Component {
 			status: "Single",
 			education: "B.E - ECE",
 			hobby: "Pencil Sketch",
+			mother_tongue: "Sourashtra",
+			caste: "Pattunulkarar",
+			religion: "Hindu",
 			about:
-				"I'm a well obedient person from a good family. Even though we are not rich in money, our parents brought me up with rich in character. \nAlways care about family and will do anything for it",
+				"I'm a well obedient person from a good family. Even though we are not rich in money, our parents brought me up with rich in character. \nAlways care about family and will do anything for it.",
 			expectations:
 				"Looking for a supportive person, who can stand up with me in all situations. She has to be active and should respect elders. She needs to superpower to handle the family issues smoothly.",
 			visaStatus: "Indian Resident",

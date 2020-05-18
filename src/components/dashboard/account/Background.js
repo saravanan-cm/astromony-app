@@ -15,6 +15,7 @@ import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import Work from "./Work";
 import FamilyDetails from "./FamilyDetails";
 import Myself from "./Myself";
+import MoreAboutMe from "./MoreAboutMe";
 import Address from "./Address";
 
 const Background = (props) => {
@@ -38,6 +39,7 @@ const Background = (props) => {
 		salary: null,
 		hobby: null,
 		about: null,
+		habits: [],
 		expectations: null,
 		minDate: new Date("1950-01-01T00:00:00"),
 		maxDate: minDate,
@@ -56,6 +58,13 @@ const Background = (props) => {
 		marriedSisters: 0,
 		brothers: 0,
 		marriedBrothers: 0,
+		caste: null,
+		religion: null,
+		mother_tongue: null,
+		subcaste: null,
+		disability: "No",
+		dosham: null,
+		bodytype: null,
 		editDetails: true, // By default have to set it to false to disable edit
 	});
 
@@ -71,7 +80,7 @@ const Background = (props) => {
 			<Grid item xs={12}>
 				<Card>
 					<CardHeader
-						title='Background'
+						title='Family Details'
 						action={
 							<div>
 								<IconButton
@@ -93,7 +102,55 @@ const Background = (props) => {
 						}
 					/>
 					<Divider />
-					<CardContent style={{ backgroundColor: "#f6f7f4" }}>
+					<CardContent
+						style={{
+							backgroundImage:
+								"linear-gradient(rgb(249, 249, 249) 0%, rgb(245, 245, 245) 51%, rgb(243, 241, 241) 75%)",
+						}}>
+						<FamilyDetails
+							values={values}
+							onChange={handleChange}
+						/>
+					</CardContent>
+					<Divider />
+					<CardActions
+						style={{ display: values.editDetails ? "" : "none" }}>
+						<Button color='primary' variant='contained'>
+							Update
+						</Button>
+					</CardActions>
+				</Card>
+			</Grid>
+			<Grid item xs={12}>
+				<Card>
+					<CardHeader
+						title='Education'
+						action={
+							<div>
+								<IconButton
+									color='primary'
+									aria-label='Edit'
+									onClick={() =>
+										handleChange(
+											"editDetails",
+											!values.editDetails
+										)
+									}>
+									{values.editDetails ? (
+										<ClearRoundedIcon />
+									) : (
+										<EditRoundedIcon />
+									)}
+								</IconButton>
+							</div>
+						}
+					/>
+					<Divider />
+					<CardContent
+						style={{
+							backgroundImage:
+								"linear-gradient(rgb(249, 249, 249) 0%, rgb(245, 245, 245) 51%, rgb(243, 241, 241) 75%)",
+						}}>
 						<Grid container spacing={4}>
 							<Grid item lg={6} md={6} xl={6} xs={12}>
 								<Work values={values} onChange={handleChange} />
@@ -104,13 +161,55 @@ const Background = (props) => {
 									onChange={handleChange}
 								/>
 							</Grid>
-							<Grid item xs={12}>
-								<FamilyDetails
+						</Grid>
+					</CardContent>
+					<Divider />
+					<CardActions
+						style={{ display: values.editDetails ? "" : "none" }}>
+						<Button color='primary' variant='contained'>
+							Update
+						</Button>
+					</CardActions>
+				</Card>
+			</Grid>
+			<Grid item xs={12}>
+				<Card>
+					<CardHeader
+						title='More about myself'
+						action={
+							<div>
+								<IconButton
+									color='primary'
+									aria-label='Edit'
+									onClick={() =>
+										handleChange(
+											"editDetails",
+											!values.editDetails
+										)
+									}>
+									{values.editDetails ? (
+										<ClearRoundedIcon />
+									) : (
+										<EditRoundedIcon />
+									)}
+								</IconButton>
+							</div>
+						}
+					/>
+					<Divider />
+					<CardContent
+						style={{
+							backgroundImage:
+								"linear-gradient(rgb(249, 249, 249) 0%, rgb(245, 245, 245) 51%, rgb(243, 241, 241) 75%)",
+						}}>
+						<Grid container spacing={4}>
+							<Grid item lg={6} md={6} xl={6} xs={12}>
+								<MoreAboutMe
 									values={values}
 									onChange={handleChange}
 								/>
 							</Grid>
-							<Grid item xs={12}>
+							<Grid item lg={6} md={6} xl={6} xs={12}>
 								<Myself
 									values={values}
 									onChange={handleChange}

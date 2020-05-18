@@ -208,12 +208,12 @@ class SideDrawer extends React.Component {
 		const { classes } = this.props;
 		const { anchorEl } = this.state;
 		const open = Boolean(anchorEl);
-		const siteTitle = "AstroMony";
+		const siteTitle = "Vyvaha";
 
 		return (
 			<React.Fragment>
 				<AppBar
-					position='absolute'
+					position='fixed'
 					className={clsx(
 						classes.appBar,
 						this.state.open && classes.appBarShift
@@ -297,7 +297,7 @@ class SideDrawer extends React.Component {
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
-						<List style={{marginTop: "12px"}} alignItems='center'>
+						<List style={{ marginTop: "12px" }} alignItems='center'>
 							{this.drawerList.map((obj, index) => (
 								<Link
 									className={classes.navbarLinks}
@@ -341,7 +341,7 @@ class SideDrawer extends React.Component {
 								<ChevronLeftIcon />
 							</IconButton>
 						</div>
-						<List style={{marginTop: "12px"}} alignItems='center'>
+						<List style={{ marginTop: "12px" }} alignItems='center'>
 							{this.drawerList.map((obj, index) => (
 								<Link
 									className={classes.navbarLinks}

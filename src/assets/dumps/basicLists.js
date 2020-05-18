@@ -129,6 +129,33 @@ const famStatusList = [
 	"Working class",
 ];
 
+const motherTonguesList = [
+	"Tamil",
+	"Hindi",
+	"Sourashtra",
+	"Malayalam",
+	"Kannada",
+];
+
+const religionList = ["Hindu", "Muslim", "Christian", "Jain", "Buddhist"];
+
+const casteList = ["Sourashtra", "Pattunoolkarar"];
+
+const yesOrNo = [
+	{
+		key: "Yes",
+		value: true,
+	},
+	{
+		key: "No",
+		value: false,
+	},
+];
+
+const habitsList = ["None", "Only Drinking", "Only Smoking", "Both"];
+
+const bodyTypeList = ["Skinny", "Medium", "Fat"];
+
 export {
 	heightList,
 	tone,
@@ -139,4 +166,10 @@ export {
 	statusList,
 	visaList,
 	famStatusList,
+	motherTonguesList,
+	religionList,
+	casteList,
+	yesOrNo,
+	habitsList,
+	bodyTypeList,
 };

@@ -44,7 +44,9 @@ const styles = (theme) => ({
 		},
 	},
 	main: {
-		margin: theme.spacing(4),
+		marginLeft: "auto",
+		marginRight: "auto",
+		// margin: theme.spacing(2),
 		marginTop: theme.spacing(10),
 		transition: theme.transitions.create(["width", "margin"], {
 			easing: theme.transitions.easing.sharp,

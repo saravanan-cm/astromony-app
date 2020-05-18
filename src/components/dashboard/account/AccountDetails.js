@@ -2,10 +2,7 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import DateFnsUtils from "@date-io/date-fns";
-import {
-	MuiPickersUtilsProvider,
-	KeyboardDatePicker,
-} from "@material-ui/pickers";
+import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 import {
 	Card,
 	CardHeader,
@@ -121,39 +118,25 @@ const AccountDetails = (props) => {
 						</Grid>
 						<Grid item md={6} xs={12}>
 							<MuiPickersUtilsProvider utils={DateFnsUtils}>
-								<KeyboardDatePicker
+								<DateTimePicker
 									margin='dense'
-									id='date-picker-dialog'
-									label='Date of Birth'
-									format='MM/dd/yyyy'
-									name='dob'
+									label='Date of Birth (with time)'
 									inputVariant='outlined'
+									value={values.dob}
+									name='dob'
 									maxDate={values.maxDate}
 									minDate={values.minDate}
-									value={values.dob}
-									onChange={handleDateChange}
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									KeyboardButtonProps={{
-										"aria-label": "change date",
-									}}
+									onChange={handleDateChange}
 								/>
 							</MuiPickersUtilsProvider>
 						</Grid>
 						<Grid item md={6} xs={12}>
-							<TextField
-								fullWidth
-								label='Email Address'
-								margin='dense'
-								name='email'
-								InputProps={{
-									readOnly: !values.editProfile,
-								}}
-								onChange={handleChange}
-								required
-								value={values.email}
-								variant='outlined'
+							<GoogleAutocomplete
+								label='Birth Place'
+								onChange={handleClick}
 							/>
 						</Grid>
 						<Grid item md={6} xs={12}>
@@ -172,50 +155,20 @@ const AccountDetails = (props) => {
 							/>
 						</Grid>
 						<Grid item md={6} xs={12}>
-							<GoogleAutocomplete label="Home town" onChange={handleClick} />
-						</Grid>
-						{/* <Grid item md={6} xs={12}>
 							<TextField
 								fullWidth
-								label='Select State'
-								helperText='Please specify the home town'
+								label='Email Address'
 								margin='dense'
-								name='state'
-								onChange={handleChange}
-								required
-								select={values.editProfile}
+								name='email'
 								InputProps={{
 									readOnly: !values.editProfile,
 								}}
-								// eslint-disable-next-line react/jsx-sort-props
-								SelectProps={{ native: true }}
-								value={values.state}
-								variant='outlined'>
-								{states.map((option) => (
-									<option
-										key={option.value}
-										value={option.value}>
-										{option.label}
-									</option>
-								))}
-							</TextField>
-						</Grid>
-						<Grid item md={6} xs={12}>
-							<TextField
-								fullWidth
-								label='Country'
-								margin='dense'
-								name='country'
 								onChange={handleChange}
 								required
-								InputProps={{
-									readOnly: !values.editProfile,
-								}}
-								value={values.country}
+								value={values.email}
 								variant='outlined'
 							/>
 						</Grid>
-					 */}
 					</Grid>
 				</CardContent>
 				<Divider />

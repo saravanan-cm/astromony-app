@@ -102,7 +102,7 @@ class Navbar extends Component {
 
 						<Typography variant='h6' className={classes.title}>
 							<Link className={classes.titleText} to='/'>
-								AstroMony
+								Vyvaha
 							</Link>
 						</Typography>
 						<div

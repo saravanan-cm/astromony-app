@@ -17,6 +17,10 @@ import home from "../../assets/images/home.png";
 import tree from "../../assets/images/tree.png";
 import zodiac from "../../assets/images/zodiac.svg";
 import nakshatra from "../../assets/images/nakshatra.png";
+import color from "../../assets/images/color.png";
+import lang from "../../assets/images/lang.png";
+import grp from "../../assets/images/grp.png";
+import religion from "../../assets/images/religion.png";
 
 const styles = (theme) => ({
 	root: {
@@ -175,21 +179,25 @@ const CollapsedBirthDetails = (props) => {
 											</p>
 										</div>
 									</Grid>
-									<Grid item xs={6}>
-										<div
-											title='Family name'
-											style={{
-												display: "flex",
-												alignItems: "center",
-											}}>
-											<Avatar
-												className={classes.avatar}
-												src={home}></Avatar>
-											<p className={classes.cardP}>
-												{values.familyName}
-											</p>
-										</div>
-									</Grid>
+									{values.familyName ? (
+										<Grid item xs={6}>
+											<div
+												title='Family name'
+												style={{
+													display: "flex",
+													alignItems: "center",
+												}}>
+												<Avatar
+													className={classes.avatar}
+													src={home}></Avatar>
+												<p className={classes.cardP}>
+													{values.familyName}
+												</p>
+											</div>
+										</Grid>
+									) : (
+										""
+									)}
 									<Grid item xs={6}>
 										<div
 											title='Gothram'
@@ -202,6 +210,66 @@ const CollapsedBirthDetails = (props) => {
 												src={tree}></Avatar>
 											<p className={classes.cardP}>
 												{values.gothram}
+											</p>
+										</div>
+									</Grid>
+									<Grid item xs={6}>
+										<div
+											title='Skin Tone'
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}>
+											<Avatar
+												className={classes.avatar}
+												src={color}></Avatar>
+											<p className={classes.cardP}>
+												{values.tone}
+											</p>
+										</div>
+									</Grid>
+									<Grid item xs={6}>
+										<div
+											title='Mother Tongue'
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}>
+											<Avatar
+												className={classes.avatar}
+												src={lang}></Avatar>
+											<p className={classes.cardP}>
+												{values.mother_tongue}
+											</p>
+										</div>
+									</Grid>
+									<Grid item xs={6}>
+										<div
+											title='Religion'
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}>
+											<Avatar
+												className={classes.avatar}
+												src={religion}></Avatar>
+											<p className={classes.cardP}>
+												{values.religion}
+											</p>
+										</div>
+									</Grid>
+									<Grid item xs={6}>
+										<div
+											title='Caste'
+											style={{
+												display: "flex",
+												alignItems: "center",
+											}}>
+											<Avatar
+												className={classes.avatar}
+												src={grp}></Avatar>
+											<p className={classes.cardP}>
+												{values.caste}
 											</p>
 										</div>
 									</Grid>
