@@ -141,8 +141,7 @@ class ProfileContent extends PureComponent {
 		return (
 			<Box m={2}>
 				<HighlightedInformation>
-					No posts added yet. Click on &quot;NEW&quot; to create your
-					first one.
+					No profiles found for you !!!
 				</HighlightedInformation>
 			</Box>
 		);

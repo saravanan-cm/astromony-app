@@ -133,7 +133,7 @@ class Dashboard extends Component {
 		const { classes } = this.props;
 		return (
 			<div style={{ backgroundColor: "#f2f3f8" }}>
-				<Navbar customProps={this.state} />
+				<Navbar customProps={this.state} history={this.props.history} />
 				<main className={classNames(classes.main)}>
 					<div className={classes.wrapper}>
 						<Grid container spacing={2}>

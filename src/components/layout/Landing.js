@@ -6,7 +6,7 @@ class Landing extends Component {
     super();
     this.state = {
       showLoader: "none",
-      showLogin: "",
+      showLogin: "yes",
       showMenu: "none"
     }
   }

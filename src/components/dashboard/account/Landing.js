@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { withStyles } from "@material-ui/core";
-import { logoutUser } from "../../actions/authActions";
-// import SideDrawer from "./SideDrawerOld";
-import ProfileContent from "./profiles/Content";
-import ShortlistedContent from "./shortlisted/Content";
+import { logoutUser } from "../../../actions/authActions";
 import classNames from "classnames";
-import SideDrawer from "../dashboard/SideDrawer";
-import Account from "./account/Account";
+import SideDrawer from "../SideDrawer";
+import Account from "./Account";
+import ProfileContent from "../profiles/Content";
+import ShortlistedContent from "../shortlisted/Content";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -56,28 +54,30 @@ const styles = (theme) => ({
 	},
 });
 
-class Dashboard extends Component {
+class Landing extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			active_tab: this.props.match.params.tab
-				? this.props.match.params.tab
-				: "home",
+			active_tab: this.props.auth.user.name,
 			showLoader: "none",
 			showLogin: "no",
 		};
 	}
 
-	renderContent = (param) => {
-		switch (param) {
-			case "favorites":
-				return <ShortlistedContent />;
-			case "home":
-				return <Account />;
+	renderContent = () => {
+		let path = this.props.match.params.tab;
+		switch (path) {
 			case "profiles":
 				return <ProfileContent />;
-			default:
+				break;
+			case "favorites":
+				return <ShortlistedContent />;
+				break;
+			case "home":
 				return <Account />;
+				break;
+			default:
+				break;
 		}
 	};
 
@@ -89,18 +89,18 @@ class Dashboard extends Component {
 		return (
 			<div>
 				<div style={{ flexGrow: 1 }}>
-					<SideDrawer history={history} />
+					<SideDrawer onChange={eventhandler} history={history} />
 				</div>
 				<main className={classNames(classes.main)}>
 					<div className={classes.wrapper}>
-						{this.renderContent(this.state.active_tab)}
+						{this.renderContent()}
 					</div>
 				</main>
 			</div>
 		);
 	}
 }
-Dashboard.propTypes = {
+Landing.propTypes = {
 	logoutUser: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	classes: PropTypes.object.isRequired,
@@ -108,8 +108,6 @@ Dashboard.propTypes = {
 const mapStateToProps = (state) => ({
 	auth: state.auth,
 });
-export default withRouter(
-	connect(mapStateToProps, { logoutUser })(
-		withStyles(styles, { withTheme: true })(Dashboard)
-	)
+export default connect(mapStateToProps, { logoutUser })(
+	withStyles(styles, { withTheme: true })(Landing)
 );

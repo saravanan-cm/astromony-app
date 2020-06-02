@@ -67,7 +67,7 @@ class Navbar extends Component {
 		window.location.href = "./login";
 	};
 	render() {
-		const { classes, customProps } = this.props;
+		const { classes, customProps, history } = this.props;
 		const iconType = !customProps.hasOwnProperty("iconType")
 			? "menu"
 			: customProps.iconType;
@@ -95,6 +95,9 @@ class Navbar extends Component {
 								className={classes.menuButton}
 								color='inherit'
 								style={{ display: customProps.showMenu }}
+								onClick={() => {
+									history.goBack();
+								}}
 								aria-label='menu'>
 								<ArrowBackRoundedIcon />
 							</IconButton>
@@ -114,7 +117,7 @@ class Navbar extends Component {
 								Link
 							</Button>
 						</div>
-						{customProps.showLogin === "none" ? (
+						{customProps.showLogin === "no" ? (
 							<Button
 								variant='contained'
 								className={classes.loginBtn}
@@ -122,7 +125,7 @@ class Navbar extends Component {
 								style={{ display: "" }}>
 								Logout
 							</Button>
-						) : (
+						) : customProps.showLogin === "yes" ? (
 							<Button
 								variant='contained'
 								className={classes.loginBtn}
@@ -130,7 +133,7 @@ class Navbar extends Component {
 								style={{ display: customProps.showLogin }}>
 								Login
 							</Button>
-						)}
+						) : ("")}
 					</Toolbar>
 				</AppBar>
 			</div>

@@ -137,12 +137,12 @@ class SideDrawer extends React.Component {
 			open: false,
 			auth: true,
 			anchorEl: null,
-			active: "dashboard",
+			active: "home",
 			showSideDrawer: "",
 		};
 		this.drawerList = [
 			{
-				name: "dashboard",
+				name: "home",
 				tag: this.props.auth.user.name,
 				link: "#",
 				class: "profileBtn",
@@ -156,7 +156,7 @@ class SideDrawer extends React.Component {
 				icon: <PeopleRoundedIcon />,
 			},
 			{
-				name: "fav",
+				name: "favorites",
 				tag: "Shortlisted",
 				link: "#",
 				class: "favBtn",
@@ -193,11 +193,13 @@ class SideDrawer extends React.Component {
 
 	handleTabChange(name) {
 		this.setState({ ...this.state, active: name }, () => {
-			if (this.props.onChange) {
-				this.props.onChange(this.state);
-			}
+			this.setState({ open: false });
+			this.props.history.push(name);
+			debugger;
+			// this.props.onChange(this.state);
 		});
 	}
+
 	onLogoutClick = (e) => {
 		e.preventDefault();
 		this.props.logoutUser();

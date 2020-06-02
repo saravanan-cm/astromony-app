@@ -13,10 +13,15 @@ import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../../components/layout/Navbar";
 import youngCouples from "../../assets/images/young-couples.gif";
 import oldCouples from "../../assets/images/old-couples.gif";
+import DateFnsUtils from "@date-io/date-fns";
+import { genderList } from "../../assets/dumps/basicLists";
+import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
 
 class Register extends Component {
 	constructor() {
 		super();
+		let today = new Date();
+		let maxDate = today.setFullYear(today.getFullYear() - 18);
 		this.state = {
 			name: "",
 			email: "",
@@ -24,14 +29,19 @@ class Register extends Component {
 			password2: "",
 			errors: {},
 			showLoader: "none",
-			showLogin: "none",
+			showLogin: "yes",
 			showMenu: "none",
+			dob: null,
+			phone: null,
+			sex: "",
+			minDate: new Date("1950-01-01T00:00:00"),
+			maxDate: maxDate,
 		};
 	}
 	componentDidMount() {
 		// If logged in and user navigates to Register page, should redirect them to dashboard
 		if (this.props.auth.isAuthenticated) {
-			this.props.history.push("/dashboard");
+			this.props.history.push("/user/home");
 		}
 	}
 	componentWillReceiveProps(nextProps) {
@@ -44,17 +54,30 @@ class Register extends Component {
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
+
+	handleDateChange = (date) => {
+		var dob = "dob";
+		console.log(date);
+		this.setState({ [dob]: date });
+	};
+
 	onSubmit = (e) => {
 		e.preventDefault();
 		const newUser = {
 			name: this.state.name,
 			email: this.state.email,
+			phone: this.state.phone,
+			sex: this.state.sex,
+			dob: this.state.dob,
 			password: this.state.password,
 			password2: this.state.password2,
 		};
 		if (
 			this.state.email &&
 			this.state.name &&
+			this.state.phone &&
+			this.state.sex &&
+			this.state.dob &&
 			this.state.password &&
 			this.state.password2
 		) {
@@ -105,13 +128,14 @@ class Register extends Component {
 											onChange={this.onChange}
 											value={this.state.name}
 											error={errors.name}
+											margin='dense'
 											id='outlined-basic'
 											name='name'
 											type='text'
 											className={classnames("", {
 												invalid: errors.name,
 											})}
-											style={{ width: "100%" }}
+											fullWidth
 											label='Name'
 											variant='outlined'
 										/>
@@ -125,20 +149,78 @@ class Register extends Component {
 											value={this.state.email}
 											error={errors.email}
 											id='outlined-basic'
+											margin='dense'
 											name='email'
 											type='email'
 											className={classnames("", {
 												invalid: errors.email,
 											})}
-											style={{
-												width: "100%",
-												marginTop: "0.5rem",
-											}}
+											fullWidth
 											label='Email'
 											variant='outlined'
 										/>
 										<span className='red-text'>
 											{errors.email}
+										</span>
+									</div>
+									<div>
+										<TextField
+											fullWidth
+											label='Gender'
+											name='sex'
+											margin='dense'
+											error={errors.sex}
+											onChange={this.onChange}
+											select={true}
+											SelectProps={{ native: true }}
+											value={this.state.sex}
+											variant='outlined'>
+											{genderList.map((option) => (
+												<option
+													key={option.key}
+													value={option.label}>
+													{option.label}
+												</option>
+											))}
+										</TextField>
+										<span className='red-text'>
+											{errors.sex}
+										</span>
+									</div>
+									<div>
+										<MuiPickersUtilsProvider
+											utils={DateFnsUtils}>
+											<DateTimePicker
+												margin='dense'
+												label='Date of Birth (with time)'
+												inputVariant='outlined'
+												value={this.state.dob}
+												name='dob'
+												fullWidth
+												maxDate={this.state.maxDate}
+												minDate={this.state.minDate}
+												onChange={this.handleDateChange}
+												error={errors.dob}
+											/>
+										</MuiPickersUtilsProvider>
+										<span className='red-text'>
+											{errors.dob}
+										</span>
+									</div>
+									<div>
+										<TextField
+											fullWidth
+											label='Mobile Number'
+											margin='dense'
+											name='phone'
+											onChange={this.onChange}
+											type='tel'
+											value={this.state.phone}
+											variant='outlined'
+											error={errors.phone}
+										/>
+										<span className='red-text'>
+											{errors.phone}
 										</span>
 									</div>
 									<div>
@@ -149,15 +231,13 @@ class Register extends Component {
 											id='outlined-basic'
 											name='password'
 											type='password'
+											margin='dense'
 											className={classnames("", {
 												invalid:
 													errors.password ||
 													errors.passwordincorrect,
 											})}
-											style={{
-												width: "100%",
-												marginTop: "0.5rem",
-											}}
+											fullWidth
 											label='New Password'
 											variant='outlined'
 										/>
@@ -173,6 +253,7 @@ class Register extends Component {
 											id='outlined-basic'
 											name='password2'
 											type='password'
+											margin='dense'
 											className={classnames("", {
 												invalid:
 													errors.password ||

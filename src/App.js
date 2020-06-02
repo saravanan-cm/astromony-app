@@ -1,5 +1,10 @@
 import React, { Component, Suspense, Fragment, lazy } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import {
+	BrowserRouter as Router,
+	Route,
+	Switch,
+	useHistory,
+} from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
@@ -7,9 +12,14 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import Verify from "./components/auth/Verify";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import PrivateRoute from "./components/private-route/PrivateRoute";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import Dashboard from "./components/dashboard/Dashboard";
+import ProfileContent from "./components/dashboard/profiles/Content";
+import ShortlistedContent from "./components/dashboard/shortlisted/Content";
+import Home from "./components/dashboard/account/Landing";
 import User from "./components/user/User";
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -42,7 +52,8 @@ class App extends Component {
 			<Provider store={store}>
 				<Router>
 					<div className='App'>
-						<Suspense fallback={<Fragment />}>
+						<Suspense
+							fallback={<CircularProgress color='secondary' />}>
 							<Route exact path='/' component={Landing} />
 							<Route
 								exact
@@ -52,18 +63,36 @@ class App extends Component {
 							<Route exact path='/login' component={Login} />
 							<Route
 								exact
+								path='/verify'
+								component={Verify}
+							/>
+							<Route
+								exact
 								path='/forget-password'
 								component={ForgetPassword}
 							/>
 							<Switch>
-								<PrivateRoute
-									exact
-									path='/dashboard'
-									component={Dashboard}
-								/>
-								<PrivateRoute
-									exact
+								<Route
 									path='/user'
+									render={({ match: { url } }) => (
+										<>
+											<PrivateRoute
+												path={`${url}/:tab`}
+												component={Home}
+												history={useHistory}
+												exact
+											/>
+										</>
+									)}
+								/>
+								{/* <PrivateRoute
+									path='/dashboard/:tab'
+									history={useHistory}
+									component={Dashboard}
+								/> */}
+								<PrivateRoute
+									exact
+									path='/profile'
 									component={User}
 								/>
 							</Switch>
