@@ -2,10 +2,13 @@ import axios from "axios";
 import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
+
+// const base_url = "http://192.168.1.6:5000";
+const base_url = "https://stage-vyvaha-api.herokuapp.com";
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
 	axios
-		.post("http://192.168.1.6:5000/api/users/register", userData)
+		.post(base_url + "/api/users/register", userData)
 		.then((res) => history.push("/verify?email=" + userData.email)) // re-direct to login on successful register
 		.catch((err) =>
 			dispatch({
@@ -22,7 +25,7 @@ export const loginUser = (userData) => (dispatch) => {
 		},
 	};
 	axios
-		.post("http://192.168.1.6:5000/api/users/login", userData, config)
+		.post(base_url + "/api/users/login", userData, config)
 		.then((res) => {
 			// Save to localStorage
 			// Set token to localStorage
@@ -73,11 +76,7 @@ export const forgetPassword = (userData) => (dispatch) => {
 		},
 	};
 	axios
-		.post(
-			"http://192.168.1.6:5000/api/users/forget-password",
-			userData,
-			config
-		)
+		.post(base_url + "/api/users/forget-password", userData, config)
 		.then((res) => {
 			dispatch(setCurrentUser(res));
 		})
@@ -97,7 +96,7 @@ export const verifyMobileNumber = (userData, history) => (dispatch) => {
 		},
 	};
 	axios
-		.post("http://192.168.1.6:5000/api/users/verify", userData, config)
+		.post(base_url + "/api/users/verify", userData, config)
 		.then((res) => {
 			if (res && "status" in res) {
 				if (res.status) {
