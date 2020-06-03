@@ -8,6 +8,7 @@ import SideDrawer from "../SideDrawer";
 import Account from "./Account";
 import ProfileContent from "../profiles/Content";
 import ShortlistedContent from "../shortlisted/Content";
+import { SnackbarProvider } from "notistack";
 
 const styles = (theme) => ({
 	wrapper: {
@@ -61,20 +62,35 @@ class Landing extends Component {
 			active_tab: this.props.auth.user.name,
 			showLoader: "none",
 			showLogin: "no",
+			data: null,
 		};
 	}
+
+	handleChange = (name, value) => {
+		this.setState({ [name]: value });
+	};
 
 	renderContent = () => {
 		let path = this.props.match.params.tab;
 		switch (path) {
 			case "profiles":
-				return <ProfileContent />;
+				return <ProfileContent userDetails={this.props.auth.user} />;
 				break;
 			case "favorites":
-				return <ShortlistedContent />;
+				return (
+					<ShortlistedContent userDetails={this.props.auth.user} />
+				);
 				break;
 			case "home":
-				return <Account />;
+				return (
+					<SnackbarProvider>
+						<Account
+							myData={this.state.data}
+							onChange={this.handleChange}
+							userDetails={this.props.auth.user}
+						/>
+					</SnackbarProvider>
+				);
 				break;
 			default:
 				break;

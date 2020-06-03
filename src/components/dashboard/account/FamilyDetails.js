@@ -25,13 +25,13 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Family Name (if any)'
 									margin='dense'
-									name='familyName'
+									name='famname'
 									onChange={handleChange}
 									placeholder='For eg: Chinnakonda'
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									value={values.familyName}
+									value={values.famname}
 									variant='outlined'
 								/>
 							</Grid>
@@ -54,7 +54,7 @@ const FamilyDetails = (props) => {
 								<TextField
 									fullWidth
 									label='Mother tongue'
-									name='mother_tongue'
+									name='mothertongue'
 									margin='dense'
 									onChange={handleChange}
 									required
@@ -64,7 +64,7 @@ const FamilyDetails = (props) => {
 									}}
 									// eslint-disable-next-line react/jsx-sort-props
 									SelectProps={{ native: true }}
-									value={values.mother_tongue}
+									value={values.mothertongue}
 									variant='outlined'>
 									{motherTonguesList.map((option, idx) => (
 										<option key={idx} value={option}>
@@ -147,12 +147,12 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Father Name'
 									margin='dense'
-									name='fatherName'
+									name='dad'
 									onChange={handleChange}
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									value={values.fatherName}
+									value={values.dad}
 									variant='outlined'
 								/>
 							</Grid>
@@ -161,12 +161,12 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Occupation'
 									margin='dense'
-									name='fatherOcc'
+									name='dadocc'
 									onChange={handleChange}
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									value={values.fatherOcc}
+									value={values.dadocc}
 									variant='outlined'
 								/>
 							</Grid>
@@ -175,12 +175,12 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Mother Name'
 									margin='dense'
-									name='motherName'
+									name='mom'
 									onChange={handleChange}
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									value={values.motherName}
+									value={values.mom}
 									variant='outlined'
 								/>
 							</Grid>
@@ -189,12 +189,12 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Occupation'
 									margin='dense'
-									name='motherOcc'
+									name='momocc'
 									onChange={handleChange}
 									InputProps={{
 										readOnly: !values.editDetails,
 									}}
-									value={values.motherOcc}
+									value={values.momocc}
 									variant='outlined'
 								/>
 							</Grid>
@@ -203,14 +203,14 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Sisters'
 									margin='dense'
-									name='sisters'
+									name='sis'
 									type='number'
 									onChange={handleChange}
 									InputProps={{
 										inputProps: { min: 0, max: 15 },
 										readOnly: !values.editDetails,
 									}}
-									value={values.sisters}
+									value={values.sis}
 									variant='outlined'
 								/>
 							</Grid>
@@ -219,14 +219,14 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Married sisters'
 									margin='dense'
-									name='marriedSisters'
+									name='sismrg'
 									type='number'
 									onChange={handleChange}
 									InputProps={{
 										inputProps: { min: 0, max: 15 },
 										readOnly: !values.editDetails,
 									}}
-									value={values.marriedSisters}
+									value={values.sismrg}
 									variant='outlined'
 								/>
 							</Grid>
@@ -235,14 +235,14 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Brothers'
 									margin='dense'
-									name='brothers'
+									name='bro'
 									type='number'
 									onChange={handleChange}
 									InputProps={{
 										inputProps: { min: 0, max: 15 },
 										readOnly: !values.editDetails,
 									}}
-									value={values.brothers}
+									value={values.bro}
 									variant='outlined'
 								/>
 							</Grid>
@@ -251,14 +251,14 @@ const FamilyDetails = (props) => {
 									fullWidth
 									label='Married brothers'
 									margin='dense'
-									name='marriedBrothers'
+									name='bromrg'
 									type='number'
 									onChange={handleChange}
 									InputProps={{
 										inputProps: { min: 0, max: 15 },
 										readOnly: !values.editDetails,
 									}}
-									value={values.marriedBrothers}
+									value={values.bromrg}
 									variant='outlined'
 								/>
 							</Grid>

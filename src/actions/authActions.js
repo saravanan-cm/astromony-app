@@ -102,7 +102,7 @@ export const verifyMobileNumber = (userData, history) => (dispatch) => {
 				if (res.status) {
 					// history.push("/login");
 					dispatch({
-						type: GET_ERRORS,
+						type: USER_LOADING,
 						payload: res,
 					});
 				} else {

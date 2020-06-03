@@ -19,60 +19,10 @@ import MoreAboutMe from "./MoreAboutMe";
 import Address from "./Address";
 
 const Background = (props) => {
-	var today = new Date();
-	var minDate = today.setFullYear(today.getFullYear() - 18);
-	const [values, setValues] = useState({
-		gender: null,
-		dob: null,
-		height: null,
-		weight: null,
-		tone: null,
-		raasi: null,
-		nakshatra: null,
-		lookingFor: null,
-		status: null,
-		education: null,
-		work: null,
-		company: null,
-		location: null,
-		workLocation: null,
-		salary: null,
-		hobby: null,
-		about: null,
-		habits: [],
-		expectations: null,
-		minDate: new Date("1950-01-01T00:00:00"),
-		maxDate: minDate,
-		visaStatus: null,
-		famStatus: null,
-		paddress: "",
-		taddress: "",
-		sameadd: false,
-		familyName: null,
-		gothram: null,
-		fatherName: null,
-		fatherOcc: null,
-		motherName: null,
-		motherOcc: null,
-		sisters: 0,
-		marriedSisters: 0,
-		brothers: 0,
-		marriedBrothers: 0,
-		caste: null,
-		religion: null,
-		mother_tongue: null,
-		subcaste: null,
-		disability: "No",
-		dosham: null,
-		bodytype: null,
-		editDetails: true, // By default have to set it to false to disable edit
-	});
+	const { values } = props;
 
 	const handleChange = (name, value) => {
-		setValues({
-			...values,
-			[name]: value,
-		});
+		props.onChange(name, value);
 	};
 
 	return (

@@ -21,7 +21,7 @@ function loadScript(src, position, id) {
 const autocompleteService = { current: null };
 
 export default function GoogleMaps(props) {
-	const { label } = props;
+	const { label, keyname, place } = props;
 	const [inputValue, setInputValue] = React.useState("");
 	const [options, setOptions] = React.useState([]);
 	const loaded = React.useRef(false);
@@ -90,15 +90,16 @@ export default function GoogleMaps(props) {
 			autoComplete
 			includeInputInList
 			onChange={(event, value) =>
-				props.onChange("location", value.description)
+				props.onChange(keyname, value.description)
 			}
+			value={place}
 			renderInput={(params) => (
 				<TextField
 					{...params}
 					label={label}
 					variant='outlined'
 					fullWidth
-					name='location'
+					name={keyname}
 					margin='dense'
 					onChange={handleChange}
 				/>

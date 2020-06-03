@@ -12,7 +12,7 @@ const Work = (props) => {
 	}
 
 	function handleClick(name, value) {
-		props.onChange("workLocation", value);
+		props.onChange("workloc", value);
 	}
 
 	return (
@@ -92,7 +92,7 @@ const Work = (props) => {
 						<TextField
 							fullWidth
 							label='Visa Status'
-							name='visaStatus'
+							name='visa'
 							margin='dense'
 							onChange={handleChange}
 							select={values.editDetails}
@@ -100,7 +100,7 @@ const Work = (props) => {
 								readOnly: !values.editDetails,
 							}}
 							SelectProps={{ native: true }}
-							value={values.visaStatus}
+							value={values.visa}
 							variant='outlined'>
 							{visaList.map((option, idx) => (
 								<option key={idx} value={option}>

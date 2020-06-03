@@ -23,48 +23,23 @@ const styles = (theme) => ({
 });
 
 const AccountDetails = (props) => {
-	const { classes, className, ...rest } = props;
-	var today = new Date();
-	var maxDate = today.setFullYear(today.getFullYear() - 18);
+	const { classes, className, values } = props;
 
-	const [values, setValues] = useState({
-		fullName: "Shen",
-		email: "shen.zhi@devias.io",
-		phone: "",
-		location: "",
-		city: null,
-		country: null,
-		editProfile: false,
-		uid: "DGH76DF4",
-		dob: null,
-		minDate: new Date("1950-01-01T00:00:00"),
-		maxDate: maxDate,
-	});
 	const handleClick = (name, value) => {
 		console.log("inside handleclick:   ", name, value);
-		setValues({
-			...values,
-			[name]: value,
-		});
+		props.onChange(name, value);
 	};
 
 	const handleChange = (event) => {
-		setValues({
-			...values,
-			[event.target.name]: event.target.value,
-		});
+		props.onChange(event.target.name, event.target.value);
 	};
 
 	function handleDateChange(date) {
-		var dob = "dob";
-		setValues({
-			...values,
-			[dob]: date,
-		});
+		props.onChange("dob", date);
 	}
 
 	return (
-		<Card {...rest} className={clsx(classes.root, className)}>
+		<Card className={clsx(classes.root, className)}>
 			<form autoComplete='off' noValidate>
 				<CardHeader
 					title='Profile'
@@ -75,8 +50,8 @@ const AccountDetails = (props) => {
 								aria-label='Edit'
 								onClick={() =>
 									handleClick(
-										"editProfile",
-										!values.editProfile
+										"editDetails",
+										!values.editDetails
 									)
 								}>
 								<EditRoundedIcon />
@@ -106,13 +81,13 @@ const AccountDetails = (props) => {
 								fullWidth
 								label='Full name'
 								margin='dense'
-								name='fullName'
+								name='name'
 								onChange={handleChange}
 								required
 								InputProps={{
-									readOnly: !values.editProfile,
+									readOnly: !values.editDetails,
 								}}
-								value={values.fullName}
+								value={values.name}
 								variant='outlined'
 							/>
 						</Grid>
@@ -124,11 +99,10 @@ const AccountDetails = (props) => {
 									inputVariant='outlined'
 									value={values.dob}
 									name='dob'
+									fullWidth
 									maxDate={values.maxDate}
 									minDate={values.minDate}
-									InputProps={{
-										readOnly: !values.editDetails,
-									}}
+									readOnly={!values.editDetails}
 									onChange={handleDateChange}
 								/>
 							</MuiPickersUtilsProvider>
@@ -136,6 +110,8 @@ const AccountDetails = (props) => {
 						<Grid item md={6} xs={12}>
 							<GoogleAutocomplete
 								label='Birth Place'
+								keyname='hometown'
+								place={values.hometown}
 								onChange={handleClick}
 							/>
 						</Grid>
@@ -148,7 +124,7 @@ const AccountDetails = (props) => {
 								onChange={handleChange}
 								type='number'
 								InputProps={{
-									readOnly: !values.editProfile,
+									readOnly: !values.editDetails,
 								}}
 								value={values.phone}
 								variant='outlined'
@@ -161,7 +137,7 @@ const AccountDetails = (props) => {
 								margin='dense'
 								name='email'
 								InputProps={{
-									readOnly: !values.editProfile,
+									readOnly: !values.editDetails,
 								}}
 								onChange={handleChange}
 								required
@@ -173,8 +149,11 @@ const AccountDetails = (props) => {
 				</CardContent>
 				<Divider />
 				<CardActions
-					style={{ display: values.editProfile ? "" : "none" }}>
-					<Button color='primary' variant='contained'>
+					style={{ display: values.editDetails ? "" : "none" }}>
+					<Button
+						color='primary'
+						variant='contained'
+						onClick={props.updateData}>
 						Save details
 					</Button>
 				</CardActions>

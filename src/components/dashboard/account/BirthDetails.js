@@ -18,7 +18,7 @@ const BirthDetails = (props) => {
 						<TextField
 							fullWidth
 							label='Gender'
-							name='gender'
+							name='sex'
 							margin='dense'
 							onChange={handleChange}
 							required
@@ -28,7 +28,7 @@ const BirthDetails = (props) => {
 							}}
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
-							value={values.gender}
+							value={values.sex}
 							variant='outlined'>
 							{genderList.map((option) => (
 								<option key={option.key} value={option.label}>

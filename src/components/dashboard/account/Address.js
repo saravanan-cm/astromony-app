@@ -18,7 +18,6 @@ const Address = (props) => {
 	function handleChange(event) {
 		if (event.target.name === "sameadd") {
 			setcheckedVal(!checkedVal);
-			debugger;
 		}
 		var ipvalue =
 			event.target.name === "sameadd"

@@ -69,7 +69,7 @@ const Horoscope = (props) => {
 						<TextField
 							fullWidth
 							label='Looking for a'
-							name='lookingFor'
+							name='lookingfor'
 							margin='dense'
 							onChange={handleChange}
 							required
@@ -79,7 +79,7 @@ const Horoscope = (props) => {
 							}}
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
-							value={values.lookingFor}
+							value={values.lookingfor}
 							variant='outlined'>
 							{lookingForList.map((option) => (
 								<option key={option.key} value={option.label}>

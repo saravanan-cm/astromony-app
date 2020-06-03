@@ -102,7 +102,7 @@ const CollapsedExpectations = (props) => {
 				<CardActions style={{ marginLeft: "2%" }} disableSpacing>
 					<Avatar className={classes.avatar} src={search}></Avatar>
 					<h3 className={classes.cardTitle}>
-						Expectations for a {values.lookingFor}
+						Expectations for a {values.lookingfor}
 					</h3>
 					<IconButton
 						className={clsx(classes.expand, {

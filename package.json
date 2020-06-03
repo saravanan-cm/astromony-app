@@ -17,6 +17,7 @@
     "date-fns": "2.11.1",
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
+    "notistack": "^0.9.16",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-otp-input": "^1.0.1",

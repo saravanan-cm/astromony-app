@@ -78,7 +78,7 @@ const CollapsedBirthDetails = (props) => {
 				<CardActions style={{ marginLeft: "2%" }} disableSpacing>
 					<Avatar
 						className={classes.avatar}
-						src={values.gender === "male" ? male : female}></Avatar>
+						src={values.sex === "male" ? male : female}></Avatar>
 					<h3 className={classes.cardTitle}>Basics</h3>
 					<IconButton
 						className={clsx(classes.expand, {
@@ -239,7 +239,7 @@ const CollapsedBirthDetails = (props) => {
 												className={classes.avatar}
 												src={lang}></Avatar>
 											<p className={classes.cardP}>
-												{values.mother_tongue}
+												{values.mothertongue}
 											</p>
 										</div>
 									</Grid>

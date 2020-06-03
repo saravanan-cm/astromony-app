@@ -16,42 +16,9 @@ import BirthDetails from "./BirthDetails";
 import Horoscope from "./Horoscope";
 
 const Bio = (props) => {
-	const [values, setValues] = useState({
-		gender: null,
-		dob: null,
-		height: null,
-		weight: null,
-		tone: null,
-		raasi: null,
-		nakshatra: null,
-		lookingFor: null,
-		status: null,
-		education: null,
-		work: null,
-		company: null,
-		location: null,
-		salary: null,
-		hobby: null,
-		about: null,
-		expectations: null,
-		minDate: new Date("1950-01-01T00:00:00"),
-		maxDate: new Date(),
-		visaStatus: null,
-		address: null,
-		familyName: null,
-		gothram: null,
-		sisters: 0,
-		marriedSisters: 0,
-		brothers: 0,
-		marriedBrothers: 0,
-		editDetails: true, // By default have to set it to false to disable edit
-	});
-
+	const { values } = props;
 	const handleChange = (name, value) => {
-		setValues({
-			...values,
-			[name]: value,
-		});
+		props.onChange(name, value);
 	};
 
 	return (
@@ -100,7 +67,10 @@ const Bio = (props) => {
 					<Divider />
 					<CardActions
 						style={{ display: values.editDetails ? "" : "none" }}>
-						<Button color='primary' variant='contained'>
+						<Button
+							color='primary'
+							variant='contained'
+							onClick={props.updateData}>
 							Update
 						</Button>
 					</CardActions>

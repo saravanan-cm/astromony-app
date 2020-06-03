@@ -195,7 +195,6 @@ class SideDrawer extends React.Component {
 		this.setState({ ...this.state, active: name }, () => {
 			this.setState({ open: false });
 			this.props.history.push(name);
-			debugger;
 			// this.props.onChange(this.state);
 		});
 	}
