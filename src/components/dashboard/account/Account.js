@@ -92,9 +92,11 @@ const Account = (props) => {
 		}
 	}
 
-	const updateData = () => {
-		let variant = "success";
-		enqueueSnackbar("Successfully Updated", { variant });
+	const updateData = (skip = false) => {
+		if (!skip) {
+			let variant = "success";
+			enqueueSnackbar("Successfully Updated", { variant });
+		}
 		api.updateMyData(data);
 		data.editDetails = false;
 		props.onChange("data", data);
@@ -102,14 +104,9 @@ const Account = (props) => {
 
 	const handleChange = (name, value) => {
 		if (name === "images") {
-			value =
-				data.images && data.images.length >= 1
-					? JSON.parse(data.images).push(value)
-					: [value];
-			setData({
-				...data,
-				[name]: value,
-			});
+			value = data.images ? data.images.push(value) : [value];
+			setData({ ...data, [name]: value });
+			updateData(true);
 		} else {
 			setData({
 				...data,
