@@ -40,12 +40,12 @@ const styles = (theme) => ({
 });
 
 const Account = (props) => {
-	const { classes, userDetails, myData } = props;
-	const [data, setData] = useState(myData);
-	const [value, setValue] = useState(0);
-	const [activeTab, setActiveTab] = useState("basics");
-	const { enqueueSnackbar } = useSnackbar();
-	const navBarList = [
+	var { classes, userDetails, myData } = props;
+	var [data, setData] = useState(myData);
+	var [value, setValue] = useState(0);
+	var [activeTab, setActiveTab] = useState("basics");
+	var { enqueueSnackbar } = useSnackbar();
+	var navBarList = [
 		{
 			id: 9,
 			label: "Basics",
@@ -70,7 +70,7 @@ const Account = (props) => {
 
 	useEffect(() => {
 		getData();
-	}, []);
+	});
 
 	async function getData() {
 		// userDetails.email
@@ -101,10 +101,21 @@ const Account = (props) => {
 	};
 
 	const handleChange = (name, value) => {
-		setData({
-			...data,
-			[name]: value,
-		});
+		if (name === "images") {
+			value =
+				data.images && data.images.length >= 1
+					? JSON.parse(data.images).push(value)
+					: [value];
+			setData({
+				...data,
+				[name]: value,
+			});
+		} else {
+			setData({
+				...data,
+				[name]: value,
+			});
+		}
 		props.onChange("data", data);
 	};
 
@@ -135,7 +146,11 @@ const Account = (props) => {
 						}}>
 						<Grid container spacing={2}>
 							<Grid item lg={5} md={6} xl={6} xs={12}>
-								<AccountProfile />
+								<AccountProfile
+									values={data}
+									onChange={handleChange}
+									updateData={updateData}
+								/>
 							</Grid>
 							<Grid item lg={7} md={6} xl={6} xs={12}>
 								<AccountDetails

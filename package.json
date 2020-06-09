@@ -15,6 +15,7 @@
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "date-fns": "2.11.1",
+    "firebase": "^7.15.0",
     "is-empty": "^1.2.0",
     "jwt-decode": "^2.2.0",
     "notistack": "^0.9.16",

@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import { IconButton, withStyles, Avatar } from "@material-ui/core";
+import {
+	IconButton,
+	withStyles,
+	Avatar,
+	LinearProgress,
+} from "@material-ui/core";
 
 import ZoomImage from "./ZoomImage";
 import back from "../../assets/images/back.png";
@@ -54,17 +59,23 @@ const styles = (theme) => ({
 });
 
 const ImageCarousal = (props) => {
-	const { classes, imageList } = props;
+	const { classes, imageList, loading } = props;
 	const [values, setValues] = useState({
 		moreWidthThanHeight: null,
 		loaded: false,
 	});
 
 	const [image, setImage] = useState({
-		src: imageList[0],
+		src: imageList && imageList.length >= 1 ? imageList[0] : "",
 		index: 0,
-		showNavigation: imageList.length > 1 ? "" : "none",
+		showNavigation: imageList && imageList.length > 1 ? "" : "hidden",
 	});
+
+	useEffect(() => {
+		let name = "showNavigation";
+		let val = imageList && imageList.length > 1 ? "" : "hidden";
+		setImage({ ...image, [name]: val });
+	}, [loading]);
 
 	const showNextImage = () => {
 		var currIndex = image.index;
@@ -107,6 +118,7 @@ const ImageCarousal = (props) => {
 				style={{
 					padding: "2%",
 					borderRadius: "0",
+					visibility: image.showNavigation,
 				}}
 				onClick={() => showPreviousImage()}>
 				<Avatar
@@ -147,6 +159,7 @@ const ImageCarousal = (props) => {
 				style={{
 					padding: "2%",
 					borderRadius: "0",
+					visibility: image.showNavigation,
 				}}
 				onClick={() => showNextImage()}>
 				{/* <NavigateNextIcon color='primary' /> */}

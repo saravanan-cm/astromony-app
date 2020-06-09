@@ -1,16 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
+import { storage } from "../../../firebase/firebase";
 import {
 	Card,
 	CardActions,
 	CardContent,
-	Typography,
 	Divider,
 	Button,
-	IconButton,
-	Link,
-	LinearProgress,
 	withStyles,
+	CardActionArea,
+	CardMedia,
+	Typography,
+	CircularProgress,
+	LinearProgress,
 } from "@material-ui/core";
 
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -39,7 +41,14 @@ const styles = (theme) => ({
 		marginRight: theme.spacing(2),
 	},
 	media: {
-		height: 140,
+		width: "70%",
+		margin: "auto",
+		height: "80%",
+	},
+	loader: {
+		marginLeft: "5px",
+		marginTop: "4px",
+		position: "absolute",
 	},
 	imageContainer: {
 		width: "80%",
@@ -65,61 +74,124 @@ const styles = (theme) => ({
 });
 
 const AccountProfile = (props) => {
-	const { classes } = props;
+	const { classes, values } = props;
+	var [imagesList, setImagesList] = useState(
+		values.images && values.images.length >= 1 ? values.images : []
+	);
+	const [loading, setLoading] = useState(false);
+	const [imageAsFile, setImageAsFile] = useState("");
 
-	const state = {
-		images: [],
+	const handleImageAsFile = (e) => {
+		const image = e.target.files[0];
+		setImageAsFile((imageFile) => image);
 	};
 
-	const imageList = [
-		"https://www.pngitem.com/pimgs/m/4-42408_vector-art-design-men-fashion-vector-art-illustration.png",
-		"https://previews.123rf.com/images/dafnadar/dafnadar1707/dafnadar170700015/82894770-handsome-young-adult-men-in-shirt-and-trousers-hand-drawing-illustration-with-black-line-art-man-wit.jpg",
-		"https://www.wallpaperflare.com/static/622/473/259/artwork-anime-landscape-painting-wallpaper.jpg",
-	];
+	useEffect(() => {
+		handleFireBaseUpload();
+	}, [imageAsFile]);
 
-	const handleCapture = ({ target }) => {
-		console.log("inside handleCapture---  ");
-		const fileReader = new FileReader();
-		const name = target.accept.includes("image") ? "images" : "videos";
-		if (name === "images") {
-			fileReader.readAsDataURL(target.files[0]);
-			fileReader.onload = (e) => {
-				state.images.push(e.target.result);
-			};
+	const handleFireBaseUpload = () => {
+		// async magic goes here...
+		if (imageAsFile === "") {
+			console.error("No Image Found");
+		} else if (imageAsFile) {
+			setLoading(true);
+			const uploadTask = storage
+				.ref(`/${values.uid}/${imageAsFile.name}`)
+				.put(imageAsFile);
+
+			//initiates the firebase side uploading
+			uploadTask.on(
+				"state_changed",
+				(snapShot) => {
+					//takes a snap shot of the process as it is happening
+					console.log(snapShot);
+				},
+				(err) => {
+					//catches the errors
+					console.log(err);
+				},
+				() => {
+					storage
+						.ref(values.uid)
+						.child(imageAsFile.name)
+						.getDownloadURL()
+						.then((fireBaseUrl) => {
+							setImagesList([...imagesList, fireBaseUrl]);
+							props.onChange("images", fireBaseUrl);
+							setLoading(false);
+						});
+				}
+			);
 		}
 	};
 
 	return (
 		<Card className={classes.root}>
 			<CardContent>
-				<ImageCarousal imageList={imageList} />
-				{/* <div className={classes.progress}>
-					<Typography variant='body1'>
-						Profile Completeness: 70%
-					</Typography>
-					<LinearProgress value={70} variant='determinate' />
-				</div> */}
+				{loading ? <LinearProgress /> : ""}
+				{imagesList && imagesList.length >= 1 && !loading ? (
+					<ImageCarousal loading={loading} imageList={imagesList} />
+				) : imagesList && imagesList.length >= 1 && loading ? (
+					<ImageCarousal loading={loading} imageList={imagesList} />
+				) : (
+					<Card
+						style={{
+							boxShadow: "none",
+						}}>
+						<CardActionArea>
+							<CardMedia
+								className={classes.media}
+								component='img'
+								alt='No Image Found'
+								title='No Image Found'
+								image={
+									"https://firebasestorage.googleapis.com/v0/b/stage-vyvaha.appspot.com/o/public%2Fnodata.png?alt=media&token=5c8252d8-6e07-482f-a3bf-a22611ff5f4e"
+								}
+							/>
+							<Typography
+								variant='caption'
+								color='textSecondary'
+								variantMapping='subtitle1'>
+								No image found. Upload best image of yours and
+								horoscope to get more responses.
+							</Typography>
+						</CardActionArea>
+					</Card>
+				)}
 			</CardContent>
 			<Divider />
 			<CardActions style={{ float: "left" }}>
-				<input
-					accept='image/*'
-					className={classes.input}
-					id='outlined-button-file'
-					multiple
-					onChange={handleCapture}
-					type='file'
-				/>
-				<label htmlFor='outlined-button-file'>
-					<Button
-						variant='outlined'
-						color='primary'
-						component='span'
-						size='small'
-						startIcon={<CloudUploadIcon />}>
-						Upload
-					</Button>
-				</label>
+				<form onSubmit={handleFireBaseUpload}>
+					<input
+						accept='image/*'
+						className={classes.input}
+						id='outlined-button-file'
+						multiple
+						onChange={handleImageAsFile}
+						type='file'
+					/>
+					{loading ? (
+						<CircularProgress
+							className={classes.loader}
+							size={24}
+						/>
+					) : (
+						""
+					)}
+					<label htmlFor='outlined-button-file'>
+						<Button
+							variant='outlined'
+							color='primary'
+							component='span'
+							size='small'
+							type='submit'
+							disabled={loading}
+							startIcon={<CloudUploadIcon />}>
+							Upload
+						</Button>
+					</label>
+				</form>
 			</CardActions>
 			<CardActions style={{ float: "right" }}>
 				<Button
