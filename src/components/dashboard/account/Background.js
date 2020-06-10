@@ -65,7 +65,10 @@ const Background = (props) => {
 					<Divider />
 					<CardActions
 						style={{ display: values.editDetails ? "" : "none" }}>
-						<Button color='primary' variant='contained'>
+						<Button
+							color='primary'
+							variant='contained'
+							onClick={props.updateData}>
 							Update
 						</Button>
 					</CardActions>
@@ -116,7 +119,10 @@ const Background = (props) => {
 					<Divider />
 					<CardActions
 						style={{ display: values.editDetails ? "" : "none" }}>
-						<Button color='primary' variant='contained'>
+						<Button
+							color='primary'
+							variant='contained'
+							onClick={props.updateData}>
 							Update
 						</Button>
 					</CardActions>
@@ -170,7 +176,10 @@ const Background = (props) => {
 					<Divider />
 					<CardActions
 						style={{ display: values.editDetails ? "" : "none" }}>
-						<Button color='primary' variant='contained'>
+						<Button
+							color='primary'
+							variant='contained'
+							onClick={props.updateData}>
 							Update
 						</Button>
 					</CardActions>

@@ -16,6 +16,7 @@ import {
 	withStyles,
 } from "@material-ui/core";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
+import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
 import GoogleAutocomplete from "../../misc/GoogleAutocomplete";
 
 const styles = (theme) => ({
@@ -54,7 +55,11 @@ const AccountDetails = (props) => {
 										!values.editDetails
 									)
 								}>
-								<EditRoundedIcon />
+								{values.editDetails ? (
+									<ClearRoundedIcon />
+								) : (
+									<EditRoundedIcon />
+								)}
 							</IconButton>
 						</div>
 					}

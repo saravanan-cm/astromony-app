@@ -73,11 +73,11 @@ const Account = (props) => {
 	});
 
 	async function getData() {
-		// userDetails.email
 		let response = {};
 		if (myData && Object.keys(myData).length) {
 			setData(myData);
 		} else {
+			// response = await api.getMyData(userDetails.email);
 			response = await api.getMyData("saracmmce@gmail.com");
 		}
 		if ("status" in response) {
@@ -92,13 +92,13 @@ const Account = (props) => {
 		}
 	}
 
-	const updateData = (skip = false) => {
-		if (!skip) {
+	const updateData = (showSuccess = true) => {
+		if (showSuccess) {
 			let variant = "success";
 			enqueueSnackbar("Successfully Updated", { variant });
+			data.editDetails = false;
 		}
 		api.updateMyData(data);
-		data.editDetails = false;
 		props.onChange("data", data);
 	};
 
@@ -106,12 +106,10 @@ const Account = (props) => {
 		if (name === "images") {
 			value = data.images ? data.images.push(value) : [value];
 			setData({ ...data, [name]: value });
-			updateData(true);
+			updateData(false);
 		} else {
-			setData({
-				...data,
-				[name]: value,
-			});
+			data[name] = value;
+			setData(data);
 		}
 		props.onChange("data", data);
 	};
