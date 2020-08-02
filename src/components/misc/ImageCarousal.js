@@ -129,7 +129,7 @@ const ImageCarousal = (props) => {
 			<div className={classes.imageContainer}>
 				<ZoomImage
 					style={{
-						height: values.moreWidthThanHeight ? "100%" : "auto",
+						height: "auto",
 						width: values.moreWidthThanHeight ? "auto" : "100%",
 						display: values.loaded ? "block" : "none",
 					}}

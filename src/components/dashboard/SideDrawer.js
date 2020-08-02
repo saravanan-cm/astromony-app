@@ -139,11 +139,12 @@ class SideDrawer extends React.Component {
 			anchorEl: null,
 			active: "home",
 			showSideDrawer: "",
+			name: this.props.auth.user.name.split("")[0].toUpperCase() + this.props.auth.user.name.split("").slice(1).join("")
 		};
 		this.drawerList = [
 			{
 				name: "home",
-				tag: this.props.auth.user.name,
+				tag: this.state.name,
 				link: "#",
 				class: "profileBtn",
 				icon: <AccountCircleRoundedIcon />,

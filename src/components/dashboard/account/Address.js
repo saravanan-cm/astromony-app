@@ -13,7 +13,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 const Address = (props) => {
 	const { values } = props;
 
-	const [checkedVal, setcheckedVal] = useState(false);
+	const [checkedVal, setcheckedVal] = useState(values.sameadd);
 
 	function handleChange(event) {
 		if (event.target.name === "sameadd") {
