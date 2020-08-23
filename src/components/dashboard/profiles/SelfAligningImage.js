@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import format from "date-fns/format";
 import { GridListTileBar, withStyles, IconButton } from "@material-ui/core";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 
@@ -27,7 +26,7 @@ class SelfAligningImage extends PureComponent {
 
 	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
-		var uid = new Buffer(id + "--" + page.toString()).toString('base64');
+		var uid = new Buffer(id + "--" + page.toString()).toString("base64");
 		window.location.href = "/profile?id=" + uid;
 	};
 
@@ -39,7 +38,9 @@ class SelfAligningImage extends PureComponent {
 			title,
 			id,
 			page,
-			timeStamp,
+			work,
+			workloc,
+			age,
 			roundedBorder,
 			theme,
 		} = this.props;
@@ -78,13 +79,16 @@ class SelfAligningImage extends PureComponent {
 				{title && (
 					<GridListTileBar
 						title={title}
-						subtitle={format(
-							new Date(timeStamp * 1000),
-							"PP - k:mm",
-							{
-								awareOfUnicodeTokens: true,
-							}
-						)}
+						subtitle={
+							<div>
+								<p style={{ marginTop: "3%", marginBottom: 0 }}>
+									{work}
+								</p>
+								<p style={{ marginTop: "2%", marginBottom: 0 }}>
+									Age: {age}
+								</p>
+							</div>
+						}
 						actionIcon={
 							<IconButton>
 								<StarBorderIcon style={{ color: "white" }} />

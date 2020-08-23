@@ -77,8 +77,8 @@ const Account = (props) => {
 		if (myData && Object.keys(myData).length) {
 			setData(myData);
 		} else {
-			// response = await api.getMyData(userDetails.email);
-			response = await api.getMyData("saracmmce@gmail.com");
+			response = await api.getMyData(userDetails.email);
+			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		if ("status" in response) {
 			let today = new Date();

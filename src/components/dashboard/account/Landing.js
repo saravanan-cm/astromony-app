@@ -63,6 +63,7 @@ class Landing extends Component {
 			showLoader: "none",
 			showLogin: "no",
 			data: null,
+			profiles: []
 		};
 	}
 
@@ -74,7 +75,13 @@ class Landing extends Component {
 		let path = this.props.match.params.tab;
 		switch (path) {
 			case "profiles":
-				return <ProfileContent userDetails={this.props.auth.user} />;
+				return (
+					<ProfileContent
+						profiles={this.state.profiles}
+						onChange={this.handleChange}
+						userDetails={this.props.auth.user}
+					/>
+				);
 				break;
 			case "favorites":
 				return (

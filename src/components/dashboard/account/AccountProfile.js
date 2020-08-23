@@ -130,9 +130,7 @@ const AccountProfile = (props) => {
 		<Card className={classes.root}>
 			<CardContent>
 				{loading ? <LinearProgress /> : ""}
-				{imagesList && imagesList.length >= 1 && !loading ? (
-					<ImageCarousal loading={loading} imageList={imagesList} />
-				) : imagesList && imagesList.length >= 1 && loading ? (
+				{imagesList && imagesList.length >= 1 && loading ? (
 					<ImageCarousal loading={loading} imageList={imagesList} />
 				) : (
 					<Card
