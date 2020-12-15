@@ -3,8 +3,8 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
-// const base_url = "http://localhost:5000";
-const base_url = "https://stage-vyvaha-api.herokuapp.com";
+const base_url = "http://localhost:5000";
+// const base_url = "https://stage-vyvaha-api.herokuapp.com";
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
 	axios

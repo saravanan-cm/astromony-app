@@ -117,14 +117,14 @@ const CollapsedFamilyDetails = (props) => {
 											<Typography
 												paragraph
 												className={classes.cardText}>
-												{values.address
+												{values.address ? (values.address
 													.split(",")
 													.map((item, key) => (
 														<span key={key}>
 															{item}
 															<br />
 														</span>
-													))}
+													))) : ("")}
 											</Typography>
 										</CardContent>
 									</CardActionArea>

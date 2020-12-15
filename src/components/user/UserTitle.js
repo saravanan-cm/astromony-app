@@ -72,7 +72,9 @@ const UserTitle = (props) => {
 						</ListItem>
 						<ListItem className={classes.listItem}>
 							<TodayRoundedIcon className={classes.icon} />
-							<p className={classes.listText}>{values.dob + " - Age: " + values.age}</p>
+							<p className={classes.listText}>
+								{values.dob + " - Age: " + values.age}
+							</p>
 						</ListItem>
 						<ListItem className={classes.listItem}>
 							<PhoneIphoneRoundedIcon className={classes.icon} />
@@ -82,10 +84,14 @@ const UserTitle = (props) => {
 							<MailOutlineRoundedIcon className={classes.icon} />
 							<p className={classes.listText}>{values.email}</p>
 						</ListItem>
-						<ListItem className={classes.listItem}>
-							<HomeRoundedIcon className={classes.icon} />
-							<p className={classes.listText}>{values.ht}</p>
-						</ListItem>
+						{values.ht ? (
+							<ListItem className={classes.listItem}>
+								<HomeRoundedIcon className={classes.icon} />
+								<p className={classes.listText}>{values.ht}</p>
+							</ListItem>
+						) : (
+							""
+						)}
 					</List>
 				</Typography>
 			</Grid>

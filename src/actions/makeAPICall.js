@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const base_url = "http://localhost:5000";
-const base_url = "https://stage-vyvaha-api.herokuapp.com";
+const base_url = "http://localhost:5000";
+// const base_url = "https://stage-vyvaha-api.herokuapp.com";
 
 async function getMyData(email) {
 	let resp = {
@@ -43,7 +43,35 @@ async function getProfilesList(email) {
 		},
 	};
 	let res = await axios(config);
-	console.log("res----------          ",res);
+	console.log("res----------          ", res);
+	if (res && "status" in res) {
+		if (res.status) {
+			resp.status = true;
+			resp.data = res.data;
+			return resp;
+		} else {
+			resp.data = res.data;
+			return resp;
+		}
+	}
+}
+
+async function getUsersData(id) {
+	let buff = new Buffer(id, "base64");
+	let text = buff.toString("ascii");
+	let resp = {
+		status: false,
+		data: {},
+	};
+	let config = {
+		method: "get",
+		url: base_url + "/api/users/" + text.split("--")[0],
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+		},
+	};
+	let res = await axios(config);
+	console.log("res----------          ", res);
 	if (res && "status" in res) {
 		if (res.status) {
 			resp.status = true;
@@ -84,4 +112,5 @@ export default {
 	getMyData: getMyData,
 	updateMyData: updateMyData,
 	getProfilesList: getProfilesList,
+	getUsersData: getUsersData,
 };

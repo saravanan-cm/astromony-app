@@ -98,13 +98,15 @@ const CollapsedBirthDetails = (props) => {
 									paragraph
 									className={classes.cardText}>
 									{values.about
-										.split("\n")
-										.map((item, key) => (
-											<span key={key}>
-												{item}
-												<br />
-											</span>
-										))}
+										? values.about
+												.split("\n")
+												.map((item, key) => (
+													<span key={key}>
+														{item}
+														<br />
+													</span>
+												))
+										: ""}
 
 									{values.hobby ? (
 										<span>
@@ -119,66 +121,82 @@ const CollapsedBirthDetails = (props) => {
 							</Grid>
 							<Grid item lg={6} md={6} xl={6} sm={6} xs={12}>
 								<Grid container spacing={3}>
-									<Grid item xs={6}>
-										<div
-											title='Height'
-											style={{
-												display: "flex",
-												alignItems: "center",
-											}}>
-											<Avatar
-												className={classes.avatar}
-												src={height}></Avatar>
-											<p className={classes.cardP}>
-												{values.height}
-											</p>
-										</div>
-									</Grid>
-									<Grid item xs={6}>
-										<div
-											title='Weight'
-											style={{
-												display: "flex",
-												alignItems: "center",
-											}}>
-											<Avatar
-												className={classes.avatar}
-												src={weight}></Avatar>
-											<p className={classes.cardP}>
-												{values.weight}
-											</p>
-										</div>
-									</Grid>
-									<Grid item xs={6}>
-										<div
-											title='Zodiac Sign'
-											style={{
-												display: "flex",
-												alignItems: "center",
-											}}>
-											<Avatar
-												className={classes.avatar}
-												src={zodiac}></Avatar>
-											<p className={classes.cardP}>
-												{values.raasi}
-											</p>
-										</div>
-									</Grid>
-									<Grid item xs={6}>
-										<div
-											title='Nakshatra'
-											style={{
-												display: "flex",
-												alignItems: "center",
-											}}>
-											<Avatar
-												className={classes.avatar}
-												src={nakshatra}></Avatar>
-											<p className={classes.cardP}>
-												{values.nakshatra}
-											</p>
-										</div>
-									</Grid>
+									{values.height ? (
+										<Grid item xs={6}>
+											<div
+												title='Height'
+												style={{
+													display: "flex",
+													alignItems: "center",
+												}}>
+												<Avatar
+													className={classes.avatar}
+													src={height}></Avatar>
+												<p className={classes.cardP}>
+													{values.height}
+												</p>
+											</div>
+										</Grid>
+									) : (
+										""
+									)}
+									{values.weight ? (
+										<Grid item xs={6}>
+											<div
+												title='Weight'
+												style={{
+													display: "flex",
+													alignItems: "center",
+												}}>
+												<Avatar
+													className={classes.avatar}
+													src={weight}></Avatar>
+												<p className={classes.cardP}>
+													{values.weight}
+												</p>
+											</div>
+										</Grid>
+									) : (
+										""
+									)}
+									{values.raasi ? (
+										<Grid item xs={6}>
+											<div
+												title='Zodiac Sign'
+												style={{
+													display: "flex",
+													alignItems: "center",
+												}}>
+												<Avatar
+													className={classes.avatar}
+													src={zodiac}></Avatar>
+												<p className={classes.cardP}>
+													{values.raasi}
+												</p>
+											</div>
+										</Grid>
+									) : (
+										""
+									)}
+									{values.nakshatra ? (
+										<Grid item xs={6}>
+											<div
+												title='Nakshatra'
+												style={{
+													display: "flex",
+													alignItems: "center",
+												}}>
+												<Avatar
+													className={classes.avatar}
+													src={nakshatra}></Avatar>
+												<p className={classes.cardP}>
+													{values.nakshatra}
+												</p>
+											</div>
+										</Grid>
+									) : (
+										""
+									)}
 									{values.familyName ? (
 										<Grid item xs={6}>
 											<div

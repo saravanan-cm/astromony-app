@@ -72,6 +72,7 @@ const ImageCarousal = (props) => {
 	});
 
 	useEffect(() => {
+		debugger;
 		let name = "showNavigation";
 		let val = imageList && imageList.length > 1 ? "" : "hidden";
 		setImage({ ...image, [name]: val });
