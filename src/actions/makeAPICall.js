@@ -1,7 +1,11 @@
 import axios from "axios";
 
-const base_url = "http://localhost:5000";
-// const base_url = "https://stage-vyvaha-api.herokuapp.com";
+var base_url = null;
+if(process.env.NODE_ENV === "development"){
+	base_url = process.env.REACT_APP_API_LOCAL_ENDPOINT;
+} else if(process.env.NODE_ENV === "production"){
+	base_url = process.env.REACT_APP_API_PRODUCTION_ENDPOINT;
+}
 
 async function getMyData(email) {
 	let resp = {

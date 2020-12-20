@@ -3,8 +3,12 @@ import setAuthToken from "../utils/setAuthToken";
 import jwt_decode from "jwt-decode";
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./types";
 
-const base_url = "http://localhost:5000";
-// const base_url = "https://stage-vyvaha-api.herokuapp.com";
+var base_url = null;
+if(process.env.NODE_ENV === "development"){
+	base_url = process.env.REACT_APP_API_LOCAL_ENDPOINT;
+} else if(process.env.NODE_ENV === "production"){
+	base_url = process.env.REACT_APP_API_PRODUCTION_ENDPOINT;
+}
 // Register User
 export const registerUser = (userData, history) => (dispatch) => {
 	axios
@@ -100,7 +104,7 @@ export const verifyMobileNumber = (userData, history) => (dispatch) => {
 		.then((res) => {
 			if (res && "status" in res) {
 				if (res.status) {
-					// history.push("/login");
+					history.push("/login");
 					dispatch({
 						type: USER_LOADING,
 						payload: res,

@@ -14,6 +14,7 @@ import SelfAligningImage from "./SelfAligningImage";
 import SearchDialog from "./SearchDialog";
 import api from "../../../actions/makeAPICall";
 import Skeleton from "@material-ui/lab/Skeleton";
+import NoData from "../../../assets/images/no_data.png";
 
 const styles = (theme) => ({
 	root: {},
@@ -34,6 +35,16 @@ const styles = (theme) => ({
 			height: 200,
 		},
 	},
+	noDataImg: {
+		[theme.breakpoints.up("md")]: {
+			margin: "0% 35%",
+			width: "30%",
+		},
+		[theme.breakpoints.down("md")]: {
+			width: "80%",
+			margin: "0% 10%",
+		},
+	},
 });
 
 // class ProfileContent extends PureComponent {
@@ -43,6 +54,7 @@ const ProfileContent = (props) => {
 	});
 	const { classes, profiles, userDetails } = props;
 	var [posts, setPosts] = useState(profiles);
+	var [no_data, setNoData] = useState(false);
 	const { page } = state;
 
 	var rowsPerPage = 8;
@@ -58,7 +70,9 @@ const ProfileContent = (props) => {
 
 	async function getData() {
 		let response = {};
-		if (profiles && profiles.length) {
+		if (profiles == null) {
+			setNoData(true);
+		} else if (profiles && profiles.length) {
 			setPosts(profiles);
 		} else {
 			response = await api.getProfilesList(userDetails.email);
@@ -67,8 +81,12 @@ const ProfileContent = (props) => {
 		console.log(response);
 		if ("status" in response) {
 			let resData = response.data.data;
-			setPosts(resData);
-			props.onChange("profiles", resData);
+			if (resData && resData.length) {
+				setPosts(resData);
+				props.onChange("profiles", resData);
+			} else {
+				setNoData(true);
+			}
 		}
 	}
 
@@ -76,7 +94,15 @@ const ProfileContent = (props) => {
 		const { page } = state;
 		return (
 			<div className={classes.root}>
-				{posts && posts.length ? (
+				{no_data && no_data === true ? (
+					<div>
+						<img
+							className={classes.noDataImg}
+							src={NoData}
+							alt={"No Data Found...!"}
+						/>
+					</div>
+				) : posts && posts.length ? (
 					<div>
 						<Box p={1}>
 							<Grid container spacing={1}>
