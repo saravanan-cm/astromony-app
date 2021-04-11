@@ -126,7 +126,7 @@ class Dashboard extends Component {
 		return (
 			<div className={classes.root}>
 				{this.state.userDetails &&
-				Object.keys(this.state.userDetails).length ? (
+					Object.keys(this.state.userDetails).length ? (
 					<div style={{ backgroundColor: "#f2f3f8" }}>
 						<Navbar
 							customProps={this.state}
@@ -180,16 +180,17 @@ class Dashboard extends Component {
 											values={this.state.userDetails}
 										/>
 									</Grid>
-									<Grid item xs={12}>
-										<CollapsedWorkDetails
-											values={this.state.userDetails}
-										/>
-									</Grid>
-									<Grid item xs={12}>
+									{this.state.userDetails.wrk ?
+										(<Grid item xs={12}>
+											<CollapsedWorkDetails
+												values={this.state.userDetails}
+											/>
+										</Grid>) : ""}
+									{this.state.userDetails.expectations ? (<Grid item xs={12}>
 										<CollapsedExpectations
 											values={this.state.userDetails}
 										/>
-									</Grid>
+									</Grid>) : ""}
 								</Grid>
 							</div>
 						</main>

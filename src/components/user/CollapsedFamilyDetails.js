@@ -112,7 +112,7 @@ const CollapsedFamilyDetails = (props) => {
 							<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
 								<Card className={classes.addressRoot}>
 									<CardActionArea style={{ display: "flex" }}>
-										<img alt='Address' src={address} />
+										<img alt='Address' style={{width: "50%"}} src={address} />
 										<CardContent>
 											<Typography
 												paragraph
@@ -138,7 +138,7 @@ const CollapsedFamilyDetails = (props) => {
 												Father
 											</p>
 											<Divider />
-											<CardContent>
+											{values.fatherName ? (<CardContent>
 												<Typography
 													className={
 														classes.cardText2
@@ -152,7 +152,13 @@ const CollapsedFamilyDetails = (props) => {
 													}>
 													{values.fatherOcc}
 												</Typography>
-											</CardContent>
+											</CardContent>) : (<CardContent><Typography
+												color='textSecondary'
+												className={
+													classes.cardText2
+												}>
+												{"No details found"}
+											</Typography></CardContent>)}
 										</Card>
 									</Grid>
 									<Grid item xs={6}>
@@ -161,7 +167,7 @@ const CollapsedFamilyDetails = (props) => {
 												Mother
 											</p>
 											<Divider />
-											<CardContent
+											{values.motherName ? (<CardContent
 												className={classes.cardText2}>
 												<Typography
 													className={
@@ -176,7 +182,13 @@ const CollapsedFamilyDetails = (props) => {
 													}>
 													{values.motherOcc}
 												</Typography>
-											</CardContent>
+											</CardContent>) : (<CardContent><Typography
+												color='textSecondary'
+												className={
+													classes.cardText2
+												}>
+												{"No details found"}
+											</Typography></CardContent>)}
 										</Card>
 									</Grid>
 									<Grid item xs={6}>
@@ -185,7 +197,7 @@ const CollapsedFamilyDetails = (props) => {
 												Brother
 											</p>
 											<Divider />
-											<CardContent
+											{values.brothers != null ? (<CardContent
 												className={classes.cardText2}>
 												<Typography
 													className={
@@ -206,16 +218,22 @@ const CollapsedFamilyDetails = (props) => {
 													}>
 													{values.marriedBrothers ===
 														1 &&
-													values.brothers === 1
+														values.brothers === 1
 														? "Married"
 														: values.marriedBrothers >=
-																1 &&
-														  values.brothers > 1
-														? values.marriedBrothers.toString() +
-														  " of them was married"
-														: "Unmarried"}
+															1 &&
+															values.brothers > 1
+															? values.marriedBrothers.toString() +
+															" of them was married"
+															: "Unmarried"}
 												</Typography>
-											</CardContent>
+											</CardContent>) : (<CardContent><Typography
+												color='textSecondary'
+												className={
+													classes.cardText2
+												}>
+												{"No details found"}
+											</Typography></CardContent>)}
 										</Card>
 									</Grid>
 									<Grid item xs={6}>
@@ -224,7 +242,7 @@ const CollapsedFamilyDetails = (props) => {
 												Sister
 											</p>
 											<Divider />
-											<CardContent
+											{values.sisters != null ? (<CardContent
 												className={classes.cardText2}>
 												<Typography
 													className={
@@ -245,16 +263,22 @@ const CollapsedFamilyDetails = (props) => {
 													}>
 													{values.marriedSisters ===
 														1 &&
-													values.sisters === 1
+														values.sisters === 1
 														? "Married"
 														: values.marriedSisters >=
-																1 &&
-														  values.sisters > 1
-														? values.marriedSisters.toString() +
-														  " of them was married"
-														: "Unmarried"}
+															1 &&
+															values.sisters > 1
+															? values.marriedSisters.toString() +
+															" of them was married"
+															: "Unmarried"}
 												</Typography>
-											</CardContent>
+											</CardContent>) : (<CardContent><Typography
+												color='textSecondary'
+												className={
+													classes.cardText2
+												}>
+												{"No details found"}
+											</Typography></CardContent>)}
 										</Card>
 									</Grid>
 								</Grid>
