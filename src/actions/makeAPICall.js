@@ -33,7 +33,7 @@ async function getMyData(email) {
 	}
 }
 
-async function getProfilesList(email) {
+async function getProfilesList(email, ftr) {
 	let resp = {
 		status: false,
 		data: {},
@@ -41,6 +41,36 @@ async function getProfilesList(email) {
 	let config = {
 		method: "get",
 		url: base_url + "/api/profile/list",
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			email: email
+		},
+	};
+	if(ftr){
+		config['headers']['ftr'] = ftr;
+	}
+	let res = await axios(config);
+	console.log("res----------          ", res);
+	if (res && "status" in res) {
+		if (res.status) {
+			resp.status = true;
+			resp.data = res.data;
+			return resp;
+		} else {
+			resp.data = res.data;
+			return resp;
+		}
+	}
+}
+
+async function getFavoritesList(email) {
+	let resp = {
+		status: false,
+		data: {},
+	};
+	let config = {
+		method: "get",
+		url: base_url + "/api/profile/favs/list",
 		headers: {
 			"Access-Control-Allow-Origin": "*",
 			email: email,
@@ -60,6 +90,7 @@ async function getProfilesList(email) {
 	}
 }
 
+
 async function getUsersData(id) {
 	let buff = new Buffer(id, "base64");
 	let text = buff.toString("ascii");
@@ -76,6 +107,56 @@ async function getUsersData(id) {
 	};
 	let res = await axios(config);
 	console.log("res----------          ", res);
+	if (res && "status" in res) {
+		if (res.status) {
+			resp.status = true;
+			resp.data = res.data;
+			return resp;
+		} else {
+			resp.data = res.data;
+			return resp;
+		}
+	}
+}
+
+async function addFavProfile(data, email){
+	let resp = {
+		status: false,
+		data: {},
+	};
+
+	let config = {
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"email": email
+		},
+	};
+	let res = await axios.post(base_url + "/api/profile/favs/add", data, config);
+	if (res && "status" in res) {
+		if (res.status) {
+			resp.status = true;
+			resp.data = res.data;
+			return resp;
+		} else {
+			resp.data = res.data;
+			return resp;
+		}
+	}
+}
+
+async function removeFavProfile(data, email){
+	let resp = {
+		status: false,
+		data: {},
+	};
+
+	let config = {
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+			"email": email
+		},
+	};
+	let res = await axios.post(base_url + "/api/profile/favs/remove", data, config);
 	if (res && "status" in res) {
 		if (res.status) {
 			resp.status = true;
@@ -117,4 +198,7 @@ export default {
 	updateMyData: updateMyData,
 	getProfilesList: getProfilesList,
 	getUsersData: getUsersData,
+	addFavProfile: addFavProfile,
+	removeFavProfile: removeFavProfile,
+	getFavoritesList: getFavoritesList
 };

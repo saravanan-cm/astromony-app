@@ -1,7 +1,9 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 import { GridListTileBar, withStyles, IconButton } from "@material-ui/core";
+import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
+import api from "../../../actions/makeAPICall";
 
 const styles = {
 	imageContainer: {
@@ -22,7 +24,14 @@ const styles = {
 };
 
 class SelfAligningImage extends PureComponent {
-	state = { moreWidthThanHeight: null, loaded: false };
+	state = { moreWidthThanHeight: null, loaded: false, fav: false };
+	constructor(props) {
+		super(props);
+		this.setState({ ...this.state, fav: props.favorite });
+	}
+	componentWillReceiveProps(props) {
+		this.setState({ ...this.state, fav: props.favorite });
+	}
 
 	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
@@ -30,8 +39,32 @@ class SelfAligningImage extends PureComponent {
 		window.location.href = "/profile?id=" + uid;
 	};
 
+	addFav = (fav_id, user) => {
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.addFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				this.setState({ ...this.state, fav: true });
+			}
+		});
+	};
+
+	removeFav = (fav_id, user) => {
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.removeFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				this.setState({ ...this.state, fav: false });
+			}
+		});
+	};
+
 	render() {
-		const { moreWidthThanHeight, loaded } = this.state;
+		const { moreWidthThanHeight, loaded, fav } = this.state;
 		const {
 			classes,
 			src,
@@ -39,7 +72,8 @@ class SelfAligningImage extends PureComponent {
 			id,
 			page,
 			work,
-			workloc,
+			favorite,
+			user_email,
 			age,
 			roundedBorder,
 			theme,
@@ -91,7 +125,21 @@ class SelfAligningImage extends PureComponent {
 						}
 						actionIcon={
 							<IconButton>
-								<StarBorderIcon style={{ color: "white" }} />
+								{fav || favorite ? (
+									<StarIcon
+										style={{ color: "ghostwhite" }}
+										onClick={() =>
+											this.removeFav(id, user_email)
+										}
+									/>
+								) : (
+									<StarBorderIcon
+										style={{ color: "ghostwhite" }}
+										onClick={() =>
+											this.addFav(id, user_email)
+										}
+									/>
+								)}
 							</IconButton>
 						}
 					/>

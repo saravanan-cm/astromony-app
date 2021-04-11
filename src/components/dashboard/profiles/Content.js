@@ -68,6 +68,28 @@ const ProfileContent = (props) => {
 		getData();
 	});
 
+	useEffect(() => {
+		return () => {
+			props.onChange("profiles", []);
+		};
+	}, []);
+
+	async function ftrChange(ftr) {
+		debugger;
+		ftr = btoa(JSON.stringify(ftr));
+		let response = await api.getProfilesList(userDetails.email, ftr);
+		console.log(response);
+		if ("status" in response) {
+			let resData = response.data.data;
+			if (resData && resData.length) {
+				setPosts(resData);
+				props.onChange("profiles", resData);
+			} else {
+				setNoData(true);
+			}
+		}
+	};
+
 	async function getData() {
 		let response = {};
 		if (profiles == null) {
@@ -75,7 +97,7 @@ const ProfileContent = (props) => {
 		} else if (profiles && profiles.length) {
 			setPosts(profiles);
 		} else {
-			response = await api.getProfilesList(userDetails.email);
+			response = await api.getProfilesList(userDetails.email, null);
 			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		console.log(response);
@@ -123,8 +145,10 @@ const ProfileContent = (props) => {
 												title={element.name}
 												id={element.uid}
 												page={page}
+												favorite={element.fav}
 												age={element.dob}
 												work={element.work}
+												user_email={userDetails.email}
 												workloc={element.workloc}
 											/>
 										</Grid>
@@ -162,7 +186,7 @@ const ProfileContent = (props) => {
 		<Paper>
 			<Toolbar className={classes.toolbar}>
 				<Typography variant='h6'>Profiles</Typography>
-				<SearchDialog />
+				<SearchDialog onChange={ftrChange}/>
 			</Toolbar>
 			<Divider />
 			{printImageGrid()}

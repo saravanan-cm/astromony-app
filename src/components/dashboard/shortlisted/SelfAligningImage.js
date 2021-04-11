@@ -1,8 +1,9 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import format from "date-fns/format";
-import { GridListTileBar, withStyles } from "@material-ui/core";
-import VertOptions from "./VertOptions";
+import { GridListTileBar, withStyles, IconButton } from "@material-ui/core";
+import StarIcon from "@material-ui/icons/Star";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import api from "../../../actions/makeAPICall";
 
 const styles = {
 	imageContainer: {
@@ -16,25 +17,70 @@ const styles = {
 		top: 0,
 		bottom: 0,
 		left: 0,
+		cursor: "pointer",
 		right: 0,
 		margin: "auto",
 	},
 };
 
 class SelfAligningImage extends PureComponent {
-	state = { moreWidthThanHeight: null, loaded: false };
+	state = { moreWidthThanHeight: null, loaded: false, fav: false };
+
+	constructor(props) {
+		super(props);
+		this.setState({ ...this.state, fav: props.favorite });
+	}
+
+	componentWillReceiveProps(props) {
+		this.setState({ ...this.state, fav: props.favorite });
+	}
+
+	openProfile = (id, page) => {
+		console.log("entered openProfile--   ", id);
+		var uid = new Buffer(id + "--" + page.toString()).toString("base64");
+		window.location.href = "/profile?id=" + uid;
+	};
+
+	addFav = (fav_id, user) => {
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.addFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				this.setState({ ...this.state, fav: true });
+			}
+		});
+	};
+
+	removeFav = (fav_id, user) => {
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.removeFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				this.setState({ ...this.state, fav: false });
+			}
+		});
+	};
 
 	render() {
-		const { moreWidthThanHeight, loaded } = this.state;
+		const { moreWidthThanHeight, loaded, fav } = this.state;
 		const {
 			classes,
 			src,
 			title,
-			timeStamp,
-			options,
+			id,
+			page,
+			favorite,
+			work,
+			user_email,
+			age,
 			roundedBorder,
 			theme,
 		} = this.props;
+		debugger;
 		return (
 			<div className={classes.imageContainer}>
 				<img
@@ -50,6 +96,7 @@ class SelfAligningImage extends PureComponent {
 						this.img = node;
 					}}
 					className={classes.image}
+					onClick={() => this.openProfile(id, page)}
 					onLoad={() => {
 						if (this.img.naturalHeight > this.img.naturalWidth) {
 							this.setState({
@@ -69,20 +116,34 @@ class SelfAligningImage extends PureComponent {
 				{title && (
 					<GridListTileBar
 						title={title}
-						subtitle={format(
-							new Date(timeStamp * 1000),
-							"PP - k:mm",
-							{
-								awareOfUnicodeTokens: true,
-							}
-						)}
+						subtitle={
+							<div>
+								<p style={{ marginTop: "3%", marginBottom: 0 }}>
+									{work}
+								</p>
+								<p style={{ marginTop: "2%", marginBottom: 0 }}>
+									Age: {age}
+								</p>
+							</div>
+						}
 						actionIcon={
-							options.length > 0 && (
-								<VertOptions
-									color={theme.palette.common.white}
-									items={options}
-								/>
-							)
+							<IconButton>
+								{fav ? (
+									<StarIcon
+										style={{ color: "ghostwhite" }}
+										onClick={() =>
+											this.removeFav(id, user_email)
+										}
+									/>
+								) : (
+									<StarBorderIcon
+										style={{ color: "ghostwhite" }}
+										onClick={() =>
+											this.addFav(id, user_email)
+										}
+									/>
+								)}
+							</IconButton>
 						}
 					/>
 				)}

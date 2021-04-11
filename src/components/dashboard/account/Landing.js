@@ -63,7 +63,8 @@ class Landing extends Component {
 			showLoader: "none",
 			showLogin: "no",
 			data: null,
-			profiles: []
+			profiles: [],
+			favorites: [],
 		};
 	}
 
@@ -85,7 +86,11 @@ class Landing extends Component {
 				break;
 			case "favorites":
 				return (
-					<ShortlistedContent userDetails={this.props.auth.user} />
+					<ShortlistedContent
+						favorites={this.state.favorites}
+						onChange={this.handleChange}
+						userDetails={this.props.auth.user}
+					/>
 				);
 				break;
 			case "home":

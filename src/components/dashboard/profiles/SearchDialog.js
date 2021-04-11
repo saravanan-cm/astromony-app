@@ -52,7 +52,9 @@ const styles = (theme) => ({
 });
 
 const SearchDialog = (props) => {
-	const { classes } = props;
+	const { classes, onChange } = props;
+	const [uid, setUid] = React.useState(null);
+	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
 	const [ageValue, setAgeValue] = React.useState([25, 30]);
 	const [salValue, setSalValue] = React.useState([25, 70]);
@@ -82,12 +84,34 @@ const SearchDialog = (props) => {
 		setOpen(false);
 	};
 
+	const handleSubmit = () => {
+		setOpen(false);
+		let ftr = {
+			uid: uid,
+			name: name,
+			age: ageValue,
+			salValue: salValue,
+			heightValue: heightValue,
+			convHgtVal: convHgtVal,
+			homeTown: homeTown
+		};
+		onChange(ftr);
+	};
+
 	const handleAgeChange = (event, newValue) => {
 		setAgeValue(newValue);
 	};
 
 	const handleSalChange = (event, newValue) => {
 		setSalValue(newValue);
+	};
+
+	const handleIDChange = (event, newValue) => {
+		setUid(event.target.value);
+	};
+
+	const handleNameChange = (event, newValue) => {
+		setNameVal(event.target.value);
 	};
 
 	function toFeet(n) {
@@ -134,6 +158,7 @@ const SearchDialog = (props) => {
 												<CardContent>
 													<Typography>ID</Typography>
 													<TextField
+														onChange={handleIDChange}
 														fullWidth
 														margin='dense'
 														name='uid'
@@ -151,6 +176,7 @@ const SearchDialog = (props) => {
 														Name
 													</Typography>
 													<TextField
+														onChange={handleNameChange}
 														fullWidth
 														margin='dense'
 														name='name'
@@ -170,32 +196,32 @@ const SearchDialog = (props) => {
 								<CardHeader
 									avatar={<FilterBAndWIcon />}
 									title='Generic filters'
-									action={
-										<FormGroup row>
-											<FormControlLabel
-												control={
-													<Switch
-														color='primary'
-														checked={saveSearch}
-														onChange={() =>
-															setSaveSearch(
-																!saveSearch
-															)
-														}
-														name='save_search'
-													/>
-												}
-												label={
-													<span
-														style={{
-															fontSize: "0.75rem",
-														}}>
-														Save this search
-													</span>
-												}
-											/>
-										</FormGroup>
-									}
+									// action={
+									// 	<FormGroup row>
+									// 		<FormControlLabel
+									// 			control={
+									// 				<Switch
+									// 					color='primary'
+									// 					checked={saveSearch}
+									// 					onChange={() =>
+									// 						setSaveSearch(
+									// 							!saveSearch
+									// 						)
+									// 					}
+									// 					name='save_search'
+									// 				/>
+									// 			}
+									// 			label={
+									// 				<span
+									// 					style={{
+									// 						fontSize: "0.75rem",
+									// 					}}>
+									// 					Save this search
+									// 				</span>
+									// 			}
+									// 		/>
+									// 	</FormGroup>
+									// }
 								/>
 								<CardContent>
 									<Grid container spacing={2}>
@@ -328,7 +354,7 @@ const SearchDialog = (props) => {
 					<Button onClick={handleClose} color='secondary'>
 						Cancel
 					</Button>
-					<Button onClick={handleClose} color='primary'>
+					<Button onClick={handleSubmit} color='primary'>
 						Filter
 					</Button>
 				</DialogActions>
