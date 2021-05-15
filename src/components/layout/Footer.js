@@ -69,7 +69,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="https://www.creative-tim.com/presentation?ref=nr-footer"
+                        href="/login"
                       >
                         Login
                       </a>
@@ -77,7 +77,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="https://blog.creative-tim.com?ref=nr-footer"
+                        href="#"
                       >
                         Blog
                       </a>
@@ -89,7 +89,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/terms?ref=nr-footer"
+                        href="#"
                       >
                         Terms & Conditions
                       </a>
@@ -97,7 +97,7 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="https://creative-tim.com/privacy?ref=nr-footer"
+                        href="#"
                       >
                         Privacy Policy
                       </a>
