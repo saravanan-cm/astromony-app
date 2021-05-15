@@ -89,7 +89,7 @@ class Register extends Component {
 		const { errors } = this.state;
 		console.log("window innerwidth---   ", window.innerWidth);
 		return (
-			<div className='container'>
+			<div className='container' style={{maxWidth:"inherit"}}>
 				<Navbar customProps={this.state} />
 				<div
 					style={{
@@ -105,7 +105,7 @@ class Register extends Component {
 						backgroundRepeat: "no-repeat, no-repeat",
 					}}
 					className='row'>
-					<Container maxWidth='xs'>
+					<Container maxWidth='xs' style={{marginTop: "7%"}}>
 						<Card>
 							<CardContent>
 								<div

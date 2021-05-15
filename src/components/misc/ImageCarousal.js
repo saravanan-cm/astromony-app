@@ -37,7 +37,6 @@ const styles = (theme) => ({
 	},
 	imageContainer: {
 		width: "80%",
-		paddingTop: "80%",
 		overflow: "hidden",
 		position: "relative",
 	},

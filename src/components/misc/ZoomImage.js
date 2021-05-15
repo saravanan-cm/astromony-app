@@ -1,5 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
+import Image from 'material-ui-image'
 import { Portal, Backdrop, withStyles } from "@material-ui/core";
 import ScrollbarSize from "@material-ui/core/Tabs/ScrollbarSize";
 
@@ -86,12 +87,13 @@ class ZoomImage extends PureComponent {
 						</div>
 					</Portal>
 				)}
-				<img
+				<Image
 					alt={alt}
 					src={src}
+					imageStyle={{width:"auto", height:"auto"}}
 					onClick={this.zoomIn}
 					style={{ cursor: "pointer" }}
-					{...rest}></img>
+					{...rest}></Image>
 			</div>
 		);
 	}

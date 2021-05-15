@@ -53,7 +53,7 @@ const ShortlistedContent = (props) => {
 		page: 0,
 	});
 	const { classes, favorites, userDetails } = props;
-	var [posts, setPosts] = useState(favorites);
+	var [profiles, setProfiles] = useState(favorites);
 	var [no_data, setNoData] = useState(false);
 	const { page } = state;
 
@@ -79,7 +79,7 @@ const ShortlistedContent = (props) => {
 		if (favorites == null) {
 			setNoData(true);
 		} else if (favorites && favorites.length) {
-			setPosts(favorites);
+			setProfiles(favorites);
 		} else {
 			response = await api.getFavoritesList(userDetails.email);
 			// response = await api.getMyData("saracmmce@gmail.com");
@@ -88,7 +88,7 @@ const ShortlistedContent = (props) => {
 		if ("status" in response) {
 			let resData = response.data.data;
 			if (resData && resData.length) {
-				setPosts(resData);
+				setProfiles(resData);
 				props.onChange("favorites", resData);
 			} else {
 				setNoData(true);
@@ -108,11 +108,11 @@ const ShortlistedContent = (props) => {
 							alt={"No Data Found...!"}
 						/>
 					</div>
-				) : posts && posts.length ? (
+				) : profiles && profiles.length ? (
 					<div>
 						<Box p={1}>
 							<Grid container spacing={1}>
-								{posts
+								{profiles
 									.slice(
 										page * rowsPerPage,
 										page * rowsPerPage + rowsPerPage
@@ -176,7 +176,7 @@ const ShortlistedContent = (props) => {
 			{printImageGrid()}
 			<TablePagination
 				component='div'
-				count={posts.length}
+				count={profiles.length}
 				rowsPerPage={rowsPerPage}
 				page={page}
 				backIconButtonProps={{
@@ -189,8 +189,8 @@ const ShortlistedContent = (props) => {
 				classes={{
 					select: classes.dNone,
 					selectIcon: classes.dNone,
-					actions: posts.length > 0 ? classes.dBlock : classes.dNone,
-					caption: posts.length > 0 ? classes.dBlock : classes.dNone,
+					actions: profiles.length > 0 ? classes.dBlock : classes.dNone,
+					caption: profiles.length > 0 ? classes.dBlock : classes.dNone,
 				}}
 				labelRowsPerPage=''
 			/>

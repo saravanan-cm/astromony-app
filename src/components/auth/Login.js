@@ -64,6 +64,7 @@ class Login extends Component {
 		return (
 				<div className='container' style={{
 					height: 940,
+					maxWidth: "inherit",
 					position: "relative",
 					// backgroundSize: "100%",
 					// backgroundPosition: "100%",

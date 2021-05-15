@@ -20,6 +20,7 @@ class ForgetPassword extends Component {
 			errors: {},
 			showLogin: "",
 			showLoader: "none",
+			showMenu: "none",
 		};
 	}
 	componentDidMount() {
@@ -51,15 +52,21 @@ class ForgetPassword extends Component {
 	render() {
 		const { errors } = this.state;
 		return (
-			<div className='container'>
+			<div className='container' 
+				style={{
+					maxWidth:"inherit",
+					backgroundPosition: "100% 0%",
+					backgroundImage: "url(" + thinking + ")",
+					backgroundRepeat: "no-repeat",
+				}}>
 				<Navbar customProps={this.state} />
 				<div
 					style={{
-						marginTop: "3rem",
-						backgroundSize: "22%",
-						backgroundPosition: "90% 100%",
-						backgroundImage: "url(" + thinking + ")",
-						backgroundRepeat: "no-repeat",
+						marginTop: "10rem",
+						// backgroundSize: "22%",
+						// backgroundPosition: "90% 100%",
+						// backgroundImage: "url(" + thinking + ")",
+						// backgroundRepeat: "no-repeat",
 					}}
 					className='row'>
 					<Container maxWidth='sm'>

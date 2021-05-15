@@ -103,6 +103,7 @@ const Horoscope = (props) => {
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
 							value={values.status}
+							defaultChecked={"Single"}
 							variant='outlined'>
 							{statusList.map((option, idx) => (
 								<option key={idx} value={option}>

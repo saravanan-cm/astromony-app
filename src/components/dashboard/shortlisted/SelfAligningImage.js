@@ -38,7 +38,8 @@ class SelfAligningImage extends PureComponent {
 	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
 		var uid = new Buffer(id + "--" + page.toString()).toString("base64");
-		window.location.href = "/profile?id=" + uid;
+		// window.location.href = "/profile?id=" + uid;
+		window.open("/profile?id=" + uid, '_blank');
 	};
 
 	addFav = (fav_id, user) => {
