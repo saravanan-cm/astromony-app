@@ -1092,7 +1092,7 @@ select {
 
 .bg-pink-500 {
   --tw-bg-opacity: 1;
-  background-color: rgba(233, 100, 147, var(--tw-bg-opacity));
+  background-color: rgba(201, 46, 46, var(--tw-bg-opacity));
 }
 
 .bg-purple-200 {
@@ -1704,7 +1704,7 @@ select {
 }
 
 .mr-2 {
-  margin-right: 0.5rem;
+  margin-right: 1rem;
 }
 
 .mb-2 {
@@ -2105,6 +2105,10 @@ select {
 .pr-12 {
   padding-right: 3rem;
 }
+.newpr-12 {
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+}
 
 .pt-16 {
   padding-top: 4rem;
@@ -2376,7 +2380,7 @@ select {
 
 .text-pink-500 {
   --tw-text-opacity: 1;
-  color: rgba(233, 100, 147, var(--tw-text-opacity));
+  color: rgba(201, 46, 46, var(--tw-text-opacity));
 }
 
 .text-lightBlue-600 {
@@ -2512,7 +2516,7 @@ select {
 }
 
 .w-10 {
-  width: 2.5rem;
+  width: 2rem;
 }
 
 .w-12 {

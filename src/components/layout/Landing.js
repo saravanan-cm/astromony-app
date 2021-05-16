@@ -38,13 +38,22 @@ class Landing extends Component {
           <div className="container relative mx-auto">
             <div className="items-center flex flex-wrap">
               <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-                <div className="pr-12">
+                <div className="newpr-12">
                   <h1 className="text-white font-semibold text-5xl">
                     Your story starts with us
                   </h1>
                   <p className="mt-4 text-lg text-blueGray-200">
                     Find your better half in a better platform. Welcome to Vyvaha.
                   </p>
+                </div>
+                <div className="text-center mt-6">
+                  <button
+                    style={{backgroundColor: "#ff2e56"}}
+                    className="text-white active:bg-blueGray-600 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+                    type="button"
+                  >
+                    <a href="/register">Register</a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -116,7 +125,7 @@ class Landing extends Component {
               </div>
             </div>
 
-            <div className="flex flex-wrap items-center mt-32">
+            <div className="flex flex-wrap items-center mt-16">
               <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
                 <div className="text-blueGray-500 p-2 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-white">
                   <img src={connection}></img>
@@ -437,7 +446,7 @@ class Landing extends Component {
             </svg>
           </div>
 
-          <div className="container mx-auto px-4 lg:pt-24 lg:pb-64">
+          <div className="container mx-auto px-4 lg:pt-24 lg:pb-16">
             <div className="flex flex-wrap text-center justify-center">
               {/* <div className="w-full lg:w-6/12 px-4">
                 <h2 className="text-4xl font-semibold text-white">
@@ -492,7 +501,7 @@ class Landing extends Component {
         </section>
         <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
           <div className="container mx-auto px-4">
-            <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
+            <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-6/12 px-4">
                 <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-200">
                   <div className="flex-auto p-5 lg:p-10">
