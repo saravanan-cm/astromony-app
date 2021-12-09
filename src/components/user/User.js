@@ -7,6 +7,7 @@ import api from "../../actions/makeAPICall";
 import classNames from "classnames";
 import Navbar from "../../components/layout/Navbar";
 import UserTitle from "./UserTitle";
+import SideDrawer from "../dashboard/SideDrawer";
 import ImageCarousal from "../misc/ImageCarousal";
 import CollapsedBirthDetails from "./CollapsedBirthDetails";
 import CollapsedFamilyDetails from "./CollapsedFamilyDetails";

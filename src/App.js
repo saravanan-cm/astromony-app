@@ -16,9 +16,6 @@ import Verify from "./components/auth/Verify";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Dashboard from "./components/dashboard/Dashboard";
-import ProfileContent from "./components/dashboard/profiles/Content";
-import ShortlistedContent from "./components/dashboard/shortlisted/Content";
 import Home from "./components/dashboard/account/Landing";
 import User from "./components/user/User";
 // Check for token to keep user logged in
@@ -85,11 +82,6 @@ class App extends Component {
 										</>
 									)}
 								/>
-								{/* <PrivateRoute
-									path='/dashboard/:tab'
-									history={useHistory}
-									component={Dashboard}
-								/> */}
 								<PrivateRoute
 									exact
 									path='/profile'

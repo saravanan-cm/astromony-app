@@ -12,7 +12,7 @@ import Button from "@material-ui/core/Button";
 import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../../components/layout/Navbar";
 import loveLeft from "../../assets/images/love.gif";
-import wed from "../../assets/images/wed.jpg";
+import bg from "../../assets/images/login-bg.svg";
 import loveRight from "../../assets/images/love-in-air.gif";
 
 class Login extends Component {
@@ -68,7 +68,7 @@ class Login extends Component {
 					position: "relative",
 					// backgroundSize: "100%",
 					// backgroundPosition: "100%",
-					backgroundImage: "url(" + wed + ")",
+					backgroundImage: "url(" + bg + ")",
 					backgroundRepeat: "no-repeat",
 				}}>
 					<Navbar customProps={this.state} />

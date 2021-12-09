@@ -75,13 +75,13 @@ const ProfileContent = (props) => {
 	}, []);
 
 	async function ftrChange(ftr) {
-		debugger;
 		ftr = btoa(JSON.stringify(ftr));
 		let response = await api.getProfilesList(userDetails.email, ftr);
 		console.log(response);
 		if ("status" in response) {
 			let resData = response.data.data;
 			if (resData && resData.length) {
+				setNoData(false);
 				setPosts(resData);
 				props.onChange("profiles", resData);
 			} else {

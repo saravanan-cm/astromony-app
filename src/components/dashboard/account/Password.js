@@ -25,6 +25,7 @@ const Password = (props) => {
 	const [values, setValues] = useState({
 		password: "",
 		confirm: "",
+		current: ""
 	});
 
 	const handleChange = (event) => {
@@ -42,9 +43,19 @@ const Password = (props) => {
 				<CardContent>
 					<TextField
 						fullWidth
-						label='Password'
+						label='Current password'
+						name='current'
+						onChange={handleChange}
+						type='password'
+						value={values.current}
+						variant='outlined'
+					/>
+					<TextField
+						fullWidth
+						label='New password'
 						name='password'
 						onChange={handleChange}
+						style={{ marginTop: "1rem" }}
 						type='password'
 						value={values.password}
 						variant='outlined'

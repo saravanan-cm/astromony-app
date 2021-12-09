@@ -13,6 +13,7 @@ import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../../components/layout/Navbar";
 import youngCouples from "../../assets/images/young-couples.gif";
 import oldCouples from "../../assets/images/old-couples.gif";
+import bg from "../../assets/images/login-bg.svg";
 import DateFnsUtils from "@date-io/date-fns";
 import { genderList } from "../../assets/dumps/basicLists";
 import { MuiPickersUtilsProvider, DateTimePicker } from "@material-ui/pickers";
@@ -89,25 +90,24 @@ class Register extends Component {
 		const { errors } = this.state;
 		console.log("window innerwidth---   ", window.innerWidth);
 		return (
-			<div className='container' style={{maxWidth:"inherit"}}>
+			<div className='container' style={{
+				height: 940,
+				maxWidth: "inherit",
+				position: "relative",
+				// backgroundSize: "100%",
+				// backgroundPosition: "100%",
+				backgroundImage: "url(" + bg + ")",
+				backgroundRepeat: "no-repeat",
+			}}>
 				<Navbar customProps={this.state} />
 				<div
 					style={{
-						marginTop: "1rem",
-						backgroundSize: "25%, 25%",
-						backgroundPosition: "5% 20%, right bottom",
-						backgroundImage:
-							"url(" +
-							youngCouples +
-							"), url(" +
-							oldCouples +
-							")",
-						backgroundRepeat: "no-repeat, no-repeat",
+						marginTop: "7%"
 					}}
 					className='row'>
-					<Container maxWidth='xs' style={{marginTop: "7%"}}>
+					<Container maxWidth='xs'>
 						<Card>
-							<CardContent>
+							<CardContent style={{padding: "7%"}}>
 								<div
 									style={{
 										display: "flex",

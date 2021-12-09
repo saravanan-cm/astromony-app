@@ -90,7 +90,7 @@ class Landing extends Component {
                     </div>
                     <h6 className="text-xl font-semibold">Sign Up</h6>
                     <p className="mt-2 mb-4 text-blueGray-500">
-                      Register your profile with basic details and complete your profile with all necessary details to boost up your chance.
+                      Register your profile with basic details and complete it with all necessary details to boost up your chance.
                     </p>
                   </div>
                 </div>

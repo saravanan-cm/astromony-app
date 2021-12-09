@@ -81,7 +81,6 @@ class SelfAligningImage extends PureComponent {
 			roundedBorder,
 			theme,
 		} = this.props;
-		debugger;
 		return (
 			<div className={classes.imageContainer}>
 				<img

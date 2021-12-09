@@ -170,7 +170,7 @@ const ShortlistedContent = (props) => {
 		<Paper>
 			<Toolbar className={classes.toolbar}>
 				<Typography variant='h6'>Favorites</Typography>
-				<SearchDialog />
+				{/* <SearchDialog /> */}
 			</Toolbar>
 			<Divider />
 			{printImageGrid()}

@@ -49,7 +49,7 @@ const styles = (theme) => ({
 		margin: "auto",
 		maxWidth: "100%",
 		maxHeight: "100%",
-		transform: "scale(-50%, -50%)",
+		// transform: "scale(-50%, -50%)",
 	},
 	imgflex: {
 		flexDirection: "row",
