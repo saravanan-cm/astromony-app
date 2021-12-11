@@ -49,7 +49,7 @@ const Work = (props) => {
 							variant='outlined'
 						/>
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item lg={6} md={6} xs={12}>
 						<TextField
 							fullWidth
 							label='Company Name'
@@ -61,6 +61,21 @@ const Work = (props) => {
 								readOnly: !values.editDetails,
 							}}
 							value={values.company}
+							variant='outlined'
+						/>
+					</Grid>
+					<Grid item lg={6} md={6} xs={12}>
+						<TextField
+							fullWidth
+							label='Salary per month (in thousands)'
+							margin='dense'
+							name='salary'
+							onChange={handleChange}
+							placeholder='For eg: 100k'
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							value={values.salary}
 							variant='outlined'
 						/>
 					</Grid>

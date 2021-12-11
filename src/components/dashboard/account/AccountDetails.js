@@ -154,7 +154,7 @@ const AccountDetails = (props) => {
 				</CardContent>
 				<Divider />
 				<CardActions
-					style={{ display: values.editDetails ? "" : "none" }}>
+					style={{ display: values.editDetails ? "block" : "none", textAlign: "right", padding: "2%"}}>
 					<Button
 						color='primary'
 						variant='contained'

@@ -29,7 +29,7 @@ export default function GoogleMaps(props) {
 	if (typeof window !== "undefined" && !loaded.current) {
 		if (!document.querySelector("#google-maps")) {
 			loadScript(
-				"https://maps.googleapis.com/maps/api/js?key=AIzaSyBgfG_5Goq7XVUhpf9zHwi-fAyMtsJQubs&libraries=places",
+				"https://maps.googleapis.com/maps/api/js?key=AIzaSyAECkt4q2yLPq2suY-LwYVkCbPMP-bsok0&libraries=places",
 				document.querySelector("head"),
 				"google-maps"
 			);

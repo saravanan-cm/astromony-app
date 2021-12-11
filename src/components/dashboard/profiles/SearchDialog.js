@@ -56,15 +56,15 @@ const SearchDialog = (props) => {
 	const [uid, setUid] = React.useState(null);
 	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
-	const [ageValue, setAgeValue] = React.useState([25, 30]);
-	const [salValue, setSalValue] = React.useState([25, 70]);
-	const [heightValue, setHeightValue] = React.useState([150, 180]);
-	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 9in", "5ft 9in"]);
+	const [ageValue, setAgeValue] = React.useState([18, 60]);
+	const [salValue, setSalValue] = React.useState([1, 1000]);
+	const [heightValue, setHeightValue] = React.useState([123, 215]);
+	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
 	const [saveSearch, setSaveSearch] = React.useState(false);
 	const [homeTown, setHomeTown] = React.useState([]);
 
-	const handleHomeTown = (event) => {
-		setHomeTown(event.target.value);
+	const handleHomeTown = (event, newValue) => {
+		setHomeTown(newValue);
 	};
 
 	const names = [
@@ -162,6 +162,7 @@ const SearchDialog = (props) => {
 														fullWidth
 														margin='dense'
 														name='uid'
+														value={uid}
 														placeholder='Enter any ID to search'
 														variant='outlined'
 													/>
@@ -180,6 +181,7 @@ const SearchDialog = (props) => {
 														fullWidth
 														margin='dense'
 														name='name'
+														value={name}
 														placeholder='Enter a name'
 														variant='outlined'
 													/>
@@ -262,6 +264,7 @@ const SearchDialog = (props) => {
 													</Typography>
 													<div>
 														<Autocomplete
+															onChange={handleHomeTown}
 															multiple
 															limitTags={2}
 															id='tags-outlined'
@@ -274,6 +277,7 @@ const SearchDialog = (props) => {
 																params
 															) => (
 																<TextField
+																	onChange={handleHomeTown}
 																	margin='dense'
 																	{...params}
 																	variant='outlined'
@@ -333,7 +337,7 @@ const SearchDialog = (props) => {
 													<Slider
 														value={salValue}
 														min={0}
-														max={500}
+														max={1000}
 														onChange={
 															handleSalChange
 														}

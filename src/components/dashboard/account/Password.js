@@ -72,7 +72,7 @@ const Password = (props) => {
 					/>
 				</CardContent>
 				<Divider />
-				<CardActions>
+				<CardActions style={{display: "block", textAlign: "right", padding: "3%"}}>
 					<Button color='primary' variant='contained'>
 						Update
 					</Button>

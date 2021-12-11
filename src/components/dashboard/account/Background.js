@@ -30,53 +30,6 @@ const Background = (props) => {
 			<Grid item xs={12}>
 				<Card>
 					<CardHeader
-						title='Family Details'
-						action={
-							<div>
-								<IconButton
-									color='primary'
-									aria-label='Edit'
-									onClick={() =>
-										handleChange(
-											"editDetails",
-											!values.editDetails
-										)
-									}>
-									{values.editDetails ? (
-										<ClearRoundedIcon />
-									) : (
-										<EditRoundedIcon />
-									)}
-								</IconButton>
-							</div>
-						}
-					/>
-					<Divider />
-					<CardContent
-						style={{
-							backgroundImage:
-								"linear-gradient(rgb(249, 249, 249) 0%, rgb(245, 245, 245) 51%, rgb(243, 241, 241) 75%)",
-						}}>
-						<FamilyDetails
-							values={values}
-							onChange={handleChange}
-						/>
-					</CardContent>
-					<Divider />
-					<CardActions
-						style={{ display: values.editDetails ? "" : "none" }}>
-						<Button
-							color='primary'
-							variant='contained'
-							onClick={props.updateData}>
-							Update
-						</Button>
-					</CardActions>
-				</Card>
-			</Grid>
-			<Grid item xs={12}>
-				<Card>
-					<CardHeader
 						title='Education'
 						action={
 							<div>
@@ -118,7 +71,7 @@ const Background = (props) => {
 					</CardContent>
 					<Divider />
 					<CardActions
-						style={{ display: values.editDetails ? "" : "none" }}>
+						style={{ display: values.editDetails ? "block" : "none", textAlign: "right", padding: "1%"}}>
 						<Button
 							color='primary'
 							variant='contained'
@@ -175,7 +128,7 @@ const Background = (props) => {
 					</CardContent>
 					<Divider />
 					<CardActions
-						style={{ display: values.editDetails ? "" : "none" }}>
+						style={{ display: values.editDetails ? "block" : "none", textAlign: "right", padding: "1%"}}>
 						<Button
 							color='primary'
 							variant='contained'

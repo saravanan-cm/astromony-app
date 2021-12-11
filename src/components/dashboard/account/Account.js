@@ -61,11 +61,11 @@ const Account = (props) => {
 			label: "Background",
 			name: "background",
 		},
-		{
-			id: 6,
-			label: "Security",
-			name: "security",
-		},
+		// {
+		// 	id: 6,
+		// 	label: "Security",
+		// 	name: "security",
+		// },
 	];
 
 	useEffect(() => {
