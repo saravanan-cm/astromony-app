@@ -73,7 +73,7 @@ export const logoutUser = () => (dispatch) => {
 };
 
 // Login - get user token
-export const forgetPassword = (userData) => (dispatch) => {
+export const forgetPassword = (userData, history) => (dispatch) => {
 	let config = {
 		headers: {
 			"Access-Control-Allow-Origin": "*",
@@ -82,14 +82,60 @@ export const forgetPassword = (userData) => (dispatch) => {
 	axios
 		.post(base_url + "/api/users/forget-password", userData, config)
 		.then((res) => {
-			dispatch(setCurrentUser(res));
-		})
+			if (res && "status" in res) {
+				if (res.status) {
+					history.push("/reset-password?email=" + userData.email);
+				} else {
+					dispatch({
+						type: GET_ERRORS,
+						payload: {
+							msg: res.message,
+						},
+					});
+				}
+			}
+		}) // re-direct to login on successful register
 		.catch((err) =>
 			dispatch({
 				type: GET_ERRORS,
 				payload: err.response.data,
 			})
 		);
+};
+
+export const resetPassword = (userData, history) => (dispatch) => {
+	let config = {
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+		},
+	};
+	axios
+		.post(base_url + "/api/users/reset-password", userData, config)
+		.then((res) => {
+			if (res && "status" in res) {
+				if (res.status) {
+					history.push("/login");
+					dispatch({
+						type: USER_LOADING,
+						payload: res,
+					});
+				} else {
+					dispatch({
+						type: GET_ERRORS,
+						payload: {
+							msg: res.message,
+						},
+					});
+				}
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data,
+			});
+		});
 };
 
 // Login - get user token

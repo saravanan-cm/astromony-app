@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { forgetPassword } from "../../actions/authActions";
+import { Link } from "react-router-dom";
+import { resetPassword } from "../../actions/authActions";
 import classnames from "classnames";
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
@@ -12,11 +13,14 @@ import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../layout/Navbar";
 import thinking from "../../assets/images/thinking.gif";
 
-class ForgetPassword extends Component {
+class ResetPassword extends Component {
 	constructor() {
 		super();
 		this.state = {
 			email: "",
+			otp: "",
+			newpassword: "",
+			confirmpassword: "",
 			errors: {},
 			showLogin: "",
 			showLoader: "none",
@@ -28,6 +32,11 @@ class ForgetPassword extends Component {
 		if (this.props.auth.isAuthenticated) {
 			this.props.history.push("/user/home");
 		}
+		var qs = require("qs");
+		let params = qs.parse(window.location.search);
+		this.setState({
+			email: params["?email"],
+		});
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.auth.isAuthenticated) {
@@ -44,10 +53,14 @@ class ForgetPassword extends Component {
 	};
 	onSubmit = (e) => {
 		e.preventDefault();
+		debugger;
 		const userData = {
 			email: this.state.email,
+			otp: this.state.otp,
+			newpassword: this.state.newpassword,
+			confirmpassword: this.state.confirmpassword,
 		};
-		this.props.forgetPassword(userData, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
+		this.props.resetPassword(userData, this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
 	};
 	render() {
 		const { errors } = this.state;
@@ -86,7 +99,7 @@ class ForgetPassword extends Component {
 										className={"custom-txt-h"}
 										component='h1'
 										variant='h5'>
-										Forget Password
+										Reset Password
 									</Typography>
 								</div>
 								<div>
@@ -96,34 +109,97 @@ class ForgetPassword extends Component {
 											textAlign: "center",
 											color: "grey",
 										}}>
-										Enter your email to receive secure code
-										to reset your password. Please make a
-										note that your secure code will exipre
-										in 5 mins.
+										Enter your secret code, received in your email account and set a new password.
 									</p>
 								</div>
+								<br></br>
 								<form noValidate onSubmit={this.onSubmit}>
 									<div className='input-field col s12'>
 										<TextField
 											onChange={this.onChange}
-											value={this.state.email}
-											error={errors.email}
-											id='email outlined-basic'
-											name='email'
-											type='email'
+											value={this.state.otp}
+											error={errors.otp}
+											id='otp outlined-basic'
+											name='otp'
+											type='number'
 											className={classnames("", {
 												invalid:
-													errors.email ||
-													errors.emailnotfound,
+													errors.otp ||
+													errors.otpnotfound,
 											})}
 											style={{ width: "100%" }}
-											label='Email'
+											label='OTP'
 											variant='outlined'
 										/>
 										<span className='red-text'>
-											{errors.email}
-											{errors.emailnotfound}
+											{errors.otp}
+											{errors.otpnotfound}
 										</span>
+									</div>
+									<br></br>
+									<div className='input-field col s12'>
+										<TextField
+											onChange={this.onChange}
+											value={this.state.newpassword}
+											error={errors.newpassword}
+											id='newpassword outlined-basic'
+											name='newpassword'
+											type='password'
+											className={classnames("", {
+												invalid:
+													errors.newpassword ||
+													errors.passwordincorrect,
+											})}
+											style={{ width: "100%" }}
+											label='New password'
+											variant='outlined'
+										/>
+										<span className='red-text'>
+											{errors.newpassword}
+											{errors.passwordincorrect}
+										</span>
+									</div>
+									<br></br>
+									<div className='input-field col s12'>
+										<TextField
+											onChange={this.onChange}
+											value={this.state.confirmpassword}
+											error={errors.confirmpassword}
+											id='confirmpassword outlined-basic'
+											name='confirmpassword'
+											type='password'
+											className={classnames("", {
+												invalid:
+													errors.confirmpassword ||
+													errors.confirmpasswordincorrect,
+											})}
+											style={{ width: "100%" }}
+											label='Confirm new password'
+											variant='outlined'
+										/>
+										<span className='red-text'>
+											{errors.confirmpassword}
+											{errors.confirmpasswordnotfound}
+										</span>
+									</div>
+									<div
+										style={{
+											display: "inline-block",
+											width: "100%",
+											fontSize: "12px",
+										}}>
+										<p
+											className='grey-text text-darken-1'
+											style={{ float: "left" }}>
+											New user?{" "}
+											<Link to='/register'>Register</Link>
+										</p>
+										<p
+											className='grey-text text-darken-1'
+											style={{ float: "right" }}>
+											Already have an account?{" "}
+											<Link to='/login'>Login</Link>
+										</p>
 									</div>
 									<div
 										className='col s12'
@@ -156,8 +232,8 @@ class ForgetPassword extends Component {
 		);
 	}
 }
-ForgetPassword.propTypes = {
-	forgetPassword: PropTypes.func.isRequired,
+ResetPassword.propTypes = {
+	resetPassword: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 };
@@ -165,4 +241,4 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors,
 });
-export default connect(mapStateToProps, { forgetPassword })(ForgetPassword);
+export default connect(mapStateToProps, { resetPassword })(ResetPassword);

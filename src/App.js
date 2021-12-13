@@ -13,6 +13,7 @@ import store from "./store";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Verify from "./components/auth/Verify";
+import ResetPassword from "./components/auth/ResetPassword";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import PrivateRoute from "./components/private-route/PrivateRoute";
 import CircularProgress from "@material-ui/core/CircularProgress";
@@ -62,6 +63,11 @@ class App extends Component {
 								exact
 								path='/verify'
 								component={Verify}
+							/>
+							<Route
+								exact
+								path='/reset-password'
+								component={ResetPassword}
 							/>
 							<Route
 								exact
