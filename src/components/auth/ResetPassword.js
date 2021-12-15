@@ -66,9 +66,10 @@ class ResetPassword extends Component {
 		return (
 			<div className='container' 
 				style={{
+					height: "100vh",
 					maxWidth:"inherit",
-					backgroundPosition: "100% 0%",
-					backgroundImage: "url(" + thinking + ")",
+					// backgroundPosition: "100% 0%",
+					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
 					backgroundRepeat: "no-repeat",
 				}}>
 				<Navbar customProps={this.state} />
@@ -192,15 +193,15 @@ class ResetPassword extends Component {
 										}}>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "left" }}>
-											New user?{" "}
-											<Link to='/register'>Register</Link>
+											style={{ float: "left", margin: "1%", fontSize: "1.15em" }}>
+											Don't have an account?{" "}
+											<Link style={{ color: "blue", textDecoration: "underline" }} to='/register'>Register</Link>
 										</p>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "right" }}>
+											style={{ float: "right", margin: "1%", fontSize: "1.15em" }}>
 											Already have an account?{" "}
-											<Link to='/login'>Login</Link>
+											<Link style={{ color: "blue", textDecoration: "underline" }} to='/login'>Login</Link>
 										</p>
 									</div>
 									<div

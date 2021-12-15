@@ -115,7 +115,7 @@ class Landing extends Component {
 			this.setState({ active_tab: data.active });
 		};
 		return (
-			<div>
+			<div style={{backgroundImage: "linear-gradient(white, #f3f3f3)", height: "100vh"}}>
 				<div style={{ flexGrow: 1 }}>
 					<SideDrawer onChange={eventhandler} history={history} />
 				</div>

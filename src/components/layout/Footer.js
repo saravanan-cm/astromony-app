@@ -31,7 +31,7 @@ export default function Footer() {
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap text-center lg:text-left">
             <div className="w-full lg:w-6/12 px-4">
-              <h4 className="text-3xl font-semibold text-blueGray-200">Let's keep in touch!</h4>
+              <h4 className="text-3xl font-semibold text-blueGray-200">Let's get connected!</h4>
               <h5 className="text-lg mt-0 mb-2 text-blueGray-200">
                 Find us on any of these platforms, we respond 1-2 business days.
               </h5>
@@ -58,7 +58,8 @@ export default function Footer() {
                   className="text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <img src={gmail}></img>
+                  <a href = "mailto:vyvaha.spoc@gmail.com">
+                  <img src={gmail}></img></a>
                 </button>
               </div>
             </div>

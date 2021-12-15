@@ -72,6 +72,7 @@ const Address = (props) => {
 						<FormControlLabel
 							control={
 								<Checkbox
+									disabled= {!values.editDetails}
 									checked={values.sameadd}
 									onChange={handleChange}
 									name='sameadd'

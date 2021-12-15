@@ -72,6 +72,7 @@ class SelfAligningImage extends PureComponent {
 			id,
 			page,
 			work,
+			hometown,
 			favorite,
 			user_email,
 			age,
@@ -119,7 +120,7 @@ class SelfAligningImage extends PureComponent {
 									{work}
 								</p>
 								<p style={{ marginTop: "2%", marginBottom: 0 }}>
-									Age: {age}
+									Age: {age} {hometown ? ("| Hometown: "+hometown) : ''}
 								</p>
 							</div>
 						}

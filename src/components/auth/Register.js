@@ -91,12 +91,12 @@ class Register extends Component {
 		console.log("window innerwidth---   ", window.innerWidth);
 		return (
 			<div className='container' style={{
-				height: 940,
+				height: "100vh",
 				maxWidth: "inherit",
 				position: "relative",
 				// backgroundSize: "100%",
 				// backgroundPosition: "100%",
-				backgroundImage: "url(" + bg + ")",
+				backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
 				backgroundRepeat: "no-repeat",
 			}}>
 				<Navbar customProps={this.state} />
@@ -105,7 +105,7 @@ class Register extends Component {
 						marginTop: "7%"
 					}}
 					className='row'>
-					<Container maxWidth='xs'>
+					<Container maxWidth='sm'>
 						<Card>
 							<CardContent style={{padding: "7%"}}>
 								<div
@@ -125,6 +125,7 @@ class Register extends Component {
 								<form noValidate onSubmit={this.onSubmit}>
 									<div>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.name}
 											error={errors.name}
@@ -145,6 +146,7 @@ class Register extends Component {
 									</div>
 									<div>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.email}
 											error={errors.email}
@@ -165,6 +167,7 @@ class Register extends Component {
 									</div>
 									<div>
 										<TextField
+											required
 											fullWidth
 											label='Gender'
 											name='sex'
@@ -191,6 +194,7 @@ class Register extends Component {
 										<MuiPickersUtilsProvider
 											utils={DateFnsUtils}>
 											<DateTimePicker
+												required
 												margin='dense'
 												label='Date of Birth (with time)'
 												inputVariant='outlined'
@@ -209,6 +213,7 @@ class Register extends Component {
 									</div>
 									<div>
 										<TextField
+											required
 											fullWidth
 											label='Mobile Number'
 											margin='dense'
@@ -225,6 +230,7 @@ class Register extends Component {
 									</div>
 									<div>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.password}
 											error={errors.password}
@@ -247,6 +253,7 @@ class Register extends Component {
 									</div>
 									<div>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.password2}
 											error={errors.password2}
@@ -278,14 +285,14 @@ class Register extends Component {
 										}}>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "left" }}>
+											style={{ float: "left", margin: "1%", fontSize: "1.15em" }}>
 											Read terms and conditions
 										</p>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "right" }}>
+											style={{ float: "right", margin: "1%", fontSize: "1.15em" }}>
 											Already have an account?{" "}
-											<Link to='/login'>Login</Link>
+											<Link to='/login' style={{ color: "blue", textDecoration: "underline" }}>Login</Link>
 										</p>
 									</div>
 									<div

@@ -131,14 +131,14 @@ class Landing extends Component {
                   <img src={connection}></img>
                 </div>
                 <h3 className="text-3xl mb-2 font-semibold leading-normal">
-                  Find your soul match
+                  Find your better half
                 </h3>
                 <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-blueGray-600">
                   Finding a life partner is as simple and elegant with Vyvaha. 
                   The modern matrimony app which helps you to find a perfect match.
                 </p>
                 <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-blueGray-600">
-                  Connect with verified profiles, Shortlist favorite ones and get matched with your soul half. Your trust matters.
+                  Connect with verified profiles, Shortlist favorite ones and get matched with your soul mate. Your trust matters.
                 </p>
                 <Link to="/" className="font-bold text-blueGray-700 mt-8">
                     Your story is waiting to happen!
@@ -499,7 +499,7 @@ class Landing extends Component {
             </div> */}
           </div>
         </section>
-        <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
+        {/* <section className="relative block py-24 lg:pt-0 bg-blueGray-800">
           <div className="container mx-auto px-4">
             <div className="flex flex-wrap justify-center">
               <div className="w-full lg:w-6/12 px-4">
@@ -537,7 +537,7 @@ class Landing extends Component {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
       </main>
       <Footer />
       </div>

@@ -159,7 +159,7 @@ const FamilyDetails = (props) => {
 							<Grid item xs={12}>
 								<TextField
 									fullWidth
-									label='Occupation'
+									label="Father's Occupation"
 									margin='dense'
 									name='dadocc'
 									onChange={handleChange}
@@ -187,7 +187,7 @@ const FamilyDetails = (props) => {
 							<Grid item xs={12}>
 								<TextField
 									fullWidth
-									label='Occupation'
+									label="Mother's Occupation"
 									margin='dense'
 									name='momocc'
 									onChange={handleChange}

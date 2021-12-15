@@ -63,12 +63,12 @@ class Login extends Component {
 		const { errors } = this.state;
 		return (
 				<div className='container' style={{
-					height: 940,
+					height: "100vh",
 					maxWidth: "inherit",
 					position: "relative",
 					// backgroundSize: "100%",
 					// backgroundPosition: "100%",
-					backgroundImage: "url(" + bg + ")",
+					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
 					backgroundRepeat: "no-repeat",
 				}}>
 					<Navbar customProps={this.state} />
@@ -98,6 +98,7 @@ class Login extends Component {
 									<form noValidate onSubmit={this.onSubmit}>
 										<div className='input-field col s12'>
 											<TextField
+												required
 												onChange={this.onChange}
 												value={this.state.email}
 												error={errors.email}
@@ -120,6 +121,7 @@ class Login extends Component {
 										</div>
 										<div className='input-field col s12'>
 											<TextField
+												required
 												onChange={this.onChange}
 												value={this.state.password}
 												error={errors.password}
@@ -151,16 +153,16 @@ class Login extends Component {
 											}}>
 											<p
 												className='grey-text text-darken-1'
-												style={{ float: "left" }}>
-												<Link to='/forget-password'>
+												style={{ float: "left", margin: "1%", fontSize: "1.15em" }}>
+												<Link style={{ color: "blue", textDecoration: "underline" }} to='/forget-password'>
 													Forget Password?
 											</Link>
 											</p>
 											<p
 												className='grey-text text-darken-1'
-												style={{ float: "right" }}>
+												style={{ float: "right", margin: "1%", fontSize: "1.15em" }}>
 												Don't have an account?{" "}
-												<Link to='/register'>Register</Link>
+												<Link style={{ color: "blue", textDecoration: "underline" }} to='/register'>Register</Link>
 											</p>
 										</div>
 										<div

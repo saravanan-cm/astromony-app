@@ -104,13 +104,13 @@ const ElevatedHeaderCard = () => {
 						<p
 							className='grey-text text-darken-1'
 							style={{ float: "left" }}>
-							<Link to='/forget-password'>Forget Password?</Link>
+							<Link style={{ color: "blue", textDecoration: "underline" }} to='/forget-password'>Forget Password?</Link>
 						</p>
 						<p
 							className='grey-text text-darken-1'
 							style={{ float: "right" }}>
 							Don't have an account?{" "}
-							<Link to='/register'>Register</Link>
+							<Link style={{ color: "blue", textDecoration: "underline" }} to='/register'>Register</Link>
 						</p>
 					</div>
 					<div

@@ -54,9 +54,10 @@ class ForgetPassword extends Component {
 		return (
 			<div className='container' 
 				style={{
+					height: "100vh",
 					maxWidth:"inherit",
-					backgroundPosition: "100% 0%",
-					backgroundImage: "url(" + thinking + ")",
+					// backgroundPosition: "100% 0%",
+					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
 					backgroundRepeat: "no-repeat",
 				}}>
 				<Navbar customProps={this.state} />
@@ -105,6 +106,7 @@ class ForgetPassword extends Component {
 								<form noValidate onSubmit={this.onSubmit}>
 									<div className='input-field col s12'>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.email}
 											error={errors.email}

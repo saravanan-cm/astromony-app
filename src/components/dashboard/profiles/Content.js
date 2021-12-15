@@ -144,6 +144,7 @@ const ProfileContent = (props) => {
 												src={element.image}
 												title={element.name}
 												id={element.uid}
+												hometown={element.hometown}
 												page={page}
 												favorite={element.fav}
 												age={element.dob}
