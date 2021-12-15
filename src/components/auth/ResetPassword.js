@@ -53,7 +53,6 @@ class ResetPassword extends Component {
 	};
 	onSubmit = (e) => {
 		e.preventDefault();
-		debugger;
 		const userData = {
 			email: this.state.email,
 			otp: this.state.otp,
@@ -116,6 +115,7 @@ class ResetPassword extends Component {
 								<form noValidate onSubmit={this.onSubmit}>
 									<div className='input-field col s12'>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.otp}
 											error={errors.otp}
@@ -139,6 +139,7 @@ class ResetPassword extends Component {
 									<br></br>
 									<div className='input-field col s12'>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.newpassword}
 											error={errors.newpassword}
@@ -162,6 +163,7 @@ class ResetPassword extends Component {
 									<br></br>
 									<div className='input-field col s12'>
 										<TextField
+											required
 											onChange={this.onChange}
 											value={this.state.confirmpassword}
 											error={errors.confirmpassword}
