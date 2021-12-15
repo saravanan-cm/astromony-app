@@ -139,7 +139,8 @@ class SideDrawer extends React.Component {
 			anchorEl: null,
 			active: "home",
 			showSideDrawer: "",
-			name: this.props.auth.user.name.split("")[0].toUpperCase() + this.props.auth.user.name.split("").slice(1).join("")
+			name: this.props.auth.user.name.split("")[0].toUpperCase() + this.props.auth.user.name.split("").slice(1).join(""),
+			profilesName: this.props.auth.user.sex && this.props.auth.user.sex === "Male" ? "Brides" : "Grooms",
 		};
 		this.drawerList = [
 			{
@@ -151,7 +152,7 @@ class SideDrawer extends React.Component {
 			},
 			{
 				name: "profiles",
-				tag: "Brides",
+				tag: this.state.profilesName,
 				link: "#",
 				class: "contentBtn",
 				icon: <PeopleRoundedIcon />,

@@ -102,13 +102,23 @@ const Account = (props) => {
 		props.onChange("data", data);
 	};
 
-	const handleChange = (name, value) => {
+	const handleChange = (name, stateValue) => {
 		if (name === "images") {
-			value = data.images ? data.images.push(value) : [value];
-			setData({ ...data, [name]: value });
+			stateValue = data.images ? data.images.push(stateValue) : [stateValue];
+			setData({ ...data, [name]: stateValue });
 			updateData(false);
+			let variant = "success";
+			enqueueSnackbar("Successfully uploaded", { variant });
+		} else if (name === "delete_image") {
+			name = "images";
+			data.images = stateValue;
+			setData({ ...data, [name]: stateValue });
+			updateData(false);
+			let variant = "success";
+			enqueueSnackbar("Successfully deleted", { variant });
+			data.editDetails = false;
 		} else {
-			data[name] = value;
+			data[name] = stateValue;
 			setData(data);
 		}
 		props.onChange("data", data);

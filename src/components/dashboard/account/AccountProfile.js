@@ -78,7 +78,9 @@ const AccountProfile = (props) => {
 	var [imagesList, setImagesList] = useState(
 		values.images && values.images.length >= 1 ? values.images : []
 	);
+	const [currImageIdx, setCurrImageIdx] = useState(0);
 	const [loading, setLoading] = useState(false);
+	const [imageRefresh, setImageRefresh] = useState(false);
 	const [imageAsFile, setImageAsFile] = useState("");
 
 	const handleImageAsFile = (e) => {
@@ -86,9 +88,22 @@ const AccountProfile = (props) => {
 		setImageAsFile((imageFile) => image);
 	};
 
+	const updateCurrImgIdx = (currIdx) => {
+		setCurrImageIdx(currIdx);
+	}
+
 	useEffect(() => {
 		handleFireBaseUpload();
 	}, [imageAsFile]);
+
+	const deleteImage = () => {
+		imagesList.splice(currImageIdx, 1);
+		setImageRefresh(true);
+		values.images = imagesList;
+		setImagesList(imagesList);
+		props.onChange("delete_image", imagesList);
+		console.log("inside delete image", currImageIdx);
+	};
 
 	const handleFireBaseUpload = () => {
 		// async magic goes here...
@@ -131,9 +146,9 @@ const AccountProfile = (props) => {
 			<CardContent>
 				{loading ? <LinearProgress /> : ""}
 				{imagesList && imagesList.length >= 1 && !loading ? (
-					<ImageCarousal loading={loading} imageList={imagesList} />
+					<ImageCarousal loading={loading} imageList={imagesList} imageIndex={currImageIdx} updateImgIdx={updateCurrImgIdx} imageRefresh={imageRefresh}/>
 				) : imagesList && imagesList.length >= 1 && loading ? (
-					<ImageCarousal loading={loading} imageList={imagesList} />
+					<ImageCarousal loading={loading} imageList={imagesList} imageIndex={currImageIdx} updateImgIdx={updateCurrImgIdx} imageRefresh={imageRefresh}/>
 				) : (
 					<Card
 						style={{
@@ -198,6 +213,7 @@ const AccountProfile = (props) => {
 					variant='outlined'
 					size='small'
 					color='secondary'
+					onClick={deleteImage}
 					startIcon={<DeleteIcon />}>
 					Delete
 				</Button>

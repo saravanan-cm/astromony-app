@@ -56,6 +56,7 @@ class SelfAligningImage extends PureComponent {
 		let req_data = {
 			fav: [fav_id],
 		};
+		this.setState({ ...this.state, fav: false });
 		api.removeFavProfile(req_data, user).then((resp) => {
 			if (resp && resp["data"] && resp["data"]["status"]) {
 				this.setState({ ...this.state, fav: false });

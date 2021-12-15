@@ -58,7 +58,7 @@ const styles = (theme) => ({
 });
 
 const ImageCarousal = (props) => {
-	const { classes, imageList, loading } = props;
+	const { classes, imageList, loading, imageRefresh } = props;
 	const [values, setValues] = useState({
 		moreWidthThanHeight: null,
 		loaded: false,
@@ -76,6 +76,14 @@ const ImageCarousal = (props) => {
 		setImage({ ...image, [name]: val });
 	}, [loading]);
 
+	useEffect(() => {
+		setImage({
+			src: imageList && imageList.length >= 1 ? imageList[0] : "",
+			index: 0,
+			showNavigation: imageList && imageList.length > 1 ? "" : "hidden",
+		});
+	}, [imageRefresh]);
+
 	const showNextImage = () => {
 		var currIndex = image.index;
 		var newSrc = image.src;
@@ -86,6 +94,7 @@ const ImageCarousal = (props) => {
 			newSrc = imageList[0];
 			currIndex = 0;
 		}
+		props.updateImgIdx(currIndex);
 		setImage({
 			src: newSrc,
 			index: currIndex,
@@ -102,6 +111,7 @@ const ImageCarousal = (props) => {
 			newSrc = imageList[imageList.length - 1];
 			currIndex = imageList.length - 1;
 		}
+		props.updateImgIdx(currIndex);
 		setImage({
 			src: newSrc,
 			index: currIndex,
