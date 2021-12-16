@@ -137,7 +137,7 @@ class SideDrawer extends React.Component {
 			open: false,
 			auth: true,
 			anchorEl: null,
-			active: "home",
+			active: (this.props.history.location.pathname && this.props.history.location.pathname.indexOf('/user/') != -1 && ["home", "profiles", "favorites", "logout"].includes(this.props.history.location.pathname.replace('/user/', '')) ? this.props.history.location.pathname.replace('/user/', '') : "home"),
 			showSideDrawer: "",
 			name: this.props.auth.user.name.split("")[0].toUpperCase() + this.props.auth.user.name.split("").slice(1).join(""),
 			profilesName: this.props.auth.user.sex && this.props.auth.user.sex === "Male" ? "Brides" : "Grooms",

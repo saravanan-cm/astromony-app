@@ -96,7 +96,38 @@ const CollapsedBirthDetails = (props) => {
 				</CardActions>
 				<Collapse in={expanded} timeout='auto' unmountOnExit>
 					<CardContent>
-						{values.about ?
+						{!values.about && !values.height && !values.weight && !values.raasi && !values.nakshatra && !values.familyName && !values.gothram && !values.tone && !values.mothertongue && !values.religion && !values.caste ?
+							(<Grid container spacing={2}>
+								<Grid item xl={4} lg={4} md={4}>
+
+								</Grid>
+								<Grid item xl={4} lg={4} md={4}>
+									<Card className={classes.noBasicsRoot}>
+										<CardActionArea style={{ display: "flex"}} >
+											<img alt='No details found' style={{ width: "80%" }} src={no_basics} />
+											{values.address ? 
+												(<CardContent>
+													<Typography
+														paragraph
+														className={classes.cardText}>
+														{values.address
+															.split(",")
+															.map((item, key) => (
+																<span key={key}>
+																	{item}
+																	<br />
+																</span>
+															))}
+													</Typography>
+												</CardContent>) : ("")
+											}
+										</CardActionArea>
+									</Card>
+								</Grid>
+								<Grid item xl={4} lg={4} md={4}>
+
+								</Grid>
+							</Grid>):
 							(<Grid container spacing={5}>
 								<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
 									<Typography
@@ -318,28 +349,7 @@ const CollapsedBirthDetails = (props) => {
 											</CardActionArea>
 										</Card>
 									</Grid>)}
-							</Grid>)
-							: (<Grid container spacing={5}><Grid item xs={12}>
-								<Card className={classes.noBasicsRoot}>
-									<CardActionArea style={{ display: "flex" }}>
-										<img alt='No details found' style={{ width: "25%" }} src={no_basics} />
-										<CardContent>
-											<Typography
-												paragraph
-												className={classes.cardText}>
-												{values.address ? (values.address
-													.split(",")
-													.map((item, key) => (
-														<span key={key}>
-															{item}
-															<br />
-														</span>
-													))) : ("")}
-											</Typography>
-										</CardContent>
-									</CardActionArea>
-								</Card>
-							</Grid></Grid>)}
+							</Grid>)}
 					</CardContent>
 				</Collapse>
 			</Card>

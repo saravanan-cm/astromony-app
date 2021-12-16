@@ -98,6 +98,9 @@ class Dashboard extends Component {
 	handleChange(name, value) {
 		this.setState({ ...this.state, [name]: value });
 	}
+	updateCurrImgIdx(currIdx){
+		console.log(currIdx);
+	}
 	getData = async (params) => {
 		let response = {};
 		if (
@@ -147,6 +150,7 @@ class Dashboard extends Component {
 														xl={6}
 														xs={12}>
 														<ImageCarousal
+															updateImgIdx={this.updateCurrImgIdx}
 															imageList={
 																this.state
 																	.userDetails

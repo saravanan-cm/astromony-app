@@ -57,7 +57,7 @@ const UserTitle = (props) => {
 	const { values, classes } = props;
 
 	return (
-		<Grid container spacing={2}>
+		<Grid container spacing={2} style={{margin: "20% 0%"}}>
 			<Grid item xs={12}>
 				<Typography style={{ marginLeft: "4%" }}>
 					<h3 className={classes.username}>{values.name}</h3>
