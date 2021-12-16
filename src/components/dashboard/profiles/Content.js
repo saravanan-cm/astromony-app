@@ -54,6 +54,7 @@ const ProfileContent = (props) => {
 	});
 	const { classes, profiles, userDetails } = props;
 	var [posts, setPosts] = useState(profiles);
+	var [ht, setHt] = useState([]);
 	var [no_data, setNoData] = useState(false);
 	const { page } = state;
 
@@ -66,7 +67,7 @@ const ProfileContent = (props) => {
 
 	useEffect(() => {
 		getData();
-	});
+	}, []);
 
 	useEffect(() => {
 		return () => {
@@ -103,6 +104,7 @@ const ProfileContent = (props) => {
 		console.log(response);
 		if ("status" in response) {
 			let resData = response.data.data;
+			setHt(response.data.hometowns);
 			if (resData && resData.length) {
 				setPosts(resData);
 				props.onChange("profiles", resData);
@@ -187,7 +189,7 @@ const ProfileContent = (props) => {
 		<Paper>
 			<Toolbar className={classes.toolbar}>
 				<Typography variant='h6'>Profiles</Typography>
-				<SearchDialog onChange={ftrChange}/>
+				<SearchDialog ht={ht} onChange={ftrChange}/>
 			</Toolbar>
 			<Divider />
 			{printImageGrid()}

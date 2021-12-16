@@ -5,6 +5,7 @@ import {
 	yesOrNo,
 	habitsList,
 	bodyTypeList,
+	eatingHabits,
 } from "../../../assets/dumps/basicLists";
 
 const MoreAboutMe = (props) => {
@@ -47,7 +48,7 @@ const MoreAboutMe = (props) => {
 							variant='outlined'
 						/>
 					</Grid>
-					<Grid item xs={12}>
+					<Grid item xs={6}>
 						<TextField
 							fullWidth
 							label='Disability'
@@ -64,6 +65,27 @@ const MoreAboutMe = (props) => {
 							{yesOrNo.map((option, idx) => (
 								<option key={idx} value={option.value}>
 									{option.key}
+								</option>
+							))}
+						</TextField>
+					</Grid>
+					<Grid item xs={6}>
+						<TextField
+							fullWidth
+							label='Eating Habits'
+							name='eating'
+							margin='dense'
+							onChange={handleChange}
+							select={values.editDetails}
+							InputProps={{
+								readOnly: !values.editDetails,
+							}}
+							SelectProps={{ native: true }}
+							value={values.eating}
+							variant='outlined'>
+							{eatingHabits.map((option, idx) => (
+								<option key={idx} value={option}>
+									{option}
 								</option>
 							))}
 						</TextField>

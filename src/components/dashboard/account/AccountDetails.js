@@ -14,6 +14,9 @@ import {
 	Button,
 	TextField,
 	withStyles,
+	FormGroup,
+	FormControlLabel,
+	Checkbox,
 } from "@material-ui/core";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
@@ -29,6 +32,11 @@ const AccountDetails = (props) => {
 	const handleClick = (name, value) => {
 		console.log("inside handleclick:   ", name, value);
 		props.onChange(name, value);
+	};
+
+	const handleCheckboxChange = (event) => {
+		let val = event.target.checked ? 1 : 0;
+		props.onChange(event.target.name, val);
 	};
 
 	const handleChange = (event) => {
@@ -116,6 +124,7 @@ const AccountDetails = (props) => {
 							<GoogleAutocomplete
 								label='Birth Place'
 								keyname='hometown'
+								readOnly={!values.editDetails}
 								place={values.hometown}
 								onChange={handleClick}
 							/>
@@ -149,6 +158,56 @@ const AccountDetails = (props) => {
 								value={values.email}
 								variant='outlined'
 							/>
+						</Grid>
+						<Grid item md={6} xs={12}>
+							<FormGroup row style={{ marginLeft: "2%" }}>
+								<FormControlLabel
+									control={
+										<Checkbox
+											disabled= {!values.editDetails}
+											checked={values.samecaste}
+											onChange={handleCheckboxChange}
+											name='samecaste'
+										/>
+									}
+									label={
+										<span
+											style={{
+												fontSize: "0.75rem",
+												fontStyle: "italic",
+											}}>
+											{
+												"Show only same caste?"
+											}
+										</span>
+									}
+								/>
+							</FormGroup>
+						</Grid>
+						<Grid item md={6} xs={12}>
+							<FormGroup row style={{ marginLeft: "2%" }}>
+								<FormControlLabel
+									control={
+										<Checkbox
+											disabled= {!values.editDetails}
+											checked={values.samegothram}
+											onChange={handleCheckboxChange}
+											name='samegothram'
+										/>
+									}
+									label={
+										<span
+											style={{
+												fontSize: "0.75rem",
+												fontStyle: "italic",
+											}}>
+											{
+												"Exclude same gothram?"
+											}
+										</span>
+									}
+								/>
+							</FormGroup>
 						</Grid>
 					</Grid>
 				</CardContent>

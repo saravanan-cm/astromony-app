@@ -91,7 +91,7 @@ const Horoscope = (props) => {
 					<Grid item xs={12}>
 						<TextField
 							fullWidth
-							label='Status'
+							label='Marital Status'
 							name='status'
 							margin='dense'
 							onChange={handleChange}

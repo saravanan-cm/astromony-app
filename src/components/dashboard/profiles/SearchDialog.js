@@ -23,6 +23,10 @@ import SearchIcon from "@material-ui/icons/Search";
 import FilterBAndWIcon from "@material-ui/icons/FilterBAndW";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import FilterListIcon from "@material-ui/icons/FilterList";
+import {
+	statusList,
+	eatingHabits,
+} from "../../../assets/dumps/basicLists";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -52,7 +56,7 @@ const styles = (theme) => ({
 });
 
 const SearchDialog = (props) => {
-	const { classes, onChange } = props;
+	const { classes, onChange, ht } = props;
 	const [uid, setUid] = React.useState(null);
 	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
@@ -62,9 +66,19 @@ const SearchDialog = (props) => {
 	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
 	const [saveSearch, setSaveSearch] = React.useState(false);
 	const [homeTown, setHomeTown] = React.useState([]);
+	const [maritalStatus, setMaritalStatus] = React.useState([]);
+	const [eating, setEating] = React.useState([]);
 
 	const handleHomeTown = (event, newValue) => {
 		setHomeTown(newValue);
+	};
+
+	const handleMaritalStatus = (event, newValue) => {
+		setMaritalStatus(newValue);
+	};
+
+	const handleEating = (event, newValue) => {
+		setEating(newValue);
 	};
 
 	const names = [
@@ -93,7 +107,9 @@ const SearchDialog = (props) => {
 			salValue: salValue,
 			heightValue: heightValue,
 			convHgtVal: convHgtVal,
-			homeTown: homeTown
+			homeTown: homeTown,
+			maritalStatus: maritalStatus,
+			eating: eating,
 		};
 		onChange(ftr);
 	};
@@ -268,7 +284,7 @@ const SearchDialog = (props) => {
 															multiple
 															limitTags={2}
 															id='tags-outlined'
-															options={names}
+															options={ht}
 															getOptionLabel={(
 																option
 															) => option}
@@ -278,6 +294,74 @@ const SearchDialog = (props) => {
 															) => (
 																<TextField
 																	onChange={handleHomeTown}
+																	margin='dense'
+																	{...params}
+																	variant='outlined'
+																	placeholder='Select multiple cities'
+																/>
+															)}
+														/>
+													</div>
+												</CardContent>
+											</Card>
+										</Grid>
+										<Grid item md={6} xs={12}>
+											<Card
+												className={classes.searchCards}>
+												<CardContent>
+													<Typography>
+														Marital status
+													</Typography>
+													<div>
+														<Autocomplete
+															onChange={handleMaritalStatus}
+															multiple
+															limitTags={2}
+															id='tags-outlined'
+															options={statusList}
+															getOptionLabel={(
+																option
+															) => option}
+															filterSelectedOptions
+															renderInput={(
+																params
+															) => (
+																<TextField
+																	onChange={handleMaritalStatus}
+																	margin='dense'
+																	{...params}
+																	variant='outlined'
+																	placeholder='Select Marital Status'
+																/>
+															)}
+														/>
+													</div>
+												</CardContent>
+											</Card>
+										</Grid>
+										<Grid item md={6} xs={12}>
+											<Card
+												className={classes.searchCards}>
+												<CardContent>
+													<Typography>
+														Eating Habits
+													</Typography>
+													<div>
+														<Autocomplete
+															onChange={handleEating}
+															multiple
+															limitTags={2}
+															id='tags-outlined'
+															options={eatingHabits}
+															getOptionLabel={(
+																option
+															) => option}
+															filterSelectedOptions
+															renderInput={(
+																params
+															) => (
+																<TextField
+																	onChange={handleEating}
 																	margin='dense'
 																	{...params}
 																	variant='outlined'

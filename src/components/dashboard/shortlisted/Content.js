@@ -66,7 +66,7 @@ const ShortlistedContent = (props) => {
 
 	useEffect(() => {
 		getData();
-	});
+	}, []);
 
 	useEffect(() => {
 		return () => {
