@@ -285,12 +285,12 @@ class Register extends Component {
 										}}>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "left", margin: "1%", fontSize: "1.15em" }}>
+											style={{ float: "left", margin: "2% 22% 2% 0%", fontSize: "1.15em" }}>
 											Read terms and conditions
 										</p>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "right", margin: "1%", fontSize: "1.15em" }}>
+											style={{ float: "left", margin: "2% 0% 2% 0%", fontSize: "1.15em" }}>
 											Already have an account?{" "}
 											<Link to='/login' style={{ color: "blue", textDecoration: "underline" }}>Login</Link>
 										</p>

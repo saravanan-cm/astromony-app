@@ -153,14 +153,14 @@ class Login extends Component {
 											}}>
 											<p
 												className='grey-text text-darken-1'
-												style={{ float: "left", margin: "1%", fontSize: "1.15em" }}>
+												style={{ float: "left", margin: "2% 33% 2% 0%", fontSize: "1.15em" }}>
 												<Link style={{ color: "blue", textDecoration: "underline" }} to='/forget-password'>
 													Forget Password?
 											</Link>
 											</p>
 											<p
 												className='grey-text text-darken-1'
-												style={{ float: "right", margin: "1%", fontSize: "1.15em" }}>
+												style={{ float: "left", margin: "2% 0% 2% 0%", fontSize: "1.15em" }}>
 												Don't have an account?{" "}
 												<Link style={{ color: "blue", textDecoration: "underline" }} to='/register'>Register</Link>
 											</p>
