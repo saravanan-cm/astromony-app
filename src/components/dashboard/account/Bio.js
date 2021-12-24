@@ -49,7 +49,7 @@ const Bio = (props) => {
 						}
 					/>
 					<Divider />
-					<CardContent style={{ backgroundColor: "#f6f7f4" }}>
+					<CardContent style={{ backgroundImage: "linear-gradient(rgb(249, 249, 249) 0%, rgb(245, 245, 245) 51%, rgb(243, 241, 241) 75%)" }}>
 						<Grid container spacing={4}>
 							<Grid item lg={6} md={6} xl={6} xs={12}>
 								<BirthDetails

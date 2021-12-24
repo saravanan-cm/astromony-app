@@ -63,7 +63,8 @@ class Login extends Component {
 		const { errors } = this.state;
 		return (
 				<div className='container' style={{
-					height: "100vh",
+					height: "100%",
+					paddingBottom: "3%",
 					maxWidth: "inherit",
 					position: "relative",
 					// backgroundSize: "100%",
@@ -74,7 +75,7 @@ class Login extends Component {
 					<Navbar customProps={this.state} />
 					<div
 						style={{
-							marginTop: "12%"
+							marginTop: "8%"
 						}}
 						className='row'>
 						<Container maxWidth='sm'>
@@ -153,7 +154,7 @@ class Login extends Component {
 											}}>
 											<p
 												className='grey-text text-darken-1'
-												style={{ float: "left", margin: "2% 33% 2% 0%", fontSize: "1.15em" }}>
+												style={{ float: "left", margin: "2% 31% 2% 0%", fontSize: "1.15em" }}>
 												<Link style={{ color: "blue", textDecoration: "underline" }} to='/forget-password'>
 													Forget Password?
 											</Link>

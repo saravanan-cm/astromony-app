@@ -54,7 +54,7 @@ class ForgetPassword extends Component {
 		return (
 			<div className='container' 
 				style={{
-					height: "100vh",
+					height: "100%",
 					maxWidth:"inherit",
 					// backgroundPosition: "100% 0%",
 					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",

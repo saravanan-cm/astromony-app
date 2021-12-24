@@ -91,7 +91,8 @@ class Register extends Component {
 		console.log("window innerwidth---   ", window.innerWidth);
 		return (
 			<div className='container' style={{
-				height: "100vh",
+				height: "100%",
+				paddingBottom: "5%",
 				maxWidth: "inherit",
 				position: "relative",
 				// backgroundSize: "100%",
@@ -285,7 +286,7 @@ class Register extends Component {
 										}}>
 										<p
 											className='grey-text text-darken-1'
-											style={{ float: "left", margin: "2% 22% 2% 0%", fontSize: "1.15em" }}>
+											style={{ float: "left", margin: "2% 20% 2% 0%", fontSize: "1.15em" }}>
 											Read terms and conditions
 										</p>
 										<p
