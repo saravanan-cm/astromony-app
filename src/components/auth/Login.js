@@ -63,8 +63,7 @@ class Login extends Component {
 		const { errors } = this.state;
 		return (
 				<div className='container' style={{
-					height: "100%",
-					paddingBottom: "3%",
+					height: "100vh",
 					maxWidth: "inherit",
 					position: "relative",
 					// backgroundSize: "100%",

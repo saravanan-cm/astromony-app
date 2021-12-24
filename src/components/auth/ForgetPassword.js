@@ -54,7 +54,7 @@ class ForgetPassword extends Component {
 		return (
 			<div className='container' 
 				style={{
-					height: "100%",
+					height: "100vh",
 					maxWidth:"inherit",
 					// backgroundPosition: "100% 0%",
 					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
@@ -63,7 +63,7 @@ class ForgetPassword extends Component {
 				<Navbar customProps={this.state} />
 				<div
 					style={{
-						marginTop: "10rem",
+						marginTop: "8rem",
 						// backgroundSize: "22%",
 						// backgroundPosition: "90% 100%",
 						// backgroundImage: "url(" + thinking + ")",

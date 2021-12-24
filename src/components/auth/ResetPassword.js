@@ -75,7 +75,7 @@ class ResetPassword extends Component {
 				<Navbar customProps={this.state} />
 				<div
 					style={{
-						marginTop: "10rem",
+						marginTop: "8rem",
 						// backgroundSize: "22%",
 						// backgroundPosition: "90% 100%",
 						// backgroundImage: "url(" + thinking + ")",
