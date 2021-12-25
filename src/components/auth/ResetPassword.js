@@ -66,7 +66,7 @@ class ResetPassword extends Component {
 		return (
 			<div className='container' 
 				style={{
-					height: "100vh",
+					height: "100%",
 					maxWidth:"inherit",
 					// backgroundPosition: "100% 0%",
 					backgroundImage: "linear-gradient(#f3f3f3, rgb(255, 251, 255), rgb(229 213 213))",
@@ -76,6 +76,7 @@ class ResetPassword extends Component {
 				<div
 					style={{
 						marginTop: "8rem",
+						paddingBottom: "10%",
 						// backgroundSize: "22%",
 						// backgroundPosition: "90% 100%",
 						// backgroundImage: "url(" + thinking + ")",
