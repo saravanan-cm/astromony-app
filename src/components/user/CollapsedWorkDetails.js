@@ -115,19 +115,12 @@ const CollapsedWorkDetails = (props) => {
 				<Collapse in={expanded} timeout='auto' unmountOnExit>
 					<CardContent>
 						<Grid container spacing={5}>
-							<Grid
-								item
-								xl={6}
-								lg={6}
-								md={6}
-								sm={12}
-								xs={12}
-								style={{ textAlign: "center" }}>
-								<img
-									style={{ width: "55%" }}
-									alt='Address'
-									src={work_content}
-								/>
+							<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+								<Card className={classes.workRoot}>
+									<CardActionArea style={{ display: "flex" }}>
+										<img alt='Work' style={{width: "50%"}} src={work_content} />
+									</CardActionArea>
+								</Card>
 							</Grid>
 							<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
 								<div className={classes.workValues}>

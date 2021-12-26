@@ -117,19 +117,12 @@ const CollapsedExpectations = (props) => {
 				<Collapse in={expanded} timeout='auto' unmountOnExit>
 					<CardContent>
 						<Grid container spacing={5}>
-							<Grid
-								item
-								xl={6}
-								lg={6}
-								md={6}
-								sm={12}
-								xs={12}
-								style={{ textAlign: "center" }}>
-								<img
-									style={{ width: "55%" }}
-									alt='Dreaming'
-									src={thinking}
-								/>
+							<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
+								<Card className={classes.workRoot}>
+									<CardActionArea style={{ display: "flex" }}>
+										<img alt='Expectations' style={{width: "50%"}} src={thinking} />
+									</CardActionArea>
+								</Card>
 							</Grid>
 							<Grid item xl={6} lg={6} md={6} sm={12} xs={12}>
 								<div className={classes.workValues}>
