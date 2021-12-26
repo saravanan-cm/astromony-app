@@ -34,7 +34,7 @@ class Register extends Component {
 			showMenu: "none",
 			dob: null,
 			phone: null,
-			sex: "",
+			sex: "Male",
 			minDate: new Date("1950-01-01T00:00:00"),
 			maxDate: maxDate,
 		};
