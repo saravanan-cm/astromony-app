@@ -138,7 +138,7 @@ const AccountDetails = (props) => {
 								onChange={handleChange}
 								type='number'
 								InputProps={{
-									readOnly: !values.editDetails,
+									readOnly: true,
 								}}
 								value={values.phone}
 								variant='outlined'
@@ -151,7 +151,7 @@ const AccountDetails = (props) => {
 								margin='dense'
 								name='email'
 								InputProps={{
-									readOnly: !values.editDetails,
+									readOnly: true,
 								}}
 								onChange={handleChange}
 								required
