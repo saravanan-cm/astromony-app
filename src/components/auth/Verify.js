@@ -26,6 +26,7 @@ class Verify extends Component {
 			errors: {},
 			showLogin: "none",
 			showLoader: "none",
+			showMenu: "none",
 			showSuccess: false,
 			code: "",
 		};

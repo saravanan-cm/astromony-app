@@ -111,6 +111,9 @@ const styles = (theme) => ({
 		letterSpacing: "1px",
 		color: "#fff",
 		backgroundColor: "#d55845",
+		[theme.breakpoints.down("md")]: {
+			display: "none",
+		},
 		'&:hover': {
             backgroundColor: "#cf3821",
             color: '#FFF'
