@@ -40,7 +40,9 @@ export default function Footer() {
                   className="text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <img src={instagram}></img>
+                  <a href = "https://www.instagram.com/its_vyvaha/" target="_blank">
+                    <img src={instagram}></img>
+                  </a>
                 </button>
                 <button
                   className="text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
@@ -52,14 +54,17 @@ export default function Footer() {
                   className="text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <img src={twitter}></img>
+                  <a href = "https://twitter.com/vyvaha" target="_blank">
+                    <img src={twitter}></img>
+                  </a>
                 </button>
                 <button
                   className="text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <a href = "mailto:vyvaha.spoc@gmail.com">
-                  <img src={gmail}></img></a>
+                  <a href = "mailto:support@vyvaha.com" target="_blank">
+                    <img src={gmail}></img>
+                  </a>
                 </button>
               </div>
             </div>

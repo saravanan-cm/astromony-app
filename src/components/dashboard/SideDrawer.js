@@ -105,6 +105,17 @@ const styles = (theme) => ({
 	logoutBtn: {
 		color: "#212121",
 	},
+	logoutBtnFull: {
+		fontFamily: "Sailec-Bold,Helvetica,sans-serif",
+		fontWeight: "bold",
+		letterSpacing: "1px",
+		color: "#fff",
+		backgroundColor: "#d55845",
+		'&:hover': {
+            backgroundColor: "#cf3821",
+            color: '#FFF'
+        }
+	},
 	favBtn: {
 		color: "#ce3167",
 	},
@@ -169,7 +180,7 @@ class SideDrawer extends React.Component {
 				tag: "Logout",
 				link: "logout",
 				class: "logoutBtn",
-				icon: <ExitToAppRoundedIcon />,
+				icon: <ExitToAppRoundedIcon style={{color: "#d55845"}} />,
 			},
 		];
 	}
@@ -244,7 +255,7 @@ class SideDrawer extends React.Component {
 						</Typography>
 						<Button
 							variant='contained'
-							className={classes.loginBtn}
+							className={classes.logoutBtnFull}
 							onClick={this.onLogoutClick}
 							style={{ display: "" }}>
 							Logout

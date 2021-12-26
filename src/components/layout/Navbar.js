@@ -54,6 +54,21 @@ const useStyles = (theme) => ({
 		letterSpacing: "1px",
 		color: "#fff",
 		backgroundColor: "#22ba6a",
+		'&:hover': {
+            backgroundColor: "#22a35f",
+            color: '#FFF'
+        }
+	},
+	logoutBtn: {
+		fontFamily: "Sailec-Bold,Helvetica,sans-serif",
+		fontWeight: "bold",
+		letterSpacing: "1px",
+		color: "#fff",
+		backgroundColor: "#eb442a",
+		'&:hover': {
+            backgroundColor: "#cf3821",
+            color: '#FFF'
+        }
 	},
 	features: {
 		marginRight: "5%",
@@ -120,7 +135,7 @@ class Navbar extends Component {
 						{customProps.showLogin === "no" ? (
 							<Button
 								variant='contained'
-								className={classes.loginBtn}
+								className={classes.logoutBtn}
 								onClick={this.onLogoutClick}
 								style={{ display: "" }}>
 								Logout
