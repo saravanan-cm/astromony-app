@@ -92,9 +92,9 @@ const AccountProfile = (props) => {
 		setCurrImageIdx(currIdx);
 	}
 
-	// useEffect(() => {
-	// 	handleFireBaseUpload();
-	// }, [imageAsFile]);
+	useEffect(() => {
+		handleFireBaseUpload();
+	}, [imageAsFile]);
 
 	const deleteImage = () => {
 		imagesList.splice(currImageIdx, 1);

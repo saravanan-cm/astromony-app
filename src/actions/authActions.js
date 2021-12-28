@@ -152,8 +152,8 @@ export const verifyMobileNumber = (userData, history) => (dispatch) => {
 				if (res.status) {
 					// history.push("/login");
 					dispatch({
-						type: USER_LOADING,
-						payload: res,
+						type: GET_ERRORS,
+						payload: res.data,
 					});
 				} else {
 					dispatch({
