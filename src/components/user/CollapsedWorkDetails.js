@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import PropTypes from "prop-types";
 import {
 	CardContent,
-	TextField,
 	CardActionArea,
 	Grid,
 	Avatar,
@@ -17,12 +16,6 @@ import {
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import work from "../../assets/images/work.png";
 import work_content from "../../assets/images/work_content.png";
-import height from "../../assets/images/height.png";
-import weight from "../../assets/images/weight.png";
-import home from "../../assets/images/home.png";
-import tree from "../../assets/images/tree.png";
-import zodiac from "../../assets/images/zodiac.svg";
-import nakshatra from "../../assets/images/nakshatra.png";
 
 const styles = (theme) => ({
 	root: {

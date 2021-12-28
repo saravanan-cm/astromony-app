@@ -57,14 +57,14 @@ const MoreAboutMe = (props) => {
 							onChange={handleChange}
 							select={values.editDetails}
 							InputProps={{
-								readOnly: !values.editDetails,
+								readOnly: values.editDetails,
 							}}
 							SelectProps={{ native: true }}
 							value={values.disability}
 							variant='outlined'>
 							{yesOrNo.map((option, idx) => (
 								<option key={idx} value={option.value}>
-									{option.key}
+									{option.value}
 								</option>
 							))}
 						</TextField>

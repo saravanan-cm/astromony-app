@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { verifyMobileNumber } from "../../actions/authActions";
+import { verifyMobileNumber, resendOtp } from "../../actions/authActions";
 import classnames from "classnames";
 import {
 	Avatar,
@@ -17,7 +17,6 @@ import {
 import SecurityIcon from "@material-ui/icons/Security";
 import Navbar from "../layout/Navbar";
 import verification from "../../assets/images/verify.png";
-import success from "../../assets/images/success.png";
 
 class Verify extends Component {
 	constructor() {
@@ -50,6 +49,9 @@ class Verify extends Component {
 				val = true;
 				this.setState({ [key]: val });
 			} else {
+				let key = "showLoader";
+				let val = "none";
+				this.setState({ [key]: val });
 				this.setState({
 					errors: nextProps.errors,
 				});
@@ -59,6 +61,20 @@ class Verify extends Component {
 	onChange = (e) => {
 		this.setState({ [e.target.name]: e.target.value });
 	};
+	
+	onResendOtp = (e) => {
+		console.log("inside resend otp");
+		e.preventDefault();
+		let params = new URLSearchParams(this.props.location.search);
+		const userData = {
+			email: params.get("email"),
+		};
+		let key = "showLoader";
+		let val = "";
+		this.setState({ [key]: val });
+		this.props.resendOtp(userData, this.props.history);
+	};
+
 	onSubmit = (e) => {
 		e.preventDefault();
 		let params = new URLSearchParams(this.props.location.search);
@@ -130,8 +146,7 @@ class Verify extends Component {
 											</p>
 										</div>
 										<form
-											noValidate
-											onSubmit={this.onSubmit}>
+											noValidate>
 											{this.state.showSuccess ? (
 												""
 											) : (
@@ -147,7 +162,7 @@ class Verify extends Component {
 															{
 																invalid:
 																	errors.email ||
-																	errors.emailnotfound,
+																	errors.emailnotfound
 															}
 														)}
 														style={{
@@ -156,9 +171,10 @@ class Verify extends Component {
 														label='OTP'
 														variant='outlined'
 													/>
-													<span className='red-text'>
+													<span className='red-text' style={{color: "red"}}>
 														{errors.email}
 														{errors.emailnotfound}
+														{errors.message}
 													</span>
 												</div>
 											)}
@@ -195,6 +211,8 @@ class Verify extends Component {
 															float: "left",
 														}}>
 														<Button
+															onClick={this.onResendOtp}
+															id="resend-otp"
 															type='submit'
 															variant='contained'
 															style={{
@@ -219,6 +237,7 @@ class Verify extends Component {
 															float: "right",
 														}}>
 														<Button
+															onClick={this.onSubmit}
 															type='submit'
 															variant='contained'
 															color='primary'
@@ -251,6 +270,7 @@ class Verify extends Component {
 }
 Verify.propTypes = {
 	verifyMobileNumber: PropTypes.func.isRequired,
+	resendOtp: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 };
@@ -258,6 +278,6 @@ const mapStateToProps = (state) => ({
 	auth: state.auth,
 	errors: state.errors,
 });
-export default connect(mapStateToProps, { verifyMobileNumber })(
+export default connect(mapStateToProps, { verifyMobileNumber, resendOtp })(
 	withRouter(Verify)
 );

@@ -4,7 +4,6 @@ import {
 	IconButton,
 	withStyles,
 	Avatar,
-	LinearProgress,
 } from "@material-ui/core";
 
 import ZoomImage from "./ZoomImage";

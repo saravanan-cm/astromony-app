@@ -92,7 +92,7 @@ async function getFavoritesList(email) {
 
 
 async function getUsersData(id) {
-	let buff = new Buffer(id, "base64");
+	let buff = atob(id);
 	let text = buff.toString("ascii");
 	let resp = {
 		status: false,

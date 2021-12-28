@@ -4,6 +4,7 @@ import { GridListTileBar, withStyles, IconButton } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import api from "../../../actions/makeAPICall";
+import { withSnackbar } from "notistack";
 
 const styles = {
 	imageContainer: {
@@ -35,7 +36,7 @@ class SelfAligningImage extends PureComponent {
 
 	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
-		var uid = new Buffer(id + "--" + page.toString()).toString("base64");
+		var uid = btoa(id + "--" + page.toString());
 		window.location.href = "/profile?id=" + uid;
 	};
 
@@ -46,6 +47,8 @@ class SelfAligningImage extends PureComponent {
 		};
 		api.addFavProfile(req_data, user).then((resp) => {
 			if (resp && resp["data"] && resp["data"]["status"]) {
+				let variant = "success";
+				this.props.enqueueSnackbar('Added to favorites', { variant });
 				this.setState({ ...this.state, fav: true });
 			}
 		});
@@ -59,6 +62,7 @@ class SelfAligningImage extends PureComponent {
 		this.setState({ ...this.state, fav: false });
 		api.removeFavProfile(req_data, user).then((resp) => {
 			if (resp && resp["data"] && resp["data"]["status"]) {
+				this.props.enqueueSnackbar('Removed from favorites');
 				this.setState({ ...this.state, fav: false });
 			}
 		});
@@ -74,7 +78,6 @@ class SelfAligningImage extends PureComponent {
 			page,
 			work,
 			hometown,
-			favorite,
 			user_email,
 			age,
 			roundedBorder,
@@ -127,7 +130,7 @@ class SelfAligningImage extends PureComponent {
 						}
 						actionIcon={
 							<IconButton>
-								{fav || favorite ? (
+								{fav ? (
 									<StarIcon
 										style={{ color: "ghostwhite" }}
 										onClick={() =>
@@ -161,4 +164,4 @@ SelfAligningImage.propTypes = {
 	options: PropTypes.arrayOf(PropTypes.object),
 };
 
-export default withStyles(styles, { withTheme: true })(SelfAligningImage);
+export default withStyles(styles, { withTheme: true })(withSnackbar(SelfAligningImage));

@@ -77,25 +77,27 @@ class Landing extends Component {
 		switch (path) {
 			case "profiles":
 				return (
-					<ProfileContent
-						profiles={this.state.profiles}
-						onChange={this.handleChange}
-						userDetails={this.props.auth.user}
-					/>
+					<SnackbarProvider maxSnack={2}>
+						<ProfileContent
+							profiles={this.state.profiles}
+							onChange={this.handleChange}
+							userDetails={this.props.auth.user}
+						/>
+					</SnackbarProvider>
 				);
-				break;
 			case "favorites":
 				return (
-					<ShortlistedContent
-						favorites={this.state.favorites}
-						onChange={this.handleChange}
-						userDetails={this.props.auth.user}
-					/>
+					<SnackbarProvider maxSnack={2}>
+						<ShortlistedContent
+							favorites={this.state.favorites}
+							onChange={this.handleChange}
+							userDetails={this.props.auth.user}
+						/>
+					</SnackbarProvider>
 				);
-				break;
 			case "home":
 				return (
-					<SnackbarProvider>
+					<SnackbarProvider maxSnack={2}>
 						<Account
 							myData={this.state.data}
 							onChange={this.handleChange}
@@ -103,7 +105,6 @@ class Landing extends Component {
 						/>
 					</SnackbarProvider>
 				);
-				break;
 			default:
 				break;
 		}

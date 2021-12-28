@@ -5,7 +5,6 @@ import Card from "@material-ui/core/Card";
 import PropTypes from "prop-types";
 import {
 	CardContent,
-	CardHeader,
 	CardActionArea,
 	Grid,
 	Divider,

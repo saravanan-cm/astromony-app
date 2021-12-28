@@ -87,6 +87,26 @@ const Account = (props) => {
 			resData["minDate"] = new Date("1950-01-01T00:00:00");
 			resData["maxDate"] = maxDate;
 			resData["editDetails"] = false;
+
+			// Default values
+			resData["weight"] = resData['weight'] ? resData['weight'] : 50;
+			resData["sex"] = resData['sex'] ? resData['sex'] : 'Male';
+			resData["height"] = resData['height'] ? resData['height'] : '5ft 0in';
+			resData["tone"] = resData['tone'] ? resData['tone'] : 'Medium';
+			resData["raasi"] = resData['raasi'] ? resData['raasi'] : "Virgo / கன்னி";
+			resData["nakshatra"] = resData['nakshatra'] ? resData['nakshatra'] : 'Hasta';
+			resData["lookingfor"] = resData['lookingfor'] ? resData['lookingfor'] : 'Bride';
+			resData["status"] = resData['status'] ? resData['status'] : 'Single';
+			resData["famstatus"] = resData['famstatus'] ? resData['famstatus'] : 'Upper middle class';
+			resData["visa"] = resData['visa'] ? resData['visa'] : 'Indian Resident';
+			resData["mothertongue"] = resData['mothertongue'] ? resData['mothertongue'] : 'Tamil';
+			resData["religion"] = resData['religion'] ? resData['religion'] : 'Hindu';
+			resData["caste"] = resData['caste'] ? resData['caste'] : 'Others';
+			resData["disability"] = resData['disability'] ? resData['disability'] : 'No';
+			resData["eating"] = resData['eating'] ? resData['eating'] : 'Vegetarian';
+			resData["habits"] = resData['habits'] ? resData['habits'] : 'None';
+			resData["bodytype"] = resData['bodytype'] ? resData['bodytype'] : 'Medium';
+
 			setData(resData);
 			props.onChange("data", resData);
 		}

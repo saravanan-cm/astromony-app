@@ -947,12 +947,12 @@ const casteList = [
 
 const yesOrNo = [
 	{
-		key: "Yes",
-		value: true,
+		key: "y",
+		value: "Yes",
 	},
 	{
-		key: "No",
-		value: false,
+		key: "n",
+		value: "No",
 	},
 ];
 

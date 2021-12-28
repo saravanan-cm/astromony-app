@@ -150,7 +150,43 @@ export const verifyMobileNumber = (userData, history) => (dispatch) => {
 		.then((res) => {
 			if (res && "status" in res) {
 				if (res.status) {
-					history.push("/login");
+					// history.push("/login");
+					dispatch({
+						type: USER_LOADING,
+						payload: res,
+					});
+				} else {
+					dispatch({
+						type: GET_ERRORS,
+						payload: {
+							msg: res.message,
+						},
+					});
+				}
+			}
+		})
+		.catch((err) => {
+			console.log(err);
+			dispatch({
+				type: GET_ERRORS,
+				payload: err.response.data,
+			});
+		});
+};
+
+
+// Resend OTP to verify mobile number
+export const resendOtp = (userData, history) => (dispatch) => {
+	let config = {
+		headers: {
+			"Access-Control-Allow-Origin": "*",
+		},
+	};
+	axios
+		.post(base_url + "/api/users/generate/otp", userData, config)
+		.then((res) => {
+			if (res && "status" in res) {
+				if (res.status) {
 					dispatch({
 						type: USER_LOADING,
 						payload: res,

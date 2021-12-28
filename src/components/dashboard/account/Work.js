@@ -67,11 +67,12 @@ const Work = (props) => {
 					<Grid item lg={6} md={6} xs={12}>
 						<TextField
 							fullWidth
-							label='Salary per month (in thousands)'
+							label='Salary per month'
 							margin='dense'
 							name='salary'
 							onChange={handleChange}
-							placeholder='For eg: 100k'
+							type='number'
+							placeholder='For eg: Rs 100000'
 							InputProps={{
 								readOnly: !values.editDetails,
 							}}
@@ -94,7 +95,7 @@ const Work = (props) => {
 								readOnly: !values.editDetails,
 							}}
 							SelectProps={{ native: true }}
-							value={values.famStatus}
+							value={values.famstatus}
 							variant='outlined'>
 							{famStatusList.map((option, idx) => (
 								<option key={idx} value={option}>

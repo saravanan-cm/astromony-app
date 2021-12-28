@@ -16,6 +16,7 @@ import {
 	DialogContent,
 	Divider,
 	Slider,
+	Input,
 	FormGroup,
 	FormControlLabel,
 } from "@material-ui/core";
@@ -61,7 +62,7 @@ const SearchDialog = (props) => {
 	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
 	const [ageValue, setAgeValue] = React.useState([18, 60]);
-	const [salValue, setSalValue] = React.useState([1, 1000]);
+	const [salValue, setSalValue] = React.useState([100, 5000]);
 	const [heightValue, setHeightValue] = React.useState([123, 215]);
 	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
 	const [saveSearch, setSaveSearch] = React.useState(false);
@@ -122,6 +123,26 @@ const SearchDialog = (props) => {
 		setSalValue(newValue);
 	};
 
+	const handleSalFromChange = (event) => {
+		let newValue = [event.target.value, salValue[1]];
+		setSalValue(newValue);
+	};
+
+	const handleSalToChange = (event) => {
+		let newValue = [salValue[0], event.target.value];
+		setSalValue(newValue);
+	};
+
+	const handleAgeFromChange = (event) => {
+		let newValue = [event.target.value, ageValue[1]];
+		setAgeValue(newValue);
+	};
+
+	const handleAgeToChange = (event) => {
+		let newValue = [ageValue[0], event.target.value];
+		setAgeValue(newValue);
+	};
+
 	const handleIDChange = (event, newValue) => {
 		setUid(event.target.value);
 	};
@@ -140,6 +161,18 @@ const SearchDialog = (props) => {
 	const handleHeightChange = (event, val) => {
 		setHeightValue(val);
 		setConvHgtVal([toFeet(val[0]), toFeet(val[1])]);
+	};
+
+	const handleHeightFromChange = (event) => {
+		let newValue = [event.target.value, heightValue[1]];
+		setHeightValue(newValue);
+		setConvHgtVal([toFeet(newValue[0]), toFeet(newValue[1])]);
+	};
+
+	const handleHeightToChange = (event) => {
+		let newValue = [heightValue[0], event.target.value];
+		setHeightValue(newValue);
+		setConvHgtVal([toFeet(newValue[0]), toFeet(newValue[1])]);
 	};
 
 	return (
@@ -214,32 +247,32 @@ const SearchDialog = (props) => {
 								<CardHeader
 									avatar={<FilterBAndWIcon />}
 									title='Generic filters'
-									// action={
-									// 	<FormGroup row>
-									// 		<FormControlLabel
-									// 			control={
-									// 				<Switch
-									// 					color='primary'
-									// 					checked={saveSearch}
-									// 					onChange={() =>
-									// 						setSaveSearch(
-									// 							!saveSearch
-									// 						)
-									// 					}
-									// 					name='save_search'
-									// 				/>
-									// 			}
-									// 			label={
-									// 				<span
-									// 					style={{
-									// 						fontSize: "0.75rem",
-									// 					}}>
-									// 					Save this search
-									// 				</span>
-									// 			}
-									// 		/>
-									// 	</FormGroup>
-									// }
+								// action={
+								// 	<FormGroup row>
+								// 		<FormControlLabel
+								// 			control={
+								// 				<Switch
+								// 					color='primary'
+								// 					checked={saveSearch}
+								// 					onChange={() =>
+								// 						setSaveSearch(
+								// 							!saveSearch
+								// 						)
+								// 					}
+								// 					name='save_search'
+								// 				/>
+								// 			}
+								// 			label={
+								// 				<span
+								// 					style={{
+								// 						fontSize: "0.75rem",
+								// 					}}>
+								// 					Save this search
+								// 				</span>
+								// 			}
+								// 		/>
+								// 	</FormGroup>
+								// }
 								/>
 								<CardContent>
 									<Grid container spacing={2}>
@@ -268,6 +301,53 @@ const SearchDialog = (props) => {
 														valueLabelDisplay='auto'
 														aria-labelledby='range-slider'
 													/>
+													<Grid container spacing={5}>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 0% 4% 7%" }}>
+															<TextField
+																fullWidth
+																value={ageValue[0]}
+																onChange={handleAgeFromChange}
+																label=""
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 1,
+																	min: 18,
+																	max: 60
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ textAlign: "center", verticalAlign: "middle", lineHeight: "2.5" }}>
+															{" to "}
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 6% 4% 0%" }}>
+															<TextField
+																fullWidth
+																style={{ position: "relative", textAlign: "right" }}
+																value={ageValue[1]}
+																onChange={handleAgeToChange}
+																label=""
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 1,
+																	min: 18,
+																	max: 60
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+													</Grid>
 												</CardContent>
 											</Card>
 										</Grid>
@@ -331,7 +411,7 @@ const SearchDialog = (props) => {
 																	margin='dense'
 																	{...params}
 																	variant='outlined'
-																	placeholder='Select Marital Status'
+																	placeholder='Select marital status'
 																/>
 															)}
 														/>
@@ -365,7 +445,7 @@ const SearchDialog = (props) => {
 																	margin='dense'
 																	{...params}
 																	variant='outlined'
-																	placeholder='Select multiple cities'
+																	placeholder='Select eating habits'
 																/>
 															)}
 														/>
@@ -398,6 +478,53 @@ const SearchDialog = (props) => {
 														valueLabelDisplay='auto'
 														aria-labelledby='range-slider'
 													/>
+													<Grid container spacing={5}>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 0% 4% 7%" }}>
+															<TextField
+																fullWidth
+																value={heightValue[0]}
+																onChange={handleHeightFromChange}
+																label="Height in CM"
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 30,
+																	min: 123,
+																	max: 215
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ textAlign: "center", verticalAlign: "middle", lineHeight: "2.5" }}>
+															{" to "}
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 6% 4% 0%" }}>
+															<TextField
+																fullWidth
+																style={{ position: "relative", textAlign: "right" }}
+																value={heightValue[1]}
+																onChange={handleHeightToChange}
+																label="Height in CM"
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 30,
+																	min: 123,
+																	max: 215
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+													</Grid>
 												</CardContent>
 											</Card>
 										</Grid>
@@ -414,20 +541,66 @@ const SearchDialog = (props) => {
 															classes.ageValueStyle
 														}>
 														{salValue[0].toString() +
-															"K to " +
-															salValue[1].toString() +
-															"K"}
+															" K to " +
+															salValue[1].toString() + " K"}
 													</Typography>
 													<Slider
 														value={salValue}
 														min={0}
-														max={1000}
+														max={10000}
 														onChange={
 															handleSalChange
 														}
 														valueLabelDisplay='auto'
 														aria-labelledby='range-slider'
 													/>
+													<Grid container spacing={5}>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 0% 4% 7%" }}>
+															<TextField
+																fullWidth
+																value={salValue[0]}
+																onChange={handleSalFromChange}
+																label=""
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 100,
+																	min: 0,
+																	max: 10000
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ textAlign: "center", verticalAlign: "middle", lineHeight: "2.5" }}>
+															{" to "}
+														</Grid>
+														<Grid item xl={4} lg={4} md={4} sm={4} xs={4}
+															style={{ padding: "4% 6% 4% 0%" }}>
+															<TextField
+																fullWidth
+																style={{ position: "relative", textAlign: "right" }}
+																value={salValue[1]}
+																onChange={handleSalToChange}
+																label=""
+																margin="dense"
+																type="number"
+																variant="outlined"
+																inputProps={{
+																	step: 100,
+																	min: 0,
+																	max: 10000
+																}}
+																InputLabelProps={{
+																	shrink: true,
+																}}
+															/>
+														</Grid>
+													</Grid>
 												</CardContent>
 											</Card>
 										</Grid>
