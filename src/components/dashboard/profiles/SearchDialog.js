@@ -62,7 +62,7 @@ const SearchDialog = (props) => {
 	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
 	const [ageValue, setAgeValue] = React.useState([18, 60]);
-	const [salValue, setSalValue] = React.useState([100, 5000]);
+	const [salValue, setSalValue] = React.useState([100, 500]);
 	const [heightValue, setHeightValue] = React.useState([123, 215]);
 	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
 	const [saveSearch, setSaveSearch] = React.useState(false);
@@ -548,7 +548,7 @@ const SearchDialog = (props) => {
 													<Slider
 														value={salValue}
 														min={0}
-														max={10000}
+														max={1000}
 														onChange={
 															handleSalChange
 														}
@@ -569,7 +569,7 @@ const SearchDialog = (props) => {
 																inputProps={{
 																	step: 100,
 																	min: 0,
-																	max: 10000
+																	max: 1000
 																}}
 																InputLabelProps={{
 																	shrink: true,
@@ -594,7 +594,7 @@ const SearchDialog = (props) => {
 																inputProps={{
 																	step: 100,
 																	min: 0,
-																	max: 10000
+																	max: 1000
 																}}
 																InputLabelProps={{
 																	shrink: true,
