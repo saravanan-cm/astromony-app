@@ -23,7 +23,6 @@
 			"sizes": "512x512"
 		}
 	],
-	"description":"Welcome to vyvaha manifest",
 	"start_url": ".",
 	"display": "standalone",
 	"theme_color": "#000000",
