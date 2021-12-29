@@ -272,7 +272,7 @@ class SideDrawer extends React.Component {
 								className={classes.boxTheme}
 							>
 								<Box component="span" sx={{ display: { xs: 'block', md: 'block' }, flexGrow: 1 }}>
-									<LogoSection />
+									<LogoSection loggedIn={this.props.auth.user && this.props.auth.user.name ? this.props.auth.user.name : null} />
 								</Box>
 							</Box>
 						</div>

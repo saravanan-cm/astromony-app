@@ -18,9 +18,11 @@ import {
 	Slider,
 	Input,
 	FormGroup,
+	IconButton,
 	FormControlLabel,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
+import CloseIcon from "@material-ui/icons/Close";
 import FilterBAndWIcon from "@material-ui/icons/FilterBAndW";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import FilterListIcon from "@material-ui/icons/FilterList";
@@ -56,13 +58,41 @@ const styles = (theme) => ({
 	},
 });
 
+const BootstrapDialogTitle = (props) => {
+	const { children, onClose, ...other } = props;
+  
+	return (
+	  <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+		{children}
+		<IconButton
+          aria-label="close"
+          onClick={onClose}
+		  style={{float: "right"}}
+          sx={{
+            position: 'absolute',
+            // right: 8,
+            // top: 8,
+            color: (theme) => theme.palette.grey[500],
+          }}
+        >
+          <CloseIcon />
+        </IconButton>
+	  </DialogTitle>
+	);
+};
+
+BootstrapDialogTitle.propTypes = {
+	children: PropTypes.node,
+	onClose: PropTypes.func.isRequired,
+};  
+
 const SearchDialog = (props) => {
 	const { classes, onChange, ht } = props;
 	const [uid, setUid] = React.useState(null);
 	const [name, setNameVal] = React.useState(null);
 	const [open, setOpen] = React.useState(false);
 	const [ageValue, setAgeValue] = React.useState([18, 60]);
-	const [salValue, setSalValue] = React.useState([100, 500]);
+	const [salValue, setSalValue] = React.useState([0, 1000]);
 	const [heightValue, setHeightValue] = React.useState([123, 215]);
 	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
 	const [saveSearch, setSaveSearch] = React.useState(false);
@@ -77,6 +107,19 @@ const SearchDialog = (props) => {
 	const handleMaritalStatus = (event, newValue) => {
 		setMaritalStatus(newValue);
 	};
+
+	const handleClear = () =>{
+		console.log("cleared filters--");
+		setHomeTown([]);
+		setMaritalStatus([]);
+		setEating([]);
+		setHeightValue([123, 215]);
+		setSalValue([0,1000]);
+		setAgeValue([18,60]);
+		setNameVal('');
+		setUid('');
+		setConvHgtVal(["4ft 0in", "7ft 1in"]);
+	}
 
 	const handleEating = (event, newValue) => {
 		setEating(newValue);
@@ -190,7 +233,10 @@ const SearchDialog = (props) => {
 				style={{height:"92%"}}
 				onClose={handleClose}
 				aria-labelledby='form-dialog-title'>
-				<DialogTitle id='form-dialog-title'>Filters</DialogTitle>
+				{/* <DialogTitle id='form-dialog-title'>Filters</DialogTitle> */}
+				<BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+					Filters
+				</BootstrapDialogTitle>	
 				<DialogContent>
 					<Grid container spacing={2}>
 						<Grid item xs={12}>
@@ -567,7 +613,7 @@ const SearchDialog = (props) => {
 																type="number"
 																variant="outlined"
 																inputProps={{
-																	step: 100,
+																	step: 10,
 																	min: 0,
 																	max: 1000
 																}}
@@ -592,7 +638,7 @@ const SearchDialog = (props) => {
 																type="number"
 																variant="outlined"
 																inputProps={{
-																	step: 100,
+																	step: 10,
 																	min: 0,
 																	max: 1000
 																}}
@@ -613,8 +659,8 @@ const SearchDialog = (props) => {
 				</DialogContent>
 				<Divider />
 				<DialogActions>
-					<Button onClick={handleClose} color='secondary'>
-						Cancel
+					<Button onClick={handleClear} color='secondary'>
+						Clear
 					</Button>
 					<Button onClick={handleSubmit} color='primary'>
 						Filter

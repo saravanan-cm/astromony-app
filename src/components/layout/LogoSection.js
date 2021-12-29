@@ -8,8 +8,8 @@ import Logo from "../../assets/images/vyvaha.png";
 
 // ==============================|| MAIN LOGO ||============================== //
 
-const LogoSection = () => (
-    <ButtonBase disableRipple component={Link} to={"/home"}>
+const LogoSection = (props) => (
+    <ButtonBase disableRipple component={Link} to={props.loggedIn ? "/user/home" : "/home"}>
         <img src={Logo} />
     </ButtonBase>
 );
