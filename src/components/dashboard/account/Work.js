@@ -87,7 +87,7 @@ const Work = (props) => {
 						<TextField
 							fullWidth
 							label='Family Status'
-							name='famStatus'
+							name='famstatus'
 							margin='dense'
 							onChange={handleChange}
 							select={values.editDetails}
