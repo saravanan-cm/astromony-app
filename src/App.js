@@ -53,6 +53,7 @@ class App extends Component {
 						<Suspense
 							fallback={<CircularProgress color='secondary' />}>
 							<Route exact path='/' component={Landing} />
+							<Route exact path='/home' component={Landing} />
 							<Route
 								exact
 								path='/register'

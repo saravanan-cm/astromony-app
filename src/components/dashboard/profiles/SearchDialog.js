@@ -187,6 +187,7 @@ const SearchDialog = (props) => {
 				open={open}
 				maxWidth='md'
 				fullWidth
+				style={{height:"92%"}}
 				onClose={handleClose}
 				aria-labelledby='form-dialog-title'>
 				<DialogTitle id='form-dialog-title'>Filters</DialogTitle>
@@ -485,7 +486,7 @@ const SearchDialog = (props) => {
 																fullWidth
 																value={heightValue[0]}
 																onChange={handleHeightFromChange}
-																label="Height in CM"
+																label="in cm"
 																margin="dense"
 																type="number"
 																variant="outlined"
@@ -510,7 +511,7 @@ const SearchDialog = (props) => {
 																style={{ position: "relative", textAlign: "right" }}
 																value={heightValue[1]}
 																onChange={handleHeightToChange}
-																label="Height in CM"
+																label="in cm"
 																margin="dense"
 																type="number"
 																variant="outlined"

@@ -8,7 +8,9 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Link } from "react-router-dom";
+import { Box, } from "@material-ui/core";
+// import { Link } from "react-router-dom";
+import LogoSection from "./LogoSection";
 import { withStyles } from "@material-ui/core/styles";
 import { logoutUser } from "../../actions/authActions";
 import LinearProgress from "@material-ui/core/LinearProgress";
@@ -23,6 +25,14 @@ const ColorLinearProgress = withStyles({
 })(LinearProgress);
 
 const useStyles = (theme) => ({
+	boxTheme: {
+		[theme.breakpoints.down('md')]: {
+			width: '45%'
+		},
+		[theme.breakpoints.up('md')]: {
+			width: '10%'
+		}
+	},
 	menuButton: {
 		marginRight: theme.spacing(2),
 	},
@@ -55,20 +65,23 @@ const useStyles = (theme) => ({
 		color: "#fff",
 		backgroundColor: "#22ba6a",
 		'&:hover': {
-            backgroundColor: "#22a35f",
-            color: '#FFF'
-        }
+			backgroundColor: "#22a35f",
+			color: '#FFF'
+		}
 	},
 	logoutBtn: {
 		fontFamily: "Sailec-Bold,Helvetica,sans-serif",
 		fontWeight: "bold",
 		letterSpacing: "1px",
 		color: "#fff",
-		backgroundColor: "#eb442a",
+		backgroundColor: "#e54126",
 		'&:hover': {
-            backgroundColor: "#cf3821",
-            color: '#FFF'
-        }
+			backgroundColor: "#cf3821",
+			color: '#FFF'
+		}
+	},
+	loginButton: {
+		// marginLeft: "0%",
 	},
 	features: {
 		marginRight: "5%",
@@ -117,12 +130,19 @@ class Navbar extends Component {
 								<ArrowBackRoundedIcon />
 							</IconButton>
 						)}
-
-						<Typography variant='h6' className={classes.title}>
-							<Link className={classes.titleText} to='/'>
-								Vyvaha
-							</Link>
-						</Typography>
+						<div>
+							<Box
+								sx={{
+									width: 228,
+									display: 'flex'
+								}}
+								className={classes.boxTheme}
+							>
+								<Box component="span" sx={{ display: { xs: 'block', md: 'block' }, flexGrow: 1 }}>
+									<LogoSection />
+								</Box>
+							</Box>
+						</div>
 						<div
 							className={classes.features}
 							style={{
@@ -132,23 +152,25 @@ class Navbar extends Component {
 								Link
 							</Button>
 						</div>
-						{customProps.showLogin === "no" ? (
-							<Button
-								variant='contained'
-								className={classes.logoutBtn}
-								onClick={this.onLogoutClick}
-								style={{ display: "" }}>
-								Logout
-							</Button>
-						) : customProps.showLogin === "yes" ? (
-							<Button
-								variant='contained'
-								className={classes.loginBtn}
-								href='/login'
-								style={{ display: customProps.showLogin }}>
-								Login
-							</Button>
-						) : ("")}
+						<div className={classes.loginButton}>
+							{customProps.showLogin === "no" ? (
+								<Button
+									variant='contained'
+									className={classes.logoutBtn}
+									onClick={this.onLogoutClick}
+									style={{ display: "" }}>
+									Logout
+								</Button>
+							) : customProps.showLogin === "yes" ? (
+								<Button
+									variant='contained'
+									className={classes.loginBtn}
+									href='/login'
+									style={{ display: customProps.showLogin }}>
+									Login
+								</Button>
+							) : ("")}
+						</div>
 					</Toolbar>
 				</AppBar>
 			</div>

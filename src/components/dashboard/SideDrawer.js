@@ -4,9 +4,7 @@ import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
-import { withStyles, Hidden, Badge, Menu, MenuItem, Tooltip } from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
+import { withStyles, Hidden, Menu, MenuItem, Tooltip, Box, Zoom } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -21,6 +19,7 @@ import AccountCircleRoundedIcon from "@material-ui/icons/AccountCircleRounded";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import LogoSection from "../layout/LogoSection";
 import { logoutUser } from "../../actions/authActions";
 
 const drawerWidth = 220;
@@ -28,6 +27,14 @@ const drawerWidth = 220;
 const styles = (theme) => ({
 	root: {
 		display: "flex",
+	},
+	boxTheme: {
+		[theme.breakpoints.down('md')]: {
+			width: '45%'
+		},
+		[theme.breakpoints.up('md')]: {
+			width: '11%'
+		}
 	},
 	toolbar: {
 		backgroundColor: "#fff",
@@ -110,14 +117,14 @@ const styles = (theme) => ({
 		fontWeight: "bold",
 		letterSpacing: "1px",
 		color: "#fff",
-		backgroundColor: "#d55845",
+		backgroundColor: "#e54126",
 		[theme.breakpoints.down("md")]: {
 			display: "none",
 		},
 		'&:hover': {
-            backgroundColor: "#cf3821",
-            color: '#FFF'
-        }
+			backgroundColor: "#d13143",
+			color: '#FFF'
+		}
 	},
 	favBtn: {
 		color: "#ce3167",
@@ -183,7 +190,7 @@ class SideDrawer extends React.Component {
 				tag: "Logout",
 				link: "logout",
 				class: "logoutBtn",
-				icon: <ExitToAppRoundedIcon style={{color: "#d55845"}} />,
+				icon: <ExitToAppRoundedIcon style={{ color: "#e54126" }} />,
 			},
 		];
 	}
@@ -249,13 +256,26 @@ class SideDrawer extends React.Component {
 							)}>
 							<MenuIcon />
 						</IconButton>
-						<Typography
+						{/* <Typography
 							variant='title'
 							color='inherit'
 							noWrap
 							className={classes.title}>
 							{siteTitle}
-						</Typography>
+						</Typography> */}
+						<div>
+							<Box
+								sx={{
+									width: 228,
+									display: 'flex'
+								}}
+								className={classes.boxTheme}
+							>
+								<Box component="span" sx={{ display: { xs: 'block', md: 'block' }, flexGrow: 1 }}>
+									<LogoSection />
+								</Box>
+							</Box>
+						</div>
 						<Button
 							variant='contained'
 							className={classes.logoutBtnFull}
@@ -316,29 +336,33 @@ class SideDrawer extends React.Component {
 						</div>
 						<List style={{ marginTop: "12px" }} alignItems='center'>
 							{this.drawerList.map((obj, index) => (
-								<Link
-									className={classes.navbarLinks}
-									onClick={
-										obj.name !== "logout"
-											? () =>
-													this.handleTabChange(
-														obj.name
-													)
-											: this.onLogoutClick
-									}>
-									<ListItem
-										selected={
-											obj.name === this.state.active
-										}
-										button
-										key={obj.name}>
-										<ListItemIcon
-											className={classes[obj.class]}>
-											{obj.icon}
-										</ListItemIcon>
-										<ListItemText primary={obj.tag} />
-									</ListItem>
-								</Link>
+								<Tooltip title={obj.tag} placement="left" TransitionComponent={Zoom} followCursor>
+									<div>
+										<Link
+											className={classes.navbarLinks}
+											onClick={
+												obj.name !== "logout"
+													? () =>
+														this.handleTabChange(
+															obj.name
+														)
+													: this.onLogoutClick
+											}>
+											<ListItem
+												selected={
+													obj.name === this.state.active
+												}
+												button
+												key={obj.name}>
+												<ListItemIcon
+													className={classes[obj.class]}>
+													{obj.icon}
+												</ListItemIcon>
+												<ListItemText primary={obj.tag} />
+											</ListItem>
+										</Link>
+									</div>
+								</Tooltip>
 							))}
 						</List>
 					</Drawer>
@@ -360,29 +384,33 @@ class SideDrawer extends React.Component {
 						</div>
 						<List style={{ marginTop: "12px" }} alignItems='center'>
 							{this.drawerList.map((obj, index) => (
-								<Link
-									className={classes.navbarLinks}
-									onClick={
-										obj.name !== "logout"
-											? () =>
-													this.handleTabChange(
-														obj.name
-													)
-											: this.onLogoutClick
-									}>
-									<ListItem
-										selected={
-											obj.name === this.state.active
-										}
-										button
-										key={obj.name}>
-										<ListItemIcon
-											className={classes[obj.class]}>
-											{obj.icon}
-										</ListItemIcon>
-										<ListItemText primary={obj.tag} />
-									</ListItem>
-								</Link>
+								<Tooltip title={obj.tag} placement="left" TransitionComponent={Zoom} followCursor>
+									<div>
+										<Link
+											className={classes.navbarLinks}
+											onClick={
+												obj.name !== "logout"
+													? () =>
+														this.handleTabChange(
+															obj.name
+														)
+													: this.onLogoutClick
+											}>
+											<ListItem
+												selected={
+													obj.name === this.state.active
+												}
+												button
+												key={obj.name}>
+												<ListItemIcon
+													className={classes[obj.class]}>
+													{obj.icon}
+												</ListItemIcon>
+												<ListItemText primary={obj.tag} />
+											</ListItem>
+										</Link>
+									</div>
+								</Tooltip>
 							))}
 						</List>
 					</Drawer>
