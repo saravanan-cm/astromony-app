@@ -67,7 +67,7 @@ const BootstrapDialogTitle = (props) => {
 		<IconButton
           aria-label="close"
           onClick={onClose}
-		  style={{float: "right"}}
+		  style={{float: "right", padding:"2px 0% 0% 0%"}}
           sx={{
             position: 'absolute',
             // right: 8,
