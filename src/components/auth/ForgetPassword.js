@@ -116,15 +116,16 @@ class ForgetPassword extends Component {
 											className={classnames("", {
 												invalid:
 													errors.email ||
-													errors.emailnotfound,
+													errors.emailnotfound
 											})}
 											style={{ width: "100%" }}
 											label='Email'
 											variant='outlined'
 										/>
-										<span className='red-text'>
+										<span className='red-text' style={{color:"red"}}>
 											{errors.email}
 											{errors.emailnotfound}
+											{errors.message}
 										</span>
 									</div>
 									<div

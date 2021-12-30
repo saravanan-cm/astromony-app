@@ -55,13 +55,17 @@ const ShortlistedContent = (props) => {
 	const { classes, favorites, userDetails } = props;
 	var [profiles, setProfiles] = useState(favorites);
 	var [no_data, setNoData] = useState(false);
+	var [rowsPerPage, setRowsPerPage] = useState(10);
 	const { page } = state;
-
-	var rowsPerPage = 8;
 
 	const handleChangePage = (__, page) => {
 		console.log("page no--   ", page);
 		setState({ page });
+	};
+
+	const handleChangeRowsPerPage = (event) => {
+		setRowsPerPage(parseInt(event.target.value, 10));
+		setState({ page: 0 });
 	};
 
 	useEffect(() => {
@@ -176,24 +180,24 @@ const ShortlistedContent = (props) => {
 			<Divider />
 			{printImageGrid()}
 			<TablePagination
-				component='div'
+				rowsPerPageOptions={[10, 20, 40, 80]}
+				component="div"
 				count={profiles.length}
 				rowsPerPage={rowsPerPage}
 				page={page}
+				onPageChange={handleChangePage}
+				onRowsPerPageChange={handleChangeRowsPerPage}
 				backIconButtonProps={{
 					"aria-label": "Previous Page",
 				}}
 				nextIconButtonProps={{
 					"aria-label": "Next Page",
 				}}
-				onChangePage={handleChangePage}
 				classes={{
-					select: classes.dNone,
-					selectIcon: classes.dNone,
 					actions: profiles.length > 0 ? classes.dBlock : classes.dNone,
 					caption: profiles.length > 0 ? classes.dBlock : classes.dNone,
 				}}
-				labelRowsPerPage=''
+				labelRowsPerPage='Profiles per page:'
 			/>
 		</Paper>
 	);

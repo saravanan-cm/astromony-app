@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import ArrowBackRoundedIcon from "@material-ui/icons/ArrowBackRounded";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Box, } from "@material-ui/core";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 // import { Link } from "react-router-dom";
 import LogoSection from "./LogoSection";
 import { withStyles } from "@material-ui/core/styles";
@@ -74,7 +75,7 @@ const useStyles = (theme) => ({
 		fontWeight: "bold",
 		letterSpacing: "1px",
 		color: "#fff",
-		backgroundColor: "#e54126",
+		backgroundColor: "#c9293c",
 		'&:hover': {
 			backgroundColor: "#cf3821",
 			color: '#FFF'
@@ -89,6 +90,22 @@ const useStyles = (theme) => ({
 });
 
 class Navbar extends Component {
+	constructor() {
+		super();
+		this.state = {
+			openLogoutAlert: false
+		};
+	}
+	handleClose = (e) => {
+		this.setState({
+			openLogoutAlert: false,
+		});
+	};
+	handleLogoutAlert = (e) => {
+		this.setState({
+			openLogoutAlert: true,
+		});
+	};
 	onLogoutClick = (e) => {
 		e.preventDefault();
 		this.props.logoutUser();
@@ -157,7 +174,7 @@ class Navbar extends Component {
 								<Button
 									variant='contained'
 									className={classes.logoutBtn}
-									onClick={this.onLogoutClick}
+									onClick={this.handleLogoutAlert}
 									style={{ display: "" }}>
 									Logout
 								</Button>
@@ -173,6 +190,29 @@ class Navbar extends Component {
 						</div>
 					</Toolbar>
 				</AppBar>
+				<div>
+					<Dialog
+						open={this.state.openLogoutAlert}
+						onClose={this.handleClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title">
+							{"Confirmation"}
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Are you sure, you want to logout from Vyvaha?
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions style={{marginBottom:"2%"}}>
+							<Button variant="outlined" color='primary' onClick={this.handleClose} autoFocus>Cancel</Button>
+							<Button variant="outlined" color='secondary' onClick={this.onLogoutClick}>
+								Proceed
+							</Button>
+						</DialogActions>
+					</Dialog>
+				</div>
 			</div>
 		);
 	}

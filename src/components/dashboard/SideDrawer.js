@@ -5,6 +5,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
 import { withStyles, Hidden, Menu, MenuItem, Tooltip, Box, Zoom } from "@material-ui/core";
+import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -117,7 +118,7 @@ const styles = (theme) => ({
 		fontWeight: "bold",
 		letterSpacing: "1px",
 		color: "#fff",
-		backgroundColor: "#e54126",
+		backgroundColor: "#c9293c",
 		[theme.breakpoints.down("md")]: {
 			display: "none",
 		},
@@ -158,6 +159,7 @@ class SideDrawer extends React.Component {
 			open: false,
 			auth: true,
 			anchorEl: null,
+			openLogoutAlert: false,
 			active: (this.props.history.location.pathname && this.props.history.location.pathname.indexOf('/user/') != -1 && ["home", "profiles", "favorites", "logout"].includes(this.props.history.location.pathname.replace('/user/', '')) ? this.props.history.location.pathname.replace('/user/', '') : "home"),
 			showSideDrawer: "",
 			name: this.props.auth.user.name.split("")[0].toUpperCase() + this.props.auth.user.name.split("").slice(1).join(""),
@@ -190,7 +192,7 @@ class SideDrawer extends React.Component {
 				tag: "Logout",
 				link: "logout",
 				class: "logoutBtn",
-				icon: <ExitToAppRoundedIcon style={{ color: "#e54126" }} />,
+				icon: <ExitToAppRoundedIcon style={{ color: "#c9293c" }} />,
 			},
 		];
 	}
@@ -212,6 +214,17 @@ class SideDrawer extends React.Component {
 
 	handleClose = () => {
 		this.setState({ anchorEl: null });
+	};
+
+	handleLogoutAlertClose = (e) => {
+		this.setState({
+			openLogoutAlert: false,
+		});
+	};
+	handleLogoutAlert = (e) => {
+		this.setState({
+			openLogoutAlert: true,
+		});
 	};
 
 	handleTabChange(name) {
@@ -279,7 +292,7 @@ class SideDrawer extends React.Component {
 						<Button
 							variant='contained'
 							className={classes.logoutBtnFull}
-							onClick={this.onLogoutClick}
+							onClick={this.handleLogoutAlert}
 							style={{ display: "" }}>
 							Logout
 						</Button>
@@ -314,6 +327,31 @@ class SideDrawer extends React.Component {
 						</div>
 					</Toolbar>
 				</AppBar>
+				<div>
+					<Dialog
+						fullWidth
+						maxWidth='sm'
+						open={this.state.openLogoutAlert}
+						onClose={this.handleLogoutAlertClose}
+						aria-labelledby="alert-dialog-title"
+						aria-describedby="alert-dialog-description"
+					>
+						<DialogTitle id="alert-dialog-title">
+							{"Confirmation"}
+						</DialogTitle>
+						<DialogContent>
+							<DialogContentText id="alert-dialog-description">
+								Are you sure, you want to logout from Vyvaha?
+							</DialogContentText>
+						</DialogContent>
+						<DialogActions style={{marginBottom: "2%"}}>
+							<Button variant="outlined" color='primary' onClick={this.handleLogoutAlertClose} autoFocus>Cancel</Button>
+							<Button variant="outlined" color='secondary' onClick={this.onLogoutClick}>
+								Proceed
+							</Button>
+						</DialogActions>
+					</Dialog>
+				</div>
 
 				<Hidden mdUp>
 					<Drawer
@@ -346,7 +384,7 @@ class SideDrawer extends React.Component {
 														this.handleTabChange(
 															obj.name
 														)
-													: this.onLogoutClick
+													: this.handleLogoutAlert
 											}>
 											<ListItem
 												selected={
@@ -394,7 +432,7 @@ class SideDrawer extends React.Component {
 														this.handleTabChange(
 															obj.name
 														)
-													: this.onLogoutClick
+													: this.handleLogoutAlert
 											}>
 											<ListItem
 												selected={

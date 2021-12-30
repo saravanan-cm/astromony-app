@@ -56,13 +56,17 @@ const ProfileContent = (props) => {
 	var [posts, setPosts] = useState(profiles);
 	var [ht, setHt] = useState([]);
 	var [no_data, setNoData] = useState(false);
+	var [rowsPerPage, setRowsPerPage] = useState(10);
 	const { page } = state;
-
-	var rowsPerPage = 8;
 
 	const handleChangePage = (__, page) => {
 		console.log("page no--   ", page);
 		setState({ page });
+	};
+
+	const handleChangeRowsPerPage = (event) => {
+		setRowsPerPage(parseInt(event.target.value, 10));
+		setState({ page: 0 });
 	};
 
 	useEffect(() => {
@@ -194,24 +198,24 @@ const ProfileContent = (props) => {
 			<Divider />
 			{printImageGrid()}
 			<TablePagination
-				component='div'
+				rowsPerPageOptions={[10, 20, 40, 80]}
+				component="div"
 				count={posts.length}
 				rowsPerPage={rowsPerPage}
 				page={page}
+				onPageChange={handleChangePage}
+				onRowsPerPageChange={handleChangeRowsPerPage}
 				backIconButtonProps={{
 					"aria-label": "Previous Page",
 				}}
 				nextIconButtonProps={{
 					"aria-label": "Next Page",
 				}}
-				onChangePage={handleChangePage}
 				classes={{
-					select: classes.dNone,
-					selectIcon: classes.dNone,
 					actions: posts.length > 0 ? classes.dBlock : classes.dNone,
 					caption: posts.length > 0 ? classes.dBlock : classes.dNone,
 				}}
-				labelRowsPerPage=''
+				labelRowsPerPage='Profiles per page:'
 			/>
 		</Paper>
 	);
