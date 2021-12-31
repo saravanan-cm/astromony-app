@@ -11,7 +11,6 @@ import {
 	withStyles,
 } from "@material-ui/core";
 import SelfAligningImage from "./SelfAligningImage";
-import SearchDialog from "../profiles/SearchDialog";
 import api from "../../../actions/makeAPICall";
 import Skeleton from "@material-ui/lab/Skeleton";
 import NoData from "../../../assets/images/no_data.png";

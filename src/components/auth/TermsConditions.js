@@ -1,19 +1,10 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { loginUser } from "../../actions/authActions";
-import classnames from "classnames";
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import { Container, Card, CardContent } from "@material-ui/core";
 import Navbar from "../../components/layout/Navbar";
-import loveLeft from "../../assets/images/love.gif";
-import bg from "../../assets/images/login-bg.svg";
-import loveRight from "../../assets/images/love-in-air.gif";
 
 class TermsConditions extends Component {
 	constructor() {
@@ -30,13 +21,15 @@ class TermsConditions extends Component {
 	componentDidMount() {
 		// If logged in and user navigates to Login page, should redirect them to dashboard
 		if (this.props.auth.isAuthenticated) {
-			this.props.history.push("/user/home");
+			// this.props.history.push("/user/home");
+			console.log("logged in");
 		}
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.auth.isAuthenticated) {
 			this.setState({ showLoader: "none" });
-			this.props.history.push("/user/home"); // push user to dashboard when they login
+			// this.props.history.push("/user/home"); // push user to dashboard when they login
+			console.log("logged in");
 		}
 		if (nextProps.errors) {
 			this.setState({ showLoader: "none" });

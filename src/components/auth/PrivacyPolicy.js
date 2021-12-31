@@ -21,13 +21,15 @@ class PrivacyPolicy extends Component {
 	componentDidMount() {
 		// If logged in and user navigates to Login page, should redirect them to dashboard
 		if (this.props.auth.isAuthenticated) {
-			this.props.history.push("/user/home");
+			// this.props.history.push("/user/home");
+			console.log("logged in");
 		}
 	}
 	componentWillReceiveProps(nextProps) {
 		if (nextProps.auth.isAuthenticated) {
 			this.setState({ showLoader: "none" });
-			this.props.history.push("/user/home"); // push user to dashboard when they login
+			// this.props.history.push("/user/home"); // push user to dashboard when they login
+			console.log("logged in");
 		}
 		if (nextProps.errors) {
 			this.setState({ showLoader: "none" });
