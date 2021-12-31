@@ -1,7 +1,8 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { GridListTileBar, withStyles, IconButton } from "@material-ui/core";
+import { GridListTileBar, withStyles, IconButton, Tooltip, Zoom } from "@material-ui/core";
 import StarIcon from "@material-ui/icons/Star";
+import { HomeRounded } from "@material-ui/icons";
 import StarBorderIcon from "@material-ui/icons/StarBorder";
 import api from "../../../actions/makeAPICall";
 import { withSnackbar } from "notistack";
@@ -12,6 +13,7 @@ const styles = {
 		paddingTop: "100%",
 		overflow: "hidden",
 		position: "relative",
+		borderRadius: "4px",
 	},
 	image: {
 		position: "absolute",
@@ -37,7 +39,8 @@ class SelfAligningImage extends PureComponent {
 	openProfile = (id, page) => {
 		console.log("entered openProfile--   ", id);
 		var uid = btoa(id + "--" + page.toString());
-		window.location.href = "/profile?id=" + uid;
+		// window.location.href = "/profile?id=" + uid;
+		window.open("/profile?id=" + uid, '_blank');
 	};
 
 	addFav = (fav_id, user) => {
@@ -120,30 +123,42 @@ class SelfAligningImage extends PureComponent {
 						title={title}
 						subtitle={
 							<div>
-								<p style={{ marginTop: "3%", marginBottom: 0 }}>
-									{work}
-								</p>
-								<p style={{ marginTop: "2%", marginBottom: 0 }}>
-									Age: {age} {hometown ? ("| Hometown: "+hometown) : ''}
-								</p>
+								<div style={{display:"flex"}}>
+									<p style={{ margin: "2% 3% 2% 0%"}}>
+										Age: {age}
+									</p>
+									{(work ? <p style={{ margin: "2% 3% 2% 0%"}}>
+										{"| "+work}
+									</p>: "")}
+								</div>
+								{(hometown ? <div style={{display:"flex"}}>
+									<HomeRounded style={{fontSize:"1rem"}} />
+									<p style={{margin: "1% 0% 0% 2%"}}>
+										{hometown}
+									</p>
+								</div> : "")}
 							</div>
 						}
 						actionIcon={
 							<IconButton>
 								{fav ? (
+									<Tooltip title={'Shortlist'} placement="top" TransitionComponent={Zoom} followCursor>
 									<StarIcon
 										style={{ color: "ghostwhite" }}
 										onClick={() =>
 											this.removeFav(id, user_email)
 										}
 									/>
+									</Tooltip>
 								) : (
+									<Tooltip title={'Shortlist'} placement="top" TransitionComponent={Zoom} followCursor>
 									<StarBorderIcon
 										style={{ color: "ghostwhite" }}
 										onClick={() =>
 											this.addFav(id, user_email)
 										}
 									/>
+									</Tooltip>
 								)}
 							</IconButton>
 						}

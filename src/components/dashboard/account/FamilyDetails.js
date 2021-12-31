@@ -201,7 +201,7 @@ const FamilyDetails = (props) => {
 							<Grid item md={6} xs={12}>
 								<TextField
 									fullWidth
-									label='Sisters'
+									label='No of sisters'
 									margin='dense'
 									name='sis'
 									type='number'
@@ -217,7 +217,7 @@ const FamilyDetails = (props) => {
 							<Grid item md={6} xs={12}>
 								<TextField
 									fullWidth
-									label='Married sisters'
+									label='No of married sisters'
 									margin='dense'
 									name='sismrg'
 									type='number'
@@ -233,7 +233,7 @@ const FamilyDetails = (props) => {
 							<Grid item md={6} xs={12}>
 								<TextField
 									fullWidth
-									label='Brothers'
+									label='No of brothers'
 									margin='dense'
 									name='bro'
 									type='number'
@@ -249,7 +249,7 @@ const FamilyDetails = (props) => {
 							<Grid item md={6} xs={12}>
 								<TextField
 									fullWidth
-									label='Married brothers'
+									label='No of married brothers'
 									margin='dense'
 									name='bromrg'
 									type='number'

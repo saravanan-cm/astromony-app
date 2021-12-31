@@ -40,30 +40,30 @@ export default function Footer() {
                   className="text-lightBlue-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <a href = "https://www.instagram.com/its_vyvaha/" target="_blank">
-                    <img src={instagram}></img>
+                  <a href = "https://www.instagram.com/its_vyvaha/" rel="noreferrer" target="_blank">
+                    <img src={instagram} alt="Instagram"></img>
                   </a>
                 </button>
                 <button
                   className="text-lightBlue-600 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <img src={facebook}></img>
+                  <img src={facebook} alt="Facebook"></img>
                 </button>
                 <button
                   className="text-pink-400 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <a href = "https://twitter.com/vyvaha" target="_blank">
-                    <img src={twitter}></img>
+                  <a href = "https://twitter.com/vyvaha" rel="noreferrer" target="_blank">
+                    <img src={twitter} alt="Twitter"></img>
                   </a>
                 </button>
                 <button
                   className="text-blueGray-800 shadow-lg font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none mr-2"
                   type="button"
                 >
-                  <a href = "mailto:support@vyvaha.com" target="_blank">
-                    <img src={gmail}></img>
+                  <a href = "mailto:support@vyvaha.com" rel="noreferrer" target="_blank">
+                    <img src={gmail} alt="Gmail"></img>
                   </a>
                 </button>
               </div>
@@ -95,15 +95,15 @@ export default function Footer() {
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="terms-of-service"
                       >
-                        Terms & Conditions
+                        Terms of Service
                       </a>
                     </li>
                     <li>
                       <a
                         className="text-blueGray-300 hover:text-blueGray-200 font-semibold block pb-2 text-sm"
-                        href="#"
+                        href="privacy-policy"
                       >
                         Privacy Policy
                       </a>

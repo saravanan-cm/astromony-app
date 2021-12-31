@@ -13,6 +13,8 @@ import store from "./store";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Verify from "./components/auth/Verify";
+import TermsConditions from "./components/auth/TermsConditions";
+import PrivacyPolicy from "./components/auth/PrivacyPolicy";
 import ResetPassword from "./components/auth/ResetPassword";
 import ForgetPassword from "./components/auth/ForgetPassword";
 import PrivateRoute from "./components/private-route/PrivateRoute";
@@ -60,6 +62,8 @@ class App extends Component {
 								component={Register}
 							/>
 							<Route exact path='/login' component={Login} />
+							<Route exact path='/terms-of-service' component={TermsConditions} />
+							<Route exact path='/privacy-policy' component={PrivacyPolicy} />
 							<Route
 								exact
 								path='/verify'

@@ -86,6 +86,7 @@ const AccountDetails = (props) => {
 									readOnly: true,
 								}}
 								value={values.uid}
+								disabled
 								variant='outlined'
 							/>
 						</Grid>
@@ -140,6 +141,7 @@ const AccountDetails = (props) => {
 								InputProps={{
 									readOnly: true,
 								}}
+								disabled
 								value={values.phone}
 								variant='outlined'
 							/>
@@ -155,6 +157,7 @@ const AccountDetails = (props) => {
 								}}
 								onChange={handleChange}
 								required
+								disabled
 								value={values.email}
 								variant='outlined'
 							/>
