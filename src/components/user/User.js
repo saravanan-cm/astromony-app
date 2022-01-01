@@ -148,7 +148,8 @@ class Dashboard extends Component {
 														lg={6}
 														md={6}
 														xl={6}
-														xs={12}>
+														xs={12}
+														style={{display:"grid", alignItems:"center"}}>
 														<ImageCarousal
 															updateImgIdx={this.updateCurrImgIdx}
 															imageList={
