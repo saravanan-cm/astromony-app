@@ -7,7 +7,6 @@ import api from "../../actions/makeAPICall";
 import classNames from "classnames";
 import Navbar from "../../components/layout/Navbar";
 import UserTitle from "./UserTitle";
-import SideDrawer from "../dashboard/SideDrawer";
 import ImageCarousal from "../misc/ImageCarousal";
 import CollapsedBirthDetails from "./CollapsedBirthDetails";
 import CollapsedFamilyDetails from "./CollapsedFamilyDetails";
@@ -109,12 +108,13 @@ class Dashboard extends Component {
 		) {
 			this.handleChange("userDetails", this.state.userDetails);
 		} else {
-			response = await api.getUsersData(params["?id"]);
+			response = await api.getUsersData(params["?id"], params["email"]);
 			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		console.log(response);
 		if ("status" in response) {
 			let resData = response.data;
+			resData['user_email'] = params["email"];
 			this.handleChange("userDetails", resData);
 		}
 	};

@@ -20,6 +20,7 @@ import {
 } from "@material-ui/core";
 import EditRoundedIcon from "@material-ui/icons/EditRounded";
 import ClearRoundedIcon from "@material-ui/icons/ClearRounded";
+import { VisibilityRounded } from "@material-ui/icons";
 import GoogleAutocomplete from "../../misc/GoogleAutocomplete";
 
 const styles = (theme) => ({
@@ -43,6 +44,12 @@ const AccountDetails = (props) => {
 		props.onChange(event.target.name, event.target.value);
 	};
 
+	const handleShowPreview = (e) => {
+		console.log("entered preview--   ", values.uid);
+		var uid = btoa(values.uid + "--" + "dashboard");
+		window.open("/profile?id=" + uid + "&email="+values.email, '_blank');
+	};
+
 	function handleDateChange(date) {
 		props.onChange("dob", date);
 	}
@@ -54,6 +61,7 @@ const AccountDetails = (props) => {
 					title='Profile'
 					action={
 						<div>
+							<Button variant="outlined" startIcon={<VisibilityRounded />} color='primary' onClick={handleShowPreview}> Preview</Button>
 							<IconButton
 								color='primary'
 								aria-label='Edit'

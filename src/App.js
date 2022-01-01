@@ -21,6 +21,8 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Home from "./components/dashboard/account/Landing";
 import User from "./components/user/User";
+import { SnackbarProvider } from "notistack";
+
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
 	// Set auth token header auth
@@ -93,11 +95,13 @@ class App extends Component {
 										</>
 									)}
 								/>
-								<PrivateRoute
-									exact
-									path='/profile'
-									component={User}
-								/>
+								<SnackbarProvider maxSnack={2}>
+									<PrivateRoute
+										exact
+										path='/profile'
+										component={User}
+									/>
+								</SnackbarProvider>
 							</Switch>
 						</Suspense>
 					</div>

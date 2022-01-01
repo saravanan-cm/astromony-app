@@ -91,7 +91,7 @@ async function getFavoritesList(email) {
 }
 
 
-async function getUsersData(id) {
+async function getUsersData(id, user_email) {
 	let buff = atob(id);
 	let text = buff.toString("ascii");
 	let resp = {
@@ -103,6 +103,7 @@ async function getUsersData(id) {
 		url: base_url + "/api/users/" + text.split("--")[0],
 		headers: {
 			"Access-Control-Allow-Origin": "*",
+			"email": user_email,
 		},
 	};
 	let res = await axios(config);

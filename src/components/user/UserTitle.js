@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import {
 	withStyles,
-	Card,
-	CardContent,
 	Grid,
 	Typography,
 	List,
 	ListItem,
+	Button
 } from "@material-ui/core";
 import PropTypes from "prop-types";
+import StarBorderIcon from "@material-ui/icons/StarBorder";
+import StarIcon from "@material-ui/icons/Star";
 import TodayRoundedIcon from "@material-ui/icons/TodayRounded";
 import PhoneIphoneRoundedIcon from "@material-ui/icons/PhoneIphoneRounded";
 import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
+import api from "../../actions/makeAPICall";
+import { useSnackbar } from "notistack";
 
 const styles = (theme) => ({
 	username: {
@@ -55,9 +58,50 @@ const styles = (theme) => ({
 
 const UserTitle = (props) => {
 	const { values, classes } = props;
+	const { enqueueSnackbar } = useSnackbar();
+	var [fav, setFav] = useState(values.fav);
+
+	function removeFavorite() {
+		removeFav();
+	}
+
+	function addFavorite() {
+		addFav()
+	}
+
+	function addFav() {
+		let fav_id = values.uid;
+		let user = values.user_email;
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.addFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				let variant = "success";
+				enqueueSnackbar('Profile shortlisted', { variant });
+				setFav(true);
+			}
+		});
+	};
+
+	function removeFav() {
+		let fav_id = values.uid;
+		let user = values.user_email;
+		console.log("entered favAction--   ", fav_id, user);
+		let req_data = {
+			fav: [fav_id],
+		};
+		api.removeFavProfile(req_data, user).then((resp) => {
+			if (resp && resp["data"] && resp["data"]["status"]) {
+				enqueueSnackbar('Removed from shortlists');
+				setFav(false);
+			}
+		});
+	};
 
 	return (
-		<Grid container spacing={2} style={{margin: "20% 0%"}}>
+		<Grid container spacing={2} style={{margin: "10% 0% 0% 0%"}}>
 			<Grid item xs={12}>
 				<Typography style={{ marginLeft: "4%" }}>
 					<h3 className={classes.username}>{values.name}</h3>
@@ -92,6 +136,16 @@ const UserTitle = (props) => {
 						) : (
 							""
 						)}
+						{values.email == values.user_email ? ("") : (fav ? (
+							<ListItem className={classes.listItem}>
+								<Button variant="outlined" startIcon={<StarIcon />} color='primary' onClick={removeFavorite}> Shortlisted</Button>
+							</ListItem>
+						) : (
+							<ListItem className={classes.listItem}>
+								<Button variant="outlined" startIcon={<StarBorderIcon />} color='primary' onClick={addFavorite}> Shortlist</Button>
+							</ListItem>
+						))}
+						
 					</List>
 				</Typography>
 			</Grid>

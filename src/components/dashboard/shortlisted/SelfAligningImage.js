@@ -38,10 +38,10 @@ class SelfAligningImage extends PureComponent {
 		this.setState({ ...this.state, fav: props.favorite });
 	}
 
-	openProfile = (id, page) => {
+	openProfile = (id, page, user_email) => {
 		console.log("entered openProfile--   ", id);
 		var uid = btoa(id + "--" + page.toString());
-		window.location.href = "/profile?id=" + uid;
+		window.location.href = "/profile?id=" + uid + "&email="+user_email;
 		// window.open("/profile?id=" + uid, '_blank');
 	};
 
@@ -53,7 +53,7 @@ class SelfAligningImage extends PureComponent {
 		api.addFavProfile(req_data, user).then((resp) => {
 			if (resp && resp["data"] && resp["data"]["status"]) {
 				let variant = "success";
-				this.props.enqueueSnackbar('Added to favorites', { variant });
+				this.props.enqueueSnackbar('Profile shortlisted', { variant });
 				this.setState({ ...this.state, fav: true });
 			}
 		});
@@ -66,7 +66,7 @@ class SelfAligningImage extends PureComponent {
 		};
 		api.removeFavProfile(req_data, user).then((resp) => {
 			if (resp && resp["data"] && resp["data"]["status"]) {
-				this.props.enqueueSnackbar('Removed from favorites');
+				this.props.enqueueSnackbar('Removed from shortlists');
 				this.setState({ ...this.state, fav: false });
 			}
 		});
@@ -102,7 +102,7 @@ class SelfAligningImage extends PureComponent {
 						this.img = node;
 					}}
 					className={classes.image}
-					onClick={() => this.openProfile(id, page)}
+					onClick={() => this.openProfile(id, page, user_email)}
 					onLoad={() => {
 						if (this.img.naturalHeight > this.img.naturalWidth) {
 							this.setState({
