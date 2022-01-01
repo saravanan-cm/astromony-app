@@ -139,23 +139,6 @@ const UserTitle = (props) => {
 						) : (
 							""
 						)}
-						{values.email == values.user_email ? ("") : (fav ? (
-							<ListItem className={classes.listItem}>
-								<Grid container>
-									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
-										<Button variant="outlined" fullWidth startIcon={<StarIcon />} color='primary' onClick={removeFavorite}> Shortlisted</Button>
-									</Grid>
-								</Grid>
-							</ListItem>
-						) : (
-							<ListItem className={classes.listItem}>
-								<Grid container>
-									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
-										<Button variant="outlined" fullWidth startIcon={<StarBorderIcon />} color='primary' onClick={addFavorite}> Shortlist</Button>
-									</Grid>
-								</Grid>
-							</ListItem>
-						))}
 						{values.facebook || values.instagram || values.twitter ? (<ListItem className={classes.listItem}>
 							<Grid container>
 								<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
@@ -189,6 +172,23 @@ const UserTitle = (props) => {
 								</Grid>
 							</Grid>
 						</ListItem>) : ("")}
+						{values.email == values.user_email ? ("") : (fav ? (
+							<ListItem className={classes.listItem}>
+								<Grid container>
+									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
+										<Button variant="outlined" fullWidth startIcon={<StarIcon />} color='primary' onClick={removeFavorite}> Shortlisted</Button>
+									</Grid>
+								</Grid>
+							</ListItem>
+						) : (
+							<ListItem className={classes.listItem}>
+								<Grid container>
+									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
+										<Button variant="outlined" fullWidth startIcon={<StarBorderIcon />} color='primary' onClick={addFavorite}> Shortlist</Button>
+									</Grid>
+								</Grid>
+							</ListItem>
+						))}
 					</List>
 				</Typography>
 			</Grid>
