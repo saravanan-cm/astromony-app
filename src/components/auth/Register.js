@@ -284,7 +284,7 @@ class Register extends Component {
 										<p
 											className='grey-text text-darken-1'
 											style={{ float: "left", margin: "2% 20% 2% 0%", fontSize: "1.15em" }}>
-											Read terms and conditions
+											<Link to='/terms-of-service' style={{ color: "blue", textDecoration: "underline" }}>Read terms and conditions</Link>
 										</p>
 										<p
 											className='grey-text text-darken-1'

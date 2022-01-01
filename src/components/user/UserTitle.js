@@ -16,6 +16,9 @@ import MailOutlineRoundedIcon from "@material-ui/icons/MailOutlineRounded";
 import HomeRoundedIcon from "@material-ui/icons/HomeRounded";
 import FingerprintIcon from "@material-ui/icons/Fingerprint";
 import api from "../../actions/makeAPICall";
+import facebook from "../../assets/images/facebook.png";
+import instagram from "../../assets/images/instagram.png";
+import twitter from "../../assets/images/twitter.png";
 import { useSnackbar } from "notistack";
 
 const styles = (theme) => ({
@@ -101,7 +104,7 @@ const UserTitle = (props) => {
 	};
 
 	return (
-		<Grid container spacing={2} style={{margin: "10% 0% 0% 0%"}}>
+		<Grid container spacing={2} style={{ margin: "10% 0% 0% 0%" }}>
 			<Grid item xs={12}>
 				<Typography style={{ marginLeft: "4%" }}>
 					<h3 className={classes.username}>{values.name}</h3>
@@ -138,14 +141,54 @@ const UserTitle = (props) => {
 						)}
 						{values.email == values.user_email ? ("") : (fav ? (
 							<ListItem className={classes.listItem}>
-								<Button variant="outlined" startIcon={<StarIcon />} color='primary' onClick={removeFavorite}> Shortlisted</Button>
+								<Grid container>
+									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
+										<Button variant="outlined" fullWidth startIcon={<StarIcon />} color='primary' onClick={removeFavorite}> Shortlisted</Button>
+									</Grid>
+								</Grid>
 							</ListItem>
 						) : (
 							<ListItem className={classes.listItem}>
-								<Button variant="outlined" startIcon={<StarBorderIcon />} color='primary' onClick={addFavorite}> Shortlist</Button>
+								<Grid container>
+									<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
+										<Button variant="outlined" fullWidth startIcon={<StarBorderIcon />} color='primary' onClick={addFavorite}> Shortlist</Button>
+									</Grid>
+								</Grid>
 							</ListItem>
 						))}
-						
+						{values.facebook || values.instagram || values.twitter ? (<ListItem className={classes.listItem}>
+							<Grid container>
+								<Grid item xs={12} md={6} lg={6} xl={6} sm={12}>
+									{values.facebook ? (<button
+										className="text-lightBlue-400 font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none"
+										type="button"
+										style={{ marginRight: "2rem" }}
+									>
+										<a href={values.facebook} rel="noreferrer" target="_blank">
+											<img src={facebook} alt="Facebook"></img>
+										</a>
+									</button>) : ("")}
+									{values.instagram ? (<button
+										className="text-lightBlue-400 font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none"
+										type="button"
+										style={{ marginRight: "2rem" }}
+									>
+										<a href={values.instagram} rel="noreferrer" target="_blank">
+											<img src={instagram} alt="Instagram"></img>
+										</a>
+									</button>) : ("")}
+									{values.twitter ? (<button
+										className="text-lightBlue-400 font-normal h-10 w-10 items-center justify-center align-center outline-none focus:outline-none"
+										type="button"
+										style={{ marginRight: "2rem" }}
+									>
+										<a href={values.twitter} rel="noreferrer" target="_blank">
+											<img src={twitter} alt="Twitter"></img>
+										</a>
+									</button>) : ("")}
+								</Grid>
+							</Grid>
+						</ListItem>) : ("")}
 					</List>
 				</Typography>
 			</Grid>

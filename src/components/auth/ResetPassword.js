@@ -224,7 +224,7 @@ class ResetPassword extends Component {
 												color: "#fff",
 												backgroundColor: "#22ba6a",
 											}}>
-											Send
+											Submit
 										</Button>
 									</div>
 								</form>

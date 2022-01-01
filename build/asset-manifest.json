@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/static/css/main.51d5f0d4.css",
-    "main.js": "/static/js/main.5bd97d4b.js",
-    "static/js/865.584217e5.chunk.js": "/static/js/865.584217e5.chunk.js",
+    "main.js": "/static/js/main.61a67b09.js",
+    "static/js/865.2f04721b.chunk.js": "/static/js/865.2f04721b.chunk.js",
     "static/media/love.gif": "/static/media/love.69eae7c958be1ee1a894.gif",
     "static/media/love-in-air.gif": "/static/media/love-in-air.141d350b1efb5a30adb2.gif",
     "static/media/thinking.gif": "/static/media/thinking.88eb36a41939a3ce2586.gif",
@@ -30,6 +30,6 @@
   },
   "entrypoints": [
     "static/css/main.51d5f0d4.css",
-    "static/js/main.5bd97d4b.js"
+    "static/js/main.61a67b09.js"
   ]
 }
