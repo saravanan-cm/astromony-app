@@ -71,11 +71,12 @@ const Horoscope = (props) => {
 							label='Looking for a'
 							name='lookingfor'
 							margin='dense'
+							disabled
 							onChange={handleChange}
 							required
 							select={values.editDetails}
 							InputProps={{
-								readOnly: !values.editDetails,
+								readOnly: true,
 							}}
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}

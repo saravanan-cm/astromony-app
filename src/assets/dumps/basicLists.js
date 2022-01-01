@@ -1,4 +1,5 @@
 const heightList = [
+	"--Select--",
 	"4ft 0in",
 	"4ft 1in",
 	"4ft 2in",
@@ -37,9 +38,25 @@ const heightList = [
 	"6ft 11in",
 ];
 
-const tone = ["White", "Medium", "Dark"];
+const tone = ["--Select--", "White", "Medium", "Dark"];
 
 const raasiList = [
+	"--Select--",
+	"Aries / மேஷம்",
+	"Taurus / ரிஷபம்",
+	"Gemini / மிதுனம்",
+	"Cancer / கடகம்",
+	"Leo / சிம்மம்",
+	"Virgo / கன்னி",
+	"Libra / துலாம்",
+	"Scorpio / விருச்சிகம்",
+	"Sagittarius / தனுசு",
+	"Capricorn / மகரம்",
+	"Aquarius / கும்பம்",
+	"Pisces / மீனம்",
+];
+
+const filterRaasiList = [
 	"Aries / மேஷம்",
 	"Taurus / ரிஷபம்",
 	"Gemini / மிதுனம்",
@@ -55,6 +72,38 @@ const raasiList = [
 ];
 
 const nakshatras = [
+	"--Select--",
+	"Ashvini",
+	"Bharani",
+	"Krittika",
+	"Rohini",
+	"Mrigashrisha",
+	"Ardra",
+	"Punarvasu",
+	"Pushya",
+	"Ashlesha",
+	"Magha",
+	"Purva phalguni",
+	"Uttara phalguni",
+	"Hasta",
+	"Chitra",
+	"Swati",
+	"Vishakha",
+	"Anuradha",
+	"Jyeshtha",
+	"Mula",
+	"Purva ashadha",
+	"Uttara ashadha",
+	"Sravana",
+	"Dhanishta",
+	"Shatabhisha",
+	"Purva Bhadrapada",
+	"Uttara Bhadrapada",
+	"Revati",
+	"Abhijit",
+];
+
+const filterNakshatras = [
 	"Ashvini",
 	"Bharani",
 	"Krittika",
@@ -107,9 +156,14 @@ const lookingForList = [
 	},
 ];
 
-const statusList = ["Single", "Divorcee", "Windowed"];
+const statusList = ["--Select--", "Single", "Divorcee", "Windowed"];
+
+const filterStatusList = ["Single", "Divorcee", "Windowed"];
+
+const filterEatingHabits = ["Vegetarian", "Non-Vegetarian", "Eggetarian", "Vegan"];
 
 const visaList = [
+	"--Select--",
 	"US H1B",
 	"Indian Resident",
 	"US Citizen",
@@ -123,6 +177,7 @@ const visaList = [
 ];
 
 const famStatusList = [
+	"--Select--",
 	"Rich",
 	"Upper middle class",
 	"Middle class",
@@ -130,6 +185,7 @@ const famStatusList = [
 ];
 
 const motherTonguesList = [
+	"--Select--",
 	'Tamil',		 'Sourashtra',
 	'Arabic',        'Assamese',
 	'Bengali',       'Bhojpuri',
@@ -144,6 +200,7 @@ const motherTonguesList = [
 ];
 
 const religionList = [
+	"--Select--",
 	"Hindu",
 	"Muslim - Shia",
 	"Muslim - Sunni",
@@ -159,6 +216,7 @@ const religionList = [
 ];
 
 const casteList = [
+	"--Select--",
 	"24 Manai Telugu Chettiar",
 	"96 Kuli Maratha",
 	"Aaru Nattu Vellala",
@@ -958,9 +1016,9 @@ const yesOrNo = [
 
 const habitsList = ["None", "Only Drinking", "Only Smoking", "Both"];
 
-const eatingHabits = ["Vegetarian", "Non-Vegetarian", "Eggetarian", "Vegan"];
+const eatingHabits = ["--Select--", "Vegetarian", "Non-Vegetarian", "Eggetarian", "Vegan"];
 
-const bodyTypeList = ["Skinny", "Medium", "Fat"];
+const bodyTypeList = ["--Select--", "Skinny", "Medium", "Fat"];
 
 export {
 	heightList,
@@ -979,4 +1037,8 @@ export {
 	habitsList,
 	bodyTypeList,
 	eatingHabits,
+	filterEatingHabits,
+	filterStatusList,
+	filterRaasiList,
+	filterNakshatras
 };

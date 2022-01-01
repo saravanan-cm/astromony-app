@@ -122,6 +122,9 @@ class Dashboard extends Component {
 		var qs = require("qs");
 		let params = qs.parse(window.location.search);
 		this.getData(params);
+		window.Tawk_API.onLoad = function(){
+			window.Tawk_API.hideWidget();
+		};
 	}
 
 	render() {

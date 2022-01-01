@@ -37,6 +37,11 @@ const styles = (theme) => ({
 			display: "none",
 		},
 	},
+	disableField: {
+		backgroundColor: "whitesmoke",
+		border: "whitesmoke",
+		borderColor: "whitesmoke",
+	}
 });
 
 const Account = (props) => {
@@ -89,23 +94,23 @@ const Account = (props) => {
 			resData["editDetails"] = false;
 
 			// Default values
-			resData["weight"] = resData['weight'] ? resData['weight'] : 50;
-			resData["sex"] = resData['sex'] ? resData['sex'] : 'Male';
-			resData["height"] = resData['height'] ? resData['height'] : '5ft 0in';
-			resData["tone"] = resData['tone'] ? resData['tone'] : 'Medium';
-			resData["raasi"] = resData['raasi'] ? resData['raasi'] : "Virgo / கன்னி";
-			resData["nakshatra"] = resData['nakshatra'] ? resData['nakshatra'] : 'Hasta';
-			resData["lookingfor"] = resData['lookingfor'] ? resData['lookingfor'] : 'Bride';
-			resData["status"] = resData['status'] ? resData['status'] : 'Single';
-			resData["famstatus"] = resData['famstatus'] ? resData['famstatus'] : 'Upper middle class';
-			resData["visa"] = resData['visa'] ? resData['visa'] : 'Indian Resident';
-			resData["mothertongue"] = resData['mothertongue'] ? resData['mothertongue'] : 'Tamil';
-			resData["religion"] = resData['religion'] ? resData['religion'] : 'Hindu';
-			resData["caste"] = resData['caste'] ? resData['caste'] : 'Others';
-			resData["disability"] = resData['disability'] ? resData['disability'] : 'No';
-			resData["eating"] = resData['eating'] ? resData['eating'] : 'Vegetarian';
-			resData["habits"] = resData['habits'] ? resData['habits'] : 'None';
-			resData["bodytype"] = resData['bodytype'] ? resData['bodytype'] : 'Medium';
+			resData["weight"] = resData['weight'] ? resData['weight'] : null;
+			resData["sex"] = resData['sex'] ? resData['sex'] : null;
+			resData["height"] = resData['height'] ? resData['height'] : null;
+			resData["tone"] = resData['tone'] ? resData['tone'] : null;
+			resData["raasi"] = resData['raasi'] ? resData['raasi'] : null;
+			resData["nakshatra"] = resData['nakshatra'] ? resData['nakshatra'] : null;
+			resData["lookingfor"] = resData['lookingfor'] ? resData['lookingfor'] : null;
+			resData["status"] = resData['status'] ? resData['status'] : null;
+			resData["famstatus"] = resData['famstatus'] ? resData['famstatus'] : null;
+			resData["visa"] = resData['visa'] ? resData['visa'] : null;
+			resData["mothertongue"] = resData['mothertongue'] ? resData['mothertongue'] : null;
+			resData["religion"] = resData['religion'] ? resData['religion'] : null;
+			resData["caste"] = resData['caste'] ? resData['caste'] : null;
+			resData["disability"] = resData['disability'] ? resData['disability'] : null;
+			resData["eating"] = resData['eating'] ? resData['eating'] : null;
+			resData["habits"] = resData['habits'] ? resData['habits'] : null;
+			resData["bodytype"] = resData['bodytype'] ? resData['bodytype'] : null;
 
 			setData(resData);
 			props.onChange("data", resData);
@@ -138,6 +143,9 @@ const Account = (props) => {
 			enqueueSnackbar("Successfully deleted", { variant });
 			data.editDetails = false;
 		} else {
+			if(stateValue == "--Select--" || stateValue == "--select--"){
+				stateValue = null;
+			}
 			data[name] = stateValue;
 			setData(data);
 		}

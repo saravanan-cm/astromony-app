@@ -7,7 +7,6 @@ import {
 	Grid,
 	Dialog,
 	withStyles,
-	Switch,
 	Card,
 	CardContent,
 	CardHeader,
@@ -16,10 +15,7 @@ import {
 	DialogContent,
 	Divider,
 	Slider,
-	Input,
-	FormGroup,
 	IconButton,
-	FormControlLabel,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import CloseIcon from "@material-ui/icons/Close";
@@ -27,8 +23,10 @@ import FilterBAndWIcon from "@material-ui/icons/FilterBAndW";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import FilterListIcon from "@material-ui/icons/FilterList";
 import {
-	statusList,
-	eatingHabits,
+	filterEatingHabits,
+	filterStatusList,
+	filterNakshatras,
+	filterRaasiList
 } from "../../../assets/dumps/basicLists";
 
 const ITEM_HEIGHT = 48;
@@ -95,10 +93,12 @@ const SearchDialog = (props) => {
 	const [salValue, setSalValue] = React.useState([0, 1000]);
 	const [heightValue, setHeightValue] = React.useState([123, 215]);
 	const [convHgtVal, setConvHgtVal] = React.useState(["4ft 0in", "7ft 1in"]);
-	const [saveSearch, setSaveSearch] = React.useState(false);
+	// const [saveSearch, setSaveSearch] = React.useState(false);
 	const [homeTown, setHomeTown] = React.useState([]);
 	const [maritalStatus, setMaritalStatus] = React.useState([]);
 	const [eating, setEating] = React.useState([]);
+	const [raasi, setRaasi] = React.useState([]);
+	const [nakshatra, setNakshatras] = React.useState([]);
 
 	const handleHomeTown = (event, newValue) => {
 		setHomeTown(newValue);
@@ -108,11 +108,21 @@ const SearchDialog = (props) => {
 		setMaritalStatus(newValue);
 	};
 
+	const handleRaasiFilter = (event, newValue) => {
+		setRaasi(newValue);
+	};
+
+	const handleNakshatraFilter = (event, newValue) => {
+		setNakshatras(newValue);
+	};
+
 	const handleClear = () =>{
 		console.log("cleared filters--");
 		setHomeTown([]);
 		setMaritalStatus([]);
 		setEating([]);
+		setRaasi([]);
+		setNakshatras([]);
 		setHeightValue([123, 215]);
 		setSalValue([0,1000]);
 		setAgeValue([18,60]);
@@ -124,15 +134,6 @@ const SearchDialog = (props) => {
 	const handleEating = (event, newValue) => {
 		setEating(newValue);
 	};
-
-	const names = [
-		"Madurai",
-		"Trichy",
-		"Chennai",
-		"Coimbatore",
-		"Salem",
-		"Dindigul",
-	];
 
 	const handleClickOpen = () => {
 		setOpen(true);
@@ -154,6 +155,8 @@ const SearchDialog = (props) => {
 			homeTown: homeTown,
 			maritalStatus: maritalStatus,
 			eating: eating,
+			raasi: raasi,
+			nakshatra: nakshatra,
 		};
 		onChange(ftr);
 	};
@@ -409,6 +412,7 @@ const SearchDialog = (props) => {
 														<Autocomplete
 															onChange={handleHomeTown}
 															multiple
+															value={homeTown}
 															limitTags={2}
 															id='tags-outlined'
 															options={ht}
@@ -444,8 +448,9 @@ const SearchDialog = (props) => {
 															onChange={handleMaritalStatus}
 															multiple
 															limitTags={2}
+															value={maritalStatus}
 															id='tags-outlined'
-															options={statusList}
+															options={filterStatusList}
 															getOptionLabel={(
 																option
 															) => option}
@@ -478,8 +483,9 @@ const SearchDialog = (props) => {
 															onChange={handleEating}
 															multiple
 															limitTags={2}
+															value={eating}
 															id='tags-outlined'
-															options={eatingHabits}
+															options={filterEatingHabits}
 															getOptionLabel={(
 																option
 															) => option}
@@ -493,6 +499,76 @@ const SearchDialog = (props) => {
 																	{...params}
 																	variant='outlined'
 																	placeholder='Select eating habits'
+																/>
+															)}
+														/>
+													</div>
+												</CardContent>
+											</Card>
+										</Grid>
+										<Grid item md={6} xs={12}>
+											<Card
+												className={classes.searchCards}>
+												<CardContent>
+													<Typography>
+														Zodiac / Raasi
+													</Typography>
+													<div>
+														<Autocomplete
+															onChange={handleRaasiFilter}
+															multiple
+															value={raasi}
+															limitTags={2}
+															id='tags-outlined'
+															options={filterRaasiList}
+															getOptionLabel={(
+																option
+															) => option}
+															filterSelectedOptions
+															renderInput={(
+																params
+															) => (
+																<TextField
+																	onChange={handleRaasiFilter}
+																	margin='dense'
+																	{...params}
+																	variant='outlined'
+																	placeholder='Select zodiac/raasi'
+																/>
+															)}
+														/>
+													</div>
+												</CardContent>
+											</Card>
+										</Grid>
+										<Grid item md={6} xs={12}>
+											<Card
+												className={classes.searchCards}>
+												<CardContent>
+													<Typography>
+														Nakshatras
+													</Typography>
+													<div>
+														<Autocomplete
+															onChange={handleNakshatraFilter}
+															multiple
+															value={nakshatra}
+															limitTags={2}
+															id='tags-outlined'
+															options={filterNakshatras}
+															getOptionLabel={(
+																option
+															) => option}
+															filterSelectedOptions
+															renderInput={(
+																params
+															) => (
+																<TextField
+																	onChange={handleNakshatraFilter}
+																	margin='dense'
+																	{...params}
+																	variant='outlined'
+																	placeholder='Select nakshatras'
 																/>
 															)}
 														/>
