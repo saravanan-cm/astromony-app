@@ -69,6 +69,18 @@ const Horoscope = (props) => {
 						<TextField
 							fullWidth
 							label='Looking for a'
+							margin='dense'
+							name='lookingfor'
+							onChange={handleChange}
+							placeholder='Groom/Bride'
+							disabled
+							InputProps={{
+								readOnly: true,
+							}}
+							value={values.lookingfor}
+							variant='outlined'>
+							{/* fullWidth
+							label='Looking for a'
 							name='lookingfor'
 							margin='dense'
 							disabled
@@ -81,12 +93,12 @@ const Horoscope = (props) => {
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
 							value={values.lookingfor}
-							variant='outlined'>
-							{lookingForList.map((option) => (
+							variant='outlined'> */}
+							{/* {lookingForList.map((option) => (
 								<option key={option.key} value={option.label}>
 									{option.label}
 								</option>
-							))}
+							))} */}
 						</TextField>
 					</Grid>
 					<Grid item xs={12}>
