@@ -24,7 +24,7 @@ const BirthDetails = (props) => {
 							required
 							select={values.editDetails}
 							InputProps={{
-								readOnly: !values.editDetails,
+								readOnly: true,
 							}}
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
