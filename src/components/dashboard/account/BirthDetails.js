@@ -26,6 +26,7 @@ const BirthDetails = (props) => {
 							InputProps={{
 								readOnly: true,
 							}}
+							disabled
 							// eslint-disable-next-line react/jsx-sort-props
 							SelectProps={{ native: true }}
 							value={values.sex}
