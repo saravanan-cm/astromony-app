@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/static/css/main.51d5f0d4.css",
+    "main.js": "/static/js/main.0ecc824d.js",
+    "static/js/865.2f04721b.chunk.js": "/static/js/865.2f04721b.chunk.js",
+    "static/media/love.gif": "/static/media/love.69eae7c958be1ee1a894.gif",
+    "static/media/love-in-air.gif": "/static/media/love-in-air.141d350b1efb5a30adb2.gif",
+    "static/media/thinking.gif": "/static/media/thinking.88eb36a41939a3ce2586.gif",
+    "static/media/no_data.png": "/static/media/no_data.e25e042842433a4d1385.png",
+    "static/media/think.png": "/static/media/think.12852887e329908f5085.png",
+    "static/media/work_content.png": "/static/media/work_content.a7edaefbaacd11006aee.png",
+    "static/media/together.jpg": "/static/media/together.4061c6a14ea6130cde27.jpg",
+    "static/media/verify.png": "/static/media/verify.11c91011610bf56a70da.png",
+    "static/media/no_basics.png": "/static/media/no_basics.f461e32b454e0c2dfc0b.png",
+    "static/media/vyvaha.png": "/static/media/vyvaha.ed8280e9835faacf679d.png",
+    "static/media/instagram.png": "/static/media/instagram.e719d8b29f452a16302d.png",
+    "static/media/sign-up.png": "/static/media/sign-up.d24c49319c5ec0cd2110.png",
+    "static/media/find-partner.png": "/static/media/find-partner.5ba00cc78bff684c48b4.png",
+    "static/media/connect.png": "/static/media/connect.3c6696a0cb3c2efe6e5b.png",
+    "static/media/connection.png": "/static/media/connection.aad0b62dae66ff0131c4.png",
+    "static/media/address.svg": "/static/media/address.27f7bb993c0611117b2c1cf4f85a17e5.svg",
+    "static/media/facebook.png": "/static/media/facebook.177e21a8cf4743cba516.png",
+    "static/media/twitter.png": "/static/media/twitter.f87fab6e76b591c59da9.png",
+    "static/media/gmail.png": "/static/media/gmail.3d915f2560534153e466.png",
+    "static/media/height.png": "/static/media/height.5aa61eaa4a42d038dcc1.png",
+    "static/media/tree.png": "/static/media/tree.597824ef67ca94ac17ed.png",
+    "static/media/login-bg.svg": "/static/media/login-bg.f8388548c5ccbea101e957aa5adb24ec.svg",
+    "static/media/zodiac.svg": "/static/media/zodiac.3854513e49ae83c6a08afebfe5e841eb.svg",
+    "index.html": "/index.html"
+  },
+  "entrypoints": [
+    "static/css/main.51d5f0d4.css",
+    "static/js/main.0ecc824d.js"
+  ]
+}
