@@ -14,10 +14,14 @@ import {
 	CircularProgress,
 	LinearProgress,
 } from "@material-ui/core";
+import Resizer from "react-image-file-resizer";
+import { uploadFile, deleteFile } from 'react-s3';
 
 import DeleteIcon from "@material-ui/icons/Delete";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import ImageCarousal from "../../misc/ImageCarousal";
+
+window.Buffer = window.Buffer || require('buffer').Buffer;
 
 const styles = (theme) => ({
 	root: {},
@@ -83,6 +87,14 @@ const AccountProfile = (props) => {
 	const [imageRefresh, setImageRefresh] = useState(false);
 	const [imageAsFile, setImageAsFile] = useState("");
 
+	const config = {
+		bucketName: process.env.REACT_APP_BUCKET_NAME,
+		dirName: values.uid,
+		region: process.env.REACT_APP_REGION,
+		accessKeyId: process.env.REACT_APP_ACCESS_ID,
+		secretAccessKey: process.env.REACT_APP_ACCESS_KEY,
+	};
+
 	const handleImageAsFile = (e) => {
 		const image = e.target.files[0];
 		setImageAsFile((imageFile) => image);
@@ -93,53 +105,102 @@ const AccountProfile = (props) => {
 	}
 
 	useEffect(() => {
-		handleFireBaseUpload();
+		handleS3Upload();
 	}, [imageAsFile]);
 
 	const deleteImage = () => {
+		// let fileUrl = imagesList[currImageIdx];
+		// let filename = fileUrl.substring(fileUrl.lastIndexOf('/')+1);
 		imagesList.splice(currImageIdx, 1);
 		setImageRefresh(true);
 		values.images = imagesList;
 		setImagesList(imagesList);
 		props.onChange("delete_image", imagesList);
 		console.log("inside delete image", currImageIdx);
+		// deleteFile(filename, config)
+		// 	.then(response => console.log(response))
+		// 	.catch(err => console.error(err));
 	};
 
-	const handleFireBaseUpload = () => {
-		// async magic goes here...
+	const resizeFile = (file) =>
+		new Promise((resolve) => {
+			Resizer.imageFileResizer(
+			file,
+			800,
+			600,
+			"JPEG",
+			100,
+			0,
+			(uri) => {
+				resolve(uri);
+			},
+			"blob"
+			);
+		});
+
+	async function handleS3Upload(){
+		// event.preventDefault();
 		if (imageAsFile === "") {
 			console.error("No Image Found");
 		} else if (imageAsFile) {
 			setLoading(true);
-			const uploadTask = storage
-				.ref(`/${values.uid}/${imageAsFile.name}`)
-				.put(imageAsFile);
-
-			//initiates the firebase side uploading
-			uploadTask.on(
-				"state_changed",
-				(snapShot) => {
-					//takes a snap shot of the process as it is happening
-					console.log(snapShot);
-				},
-				(err) => {
-					//catches the errors
-					console.log(err);
-				},
-				() => {
-					storage
-						.ref(values.uid)
-						.child(imageAsFile.name)
-						.getDownloadURL()
-						.then((fireBaseUrl) => {
-							setImagesList([...imagesList, fireBaseUrl]);
-							props.onChange("images", fireBaseUrl);
-							setLoading(false);
-						});
+			let compressedImage = imageAsFile;
+			if (imageAsFile && imageAsFile.size > 500000){
+				compressedImage = await resizeFile(imageAsFile);
+			}
+			let newFileName = imageAsFile.name.replace(/\..+$/, "");
+			uploadFile(compressedImage, config)
+            .then(data => {
+				if(data){
+					let s3Url = data.location;
+					setImagesList([...imagesList, s3Url]);
+					props.onChange("images", s3Url);
 				}
-			);
+				setLoading(false);
+			})
+            .catch(err => console.error(err));
 		}
 	};
+
+	// async function handleFireBaseUpload() {
+	// 	// async magic goes here...
+	// 	if (imageAsFile === "") {
+	// 		console.error("No Image Found");
+	// 	} else if (imageAsFile) {
+	// 		setLoading(true);
+	// 		let compressedImage = imageAsFile;
+	// 		if (imageAsFile && imageAsFile.size > 500000){
+	// 			compressedImage = await resizeFile(imageAsFile)
+	// 		}
+	// 		const uploadTask = storage
+	// 			.ref(`/${values.uid}/${imageAsFile.name}`)
+	// 			.put(compressedImage);
+
+	// 		//initiates the firebase side uploading
+	// 		uploadTask.on(
+	// 			"state_changed",
+	// 			(snapShot) => {
+	// 				//takes a snap shot of the process as it is happening
+	// 				console.log(snapShot);
+	// 			},
+	// 			(err) => {
+	// 				//catches the errors
+	// 				console.log(err);
+	// 			},
+	// 			() => {
+	// 				storage
+	// 					.ref(values.uid)
+	// 					.child(imageAsFile.name)
+	// 					.getDownloadURL()
+	// 					.then((fireBaseUrl) => {
+	// 						setImagesList([...imagesList, fireBaseUrl]);
+	// 						props.onChange("images", fireBaseUrl);
+	// 						setLoading(false);
+	// 					});
+	// 			}
+	// 		);
+	// 	}
+	// };
 
 	return (
 		<Card className={classes.root}>
@@ -177,7 +238,7 @@ const AccountProfile = (props) => {
 			</CardContent>
 			<Divider />
 			<CardActions style={{ float: "left" }}>
-				<form onSubmit={handleFireBaseUpload}>
+				<form onSubmit={handleS3Upload}>
 					<input
 						accept='image/*'
 						className={classes.input}
