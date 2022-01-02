@@ -103,7 +103,6 @@ const ProfileContent = (props) => {
 			setPosts(profiles);
 		} else {
 			response = await api.getProfilesList(userDetails.email, null);
-			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		console.log(response);
 		if ("status" in response) {

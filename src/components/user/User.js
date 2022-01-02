@@ -109,7 +109,6 @@ class Dashboard extends Component {
 			this.handleChange("userDetails", this.state.userDetails);
 		} else {
 			response = await api.getUsersData(params["?id"], params["email"]);
-			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		console.log(response);
 		if ("status" in response) {

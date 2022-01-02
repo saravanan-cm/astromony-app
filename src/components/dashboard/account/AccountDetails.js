@@ -170,8 +170,8 @@ const AccountDetails = (props) => {
 								variant='outlined'
 							/>
 						</Grid>
-						<Grid item md={6} xs={12}>
-							<FormGroup row style={{ marginLeft: "2%" }}>
+						<Grid item lg={4} md={6} xs={12}>
+							<FormGroup row style={{ marginLeft: "1%" }}>
 								<FormControlLabel
 									control={
 										<Checkbox
@@ -188,15 +188,15 @@ const AccountDetails = (props) => {
 												fontStyle: "italic",
 											}}>
 											{
-												"Show only same caste?"
+												"Show same caste?"
 											}
 										</span>
 									}
 								/>
 							</FormGroup>
 						</Grid>
-						<Grid item md={6} xs={12}>
-							<FormGroup row style={{ marginLeft: "2%" }}>
+						<Grid item lg={4} md={6} xs={12}>
+							<FormGroup row style={{ marginLeft: "1%" }}>
 								<FormControlLabel
 									control={
 										<Checkbox
@@ -214,6 +214,31 @@ const AccountDetails = (props) => {
 											}}>
 											{
 												"Exclude same gothram?"
+											}
+										</span>
+									}
+								/>
+							</FormGroup>
+						</Grid>
+						<Grid item lg={4} md={6} xs={12}>
+							<FormGroup row style={{ marginLeft: "1%" }}>
+								<FormControlLabel
+									control={
+										<Checkbox
+											disabled= {!values.editDetails}
+											checked={values.hidephone}
+											onChange={handleCheckboxChange}
+											name='hidephone'
+										/>
+									}
+									label={
+										<span
+											style={{
+												fontSize: "0.75rem",
+												fontStyle: "italic",
+											}}>
+											{
+												"Hide phone number?"
 											}
 										</span>
 									}

@@ -85,7 +85,6 @@ const ShortlistedContent = (props) => {
 			setProfiles(favorites);
 		} else {
 			response = await api.getFavoritesList(userDetails.email);
-			// response = await api.getMyData("saracmmce@gmail.com");
 		}
 		console.log(response);
 		if ("status" in response) {
